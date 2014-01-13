@@ -11,8 +11,24 @@ using DigitalRune.Windows.Docking;
 
 namespace Animat.UI.ToolWindows
 {
+    /// <summary>
+    /// Start Page tool window.
+    /// Displays an embedded HTML page with options on how to start using the YUAI.
+    /// </summary>
     public partial class StartPage : DockableForm
     {
+        #region Singleton
+
+        private static StartPage instance;
+
+        /// <summary>
+        /// Gets the global instance of StartPage.
+        /// </summary>
+        public static StartPage Instance
+        { get { return instance ?? (instance = new StartPage()); } }
+
+        #endregion
+
         public StartPage()
         {
             InitializeComponent();

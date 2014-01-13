@@ -36,6 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DigitalRune.Windows.Docking.dll</HintPath>
     </Reference>
+    <Reference Include="libWyvernzora">
+      <HintPath>..\packages\libWyvernzora.0.5.6\lib\libWyvernzora.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +58,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Project\YuaiProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolWindows\ResourceExplorer.cs">
       <SubType>Form</SubType>
@@ -86,6 +90,7 @@
     <EmbeddedResource Include="ToolWindows\StartPage.resx">
       <DependentUpon>StartPage.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

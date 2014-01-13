@@ -35,6 +35,7 @@
             // 
             this.startPageBrowser.AllowWebBrowserDrop = false;
             this.startPageBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.startPageBrowser.IsWebBrowserContextMenuEnabled = false;
             this.startPageBrowser.Location = new System.Drawing.Point(0, 0);
             this.startPageBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.startPageBrowser.Name = "startPageBrowser";
@@ -56,6 +57,7 @@
             | DigitalRune.Windows.Docking.DockAreas.Top) 
             | DigitalRune.Windows.Docking.DockAreas.Bottom) 
             | DigitalRune.Windows.Docking.DockAreas.Document)));
+            this.HideOnClose = true;
             this.Name = "StartPage";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
