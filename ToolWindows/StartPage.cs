@@ -43,7 +43,7 @@ namespace Animat.UI.ToolWindows
             startPageBrowser.Navigating += (@s, e) =>
                 {
                     String projectId = e.Url.LocalPath.Trim('/');
-                    MessageBox.Show(String.Format("Navigation to Project with id: {0}", projectId));
+                    MainForm.Instance.StartPageNavigate(projectId);
 
                     e.Cancel = true;
                 };
