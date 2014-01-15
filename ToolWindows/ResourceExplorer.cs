@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DigitalRune.Windows.Docking;
+using libWyvernzora.Nightingale;
+using Animat.UI.Project;
 
 namespace Animat.UI.ToolWindows
 {
-    public partial class ResourceExplorer : DockableForm
+    public partial class ResourceExplorer : DockableForm, IUpdateState
     {
+        // Window State Manager
+        readonly WizardStateManager stateManager
+            = new WizardStateManager();
 
         #region Singleton Window
 
@@ -34,8 +39,23 @@ namespace Animat.UI.ToolWindows
         {
             InitializeComponent();
 
+            // Initializa State Manager
+            stateManager.AddState(noProjectState);
+            stateManager.AddState(browseState);
+            stateManager.SetCurrentState(browseState.Name);
+
             // Disable docking to document area and top
             DockAreas = ~(DockAreas.Document | DockAreas.Top);
+
+            // Events
+            Shown += (@s, e) => stateManager.SetCurrentState(YuaiProject.Instance == null ? 
+                                                                 noProjectState.Name : browseState.Name);
+        }
+
+        public void UpdateState()
+        {
+            stateManager.SetCurrentState(YuaiProject.Instance == null ?
+                                                                    noProjectState.Name : browseState.Name);
         }
     }
 }
