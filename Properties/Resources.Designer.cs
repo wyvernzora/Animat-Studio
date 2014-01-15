@@ -63,6 +63,16 @@ namespace Animat.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chibi_e {
+            get {
+                object obj = ResourceManager.GetObject("chibi-e", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chibi_f {
             get {
                 object obj = ResourceManager.GetObject("chibi-f", resourceCulture);

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using Animat.UI.Properties;
+using libWyvernzora.IO;
 
 namespace Animat.UI.Project
 {
@@ -40,10 +42,22 @@ namespace Animat.UI.Project
         /// Constructor.
         /// Prevents creation of the class instances from outside the class.
         /// </summary>
-        protected YuaiProject(String path, String name)
+        protected YuaiProject(String path)
         {
-            Name = name;
-            ProjectDirectory = Path.GetDirectoryName(path);
+            // Set up variables
+            ProjectDirectory = path;
+
+            // Load project descriptor file
+            if (!File.Exists(path))
+                throw new FileNotFoundException("Cannot find the project descriptor file!", path);
+            try
+            {
+                Model = ProjectModel.Deserialize(path);
+            }
+            catch (Exception x)
+            {
+                throw new InvalidDataException("Error loading the project descriptor file!");
+            }
         }
 
         #region Properties
@@ -108,7 +122,17 @@ namespace Animat.UI.Project
 
             // Create Project Descriptor File
                 // TODO Serialize instead of writing
-            File.WriteAllText(Path.Combine(dir, PROJECT_FILE), String.Format(Resources.DefaultProjectDescriptor, name));
+            //File.WriteAllText(Path.Combine(dir, PROJECT_FILE), String.Format(Resources.DefaultProjectDescriptor, name));
+            var model = new ProjectModel()
+                {
+                    FPS = 10,
+                    Name = name,
+                    Resources = new string[] { },
+                    FrameFiles = new[] {"\\frames\\default.bxframe"},
+                    SequenceFiles = new[] {"\\sequences\\default.bxseq"},
+                    EventFiles = new[] {"\\events\\default.bxevent"}
+                };
+            ProjectModel.Serialize(Path.Combine(dir, PROJECT_FILE), model);
 
             // Create Default Files
             File.WriteAllText(Path.Combine(dir, FRAMES_DIR, "default.bxframe"), "{ }");
@@ -116,7 +140,16 @@ namespace Animat.UI.Project
             File.WriteAllText(Path.Combine(dir, EVENTS_DIR, "default.bxevent"), "{ }");
 
             // Load Default Project
-            instance = new YuaiProject(Path.Combine(dir, PROJECT_FILE), name);
+            instance = new YuaiProject(Path.Combine(dir, PROJECT_FILE));
+        }
+
+        /// <summary>
+        /// Loads a project from descriptor file.
+        /// </summary>
+        /// <param name="path"></param>
+        public static void Load(String path)
+        {
+            instance = new YuaiProject(path);
         }
 
         #endregion

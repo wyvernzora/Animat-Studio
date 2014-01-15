@@ -41,12 +41,12 @@
             System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Events", new System.Windows.Forms.TreeNode[] {
             treeNode6});
             this.iconList = new System.Windows.Forms.ImageList(this.components);
-            this.noProjectState = new libWyvernzora.Nightingale.WizardState();
-            this.noProjectLabel = new System.Windows.Forms.Label();
             this.browseState = new libWyvernzora.Nightingale.WizardState();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.noProjectState.SuspendLayout();
+            this.noProjectState = new libWyvernzora.Nightingale.WizardState();
+            this.noProjectLabel = new System.Windows.Forms.Label();
             this.browseState.SuspendLayout();
+            this.noProjectState.SuspendLayout();
             this.SuspendLayout();
             // 
             // iconList
@@ -57,29 +57,6 @@
             this.iconList.Images.SetKeyName(1, "resources");
             this.iconList.Images.SetKeyName(2, "sequences");
             this.iconList.Images.SetKeyName(3, "events");
-            // 
-            // noProjectState
-            // 
-            this.noProjectState.Controls.Add(this.noProjectLabel);
-            this.noProjectState.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.noProjectState.Location = new System.Drawing.Point(0, 0);
-            this.noProjectState.Name = "noProjectState";
-            this.noProjectState.Size = new System.Drawing.Size(229, 646);
-            this.noProjectState.StateManager = null;
-            this.noProjectState.TabIndex = 2;
-            // 
-            // noProjectLabel
-            // 
-            this.noProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.noProjectLabel.AutoSize = true;
-            this.noProjectLabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.noProjectLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.noProjectLabel.Location = new System.Drawing.Point(66, 303);
-            this.noProjectLabel.Name = "noProjectLabel";
-            this.noProjectLabel.Size = new System.Drawing.Size(97, 40);
-            this.noProjectLabel.TabIndex = 0;
-            this.noProjectLabel.Text = "No Project\r\nLoaded";
-            this.noProjectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // browseState
             // 
@@ -137,6 +114,29 @@
             this.treeView1.Size = new System.Drawing.Size(229, 646);
             this.treeView1.TabIndex = 0;
             // 
+            // noProjectState
+            // 
+            this.noProjectState.Controls.Add(this.noProjectLabel);
+            this.noProjectState.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noProjectState.Location = new System.Drawing.Point(0, 0);
+            this.noProjectState.Name = "noProjectState";
+            this.noProjectState.Size = new System.Drawing.Size(229, 646);
+            this.noProjectState.StateManager = null;
+            this.noProjectState.TabIndex = 2;
+            // 
+            // noProjectLabel
+            // 
+            this.noProjectLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.noProjectLabel.AutoSize = true;
+            this.noProjectLabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noProjectLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.noProjectLabel.Location = new System.Drawing.Point(66, 303);
+            this.noProjectLabel.Name = "noProjectLabel";
+            this.noProjectLabel.Size = new System.Drawing.Size(97, 40);
+            this.noProjectLabel.TabIndex = 0;
+            this.noProjectLabel.Text = "No Project\r\nLoaded";
+            this.noProjectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // ResourceExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,9 +154,9 @@
             this.ShowHint = DigitalRune.Windows.Docking.DockState.DockLeft;
             this.TabText = "Project Explorer";
             this.Text = "Project Explorer";
+            this.browseState.ResumeLayout(false);
             this.noProjectState.ResumeLayout(false);
             this.noProjectState.PerformLayout();
-            this.browseState.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

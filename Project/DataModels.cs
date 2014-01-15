@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Runtime.Serialization;
+using libWyvernzora.IO;
 
 namespace Animat.UI.Project
 {
@@ -58,6 +61,50 @@ namespace Animat.UI.Project
         [DataMember(Name = "events")]
         public String[] EventFiles { get; set; }
 
+
+        #region Save/Load Methods
+
+        /// <summary>
+        /// Serializes the Project Model to a file.
+        /// </summary>
+        /// <param name="path">Path of the file.</param>
+        public static void Serialize(String path, ProjectModel model)
+        {
+            // Make sure that the parent directory exists
+            if (!Directory.Exists(Path.GetDirectoryName(path)))
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+
+            // Serialize
+            using (var stream = new StreamEx(path, FileMode.Create))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(ProjectModel));
+                serializer.WriteObject(stream, model);
+            }
+        }
+
+        /// <summary>
+        /// Deserializes the Project Model froma file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static ProjectModel Deserialize(String path)
+        {
+            // Make sure the file is there
+            if (!File.Exists(path))
+                throw new FileNotFoundException("Cannot find the specified file!", path);
+
+            // Deserialize
+            ProjectModel model = null;
+            using (var stream = new StreamEx(path))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(ProjectModel));
+                model = (ProjectModel)serializer.ReadObject(stream);
+            }
+
+            return model;
+        }
+
+        #endregion
     }
 
     #endregion

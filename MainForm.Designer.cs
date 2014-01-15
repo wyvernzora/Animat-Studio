@@ -36,9 +36,12 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmShowStartPage = new System.Windows.Forms.ToolStripMenuItem();
             this.dEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDockableFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStripContainer = new System.Windows.Forms.ToolStripContainer();
-            this.dockPanel1 = new DigitalRune.Windows.Docking.DockPanel();
+            this.dockPanel = new DigitalRune.Windows.Docking.DockPanel();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmShowProjectExplorer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.importResourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuSrip.SuspendLayout();
             this.mainToolStripContainer.ContentPanel.SuspendLayout();
             this.mainToolStripContainer.SuspendLayout();
@@ -62,7 +65,9 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmNewProject,
-            this.tsmOpenProject});
+            this.tsmOpenProject,
+            this.toolStripMenuItem2,
+            this.importResourceToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -70,13 +75,13 @@
             // tsmNewProject
             // 
             this.tsmNewProject.Name = "tsmNewProject";
-            this.tsmNewProject.Size = new System.Drawing.Size(152, 22);
+            this.tsmNewProject.Size = new System.Drawing.Size(161, 22);
             this.tsmNewProject.Text = "New Project...";
             // 
             // tsmOpenProject
             // 
             this.tsmOpenProject.Name = "tsmOpenProject";
-            this.tsmOpenProject.Size = new System.Drawing.Size(152, 22);
+            this.tsmOpenProject.Size = new System.Drawing.Size(161, 22);
             this.tsmOpenProject.Text = "Open Project...";
             // 
             // editToolStripMenuItem
@@ -88,7 +93,9 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmShowStartPage});
+            this.tsmShowStartPage,
+            this.toolStripMenuItem1,
+            this.tsmShowProjectExplorer});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
@@ -96,48 +103,64 @@
             // tsmShowStartPage
             // 
             this.tsmShowStartPage.Name = "tsmShowStartPage";
-            this.tsmShowStartPage.Size = new System.Drawing.Size(159, 22);
+            this.tsmShowStartPage.Size = new System.Drawing.Size(188, 22);
             this.tsmShowStartPage.Text = "Show Start Page";
             // 
             // dEBUGToolStripMenuItem
             // 
-            this.dEBUGToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addDockableFormToolStripMenuItem});
             this.dEBUGToolStripMenuItem.Name = "dEBUGToolStripMenuItem";
             this.dEBUGToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.dEBUGToolStripMenuItem.Text = "DEBUG";
             // 
-            // addDockableFormToolStripMenuItem
-            // 
-            this.addDockableFormToolStripMenuItem.Name = "addDockableFormToolStripMenuItem";
-            this.addDockableFormToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.addDockableFormToolStripMenuItem.Text = "Add Dockable Form";
-            this.addDockableFormToolStripMenuItem.Click += new System.EventHandler(this.addDockableFormToolStripMenuItem_Click);
-            // 
             // mainToolStripContainer
             // 
+            this.mainToolStripContainer.BottomToolStripPanelVisible = false;
             // 
             // mainToolStripContainer.ContentPanel
             // 
-            this.mainToolStripContainer.ContentPanel.Controls.Add(this.dockPanel1);
-            this.mainToolStripContainer.ContentPanel.Size = new System.Drawing.Size(1264, 632);
+            this.mainToolStripContainer.ContentPanel.Controls.Add(this.dockPanel);
+            this.mainToolStripContainer.ContentPanel.Size = new System.Drawing.Size(1264, 657);
             this.mainToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainToolStripContainer.LeftToolStripPanelVisible = false;
             this.mainToolStripContainer.Location = new System.Drawing.Point(0, 24);
             this.mainToolStripContainer.Name = "mainToolStripContainer";
+            this.mainToolStripContainer.RightToolStripPanelVisible = false;
             this.mainToolStripContainer.Size = new System.Drawing.Size(1264, 657);
             this.mainToolStripContainer.TabIndex = 1;
             this.mainToolStripContainer.Text = "toolStripContainer1";
             // 
-            // dockPanel1
+            // dockPanel
             // 
-            this.dockPanel1.ActiveAutoHideContent = null;
-            this.dockPanel1.DefaultFloatingWindowSize = new System.Drawing.Size(300, 300);
-            this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockPanel1.DockLeftPortion = 0.2D;
-            this.dockPanel1.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.Size = new System.Drawing.Size(1264, 632);
-            this.dockPanel1.TabIndex = 0;
+            this.dockPanel.ActiveAutoHideContent = null;
+            this.dockPanel.DefaultFloatingWindowSize = new System.Drawing.Size(300, 300);
+            this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPanel.DockLeftPortion = 0.2D;
+            this.dockPanel.Location = new System.Drawing.Point(0, 0);
+            this.dockPanel.Name = "dockPanel";
+            this.dockPanel.Size = new System.Drawing.Size(1264, 657);
+            this.dockPanel.TabIndex = 0;
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(185, 6);
+            // 
+            // tsmShowProjectExplorer
+            // 
+            this.tsmShowProjectExplorer.Name = "tsmShowProjectExplorer";
+            this.tsmShowProjectExplorer.Size = new System.Drawing.Size(188, 22);
+            this.tsmShowProjectExplorer.Text = "Show Project Explorer";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 6);
+            // 
+            // importResourceToolStripMenuItem
+            // 
+            this.importResourceToolStripMenuItem.Name = "importResourceToolStripMenuItem";
+            this.importResourceToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.importResourceToolStripMenuItem.Text = "Import Resource";
             // 
             // MainForm
             // 
@@ -168,13 +191,16 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripContainer mainToolStripContainer;
-        private DigitalRune.Windows.Docking.DockPanel dockPanel1;
+        private DigitalRune.Windows.Docking.DockPanel dockPanel;
         private System.Windows.Forms.ToolStripMenuItem dEBUGToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addDockableFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmShowStartPage;
         private System.Windows.Forms.ToolStripMenuItem tsmNewProject;
         private System.Windows.Forms.ToolStripMenuItem tsmOpenProject;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmShowProjectExplorer;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem importResourceToolStripMenuItem;
     }
 }
 

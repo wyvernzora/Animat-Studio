@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Animat.UI.Project;
+using Animat.UI.Properties;
 using Animat.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Utilities;
@@ -33,6 +34,11 @@ namespace Animat.UI
         {
             Instance = this;
 
+            Application.ThreadException += (@s, e) =>
+                {
+                    (new ErrorWindow(e.Exception)).ShowDialog(this);
+                };
+
             InitializeComponent();
 
             // Initialize Layout
@@ -48,12 +54,12 @@ namespace Animat.UI
         {
             // Layout
             using (var lk = new ActionLock(
-                () => dockPanel1.SuspendLayout(true),
-                () => dockPanel1.ResumeLayout(true, true)))
+                () => dockPanel.SuspendLayout(true),
+                () => dockPanel.ResumeLayout(true, true)))
             {
-                ResourceExplorer.Instance.Show(dockPanel1, DockState.DockLeft);
+                ResourceExplorer.Instance.Show(dockPanel, DockState.DockLeft);
                 PreviewWindow.Instance.Show(ResourceExplorer.Instance.Pane, DockPaneAlignment.Bottom, 0.4);
-                StartPage.Instance.Show(dockPanel1, DockState.Document);
+                StartPage.Instance.Show(dockPanel, DockState.Document);
 
             }
 
@@ -70,13 +76,14 @@ namespace Animat.UI
         {
             // File
             tsmNewProject.Click += (@s, e) => NewProject();
+            tsmOpenProject.Click += (@s, e) => LoadProject();
 
             // Edit
 
 
             // View
-            tsmShowStartPage.Click += (@s, e) => StartPage.Instance.Show(dockPanel1);
-
+            tsmShowStartPage.Click += (@s, e) => StartPage.Instance.Show(dockPanel);
+            tsmShowProjectExplorer.Click += (@s, e) => ResourceExplorer.Instance.Show(dockPanel);
 
         }
 
@@ -103,10 +110,33 @@ namespace Animat.UI
                 }
                 catch (Exception x)
                 {
-                    
+                    (new ErrorWindow(x)).ShowDialog(this);
                 }
             }
         }
+
+        void CloseProject()
+        {
+            
+        }
+
+        void LoadProject()
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "BarloX Project File (*.bxproj)|*.bxproj";
+            dialog.InitialDirectory = Settings.Default.ProjectFolder;
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    YuaiProject.Load(dialog.FileName);
+                    UpdateUiState();
+                }
+                catch (Exception x)
+                {
+                    (new ErrorWindow(x)).ShowDialog(this);
+                }}
+            }
 
         #endregion
 
@@ -114,11 +144,17 @@ namespace Animat.UI
 
         public void StartPageNavigate(String projectId)
         {
-            if ((projectId == "new"))
-                NewProject();
-            else
+            switch (projectId)
             {
-                MessageBox.Show(String.Format("Project navigation not implemented yet. ID: {0}", projectId));
+                case "new":
+                    NewProject();
+                    break;
+                case "open":
+                    LoadProject();
+                    break;
+                default:
+                    MessageBox.Show(String.Format("Project navigation not implemented yet. ID: {0}", projectId));
+                    break;
             }
         }
 
@@ -129,14 +165,14 @@ namespace Animat.UI
             var window = new ResourceExplorer();
 
 
-            if (dockPanel1.DocumentStyle == DocumentStyle.SystemMdi)
+            if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
             {
                 window.MdiParent = this;
                 window.Show();
             }
             else
             {
-                window.Show(dockPanel1);
+                window.Show(dockPanel);
                 window.DockState = DockState.DockLeft;
                 window.DockAreas = ~(DockAreas.Document | DockAreas.Top | DockAreas.Bottom);
             }
