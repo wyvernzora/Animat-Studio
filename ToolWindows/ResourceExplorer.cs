@@ -48,8 +48,11 @@ namespace Animat.UI.ToolWindows
             DockAreas = ~(DockAreas.Document | DockAreas.Top);
 
             // Events
-            Shown += (@s, e) => stateManager.SetCurrentState(YuaiProject.Instance == null ? 
-                                                                 noProjectState.Name : browseState.Name);
+            Shown += (@s, e) => UpdateState();
+            YuaiProject.OnRequestUiUpdate += (@s, e) =>
+                {
+
+                };
         }
 
         public void UpdateState()

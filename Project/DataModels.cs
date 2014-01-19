@@ -38,28 +38,28 @@ namespace Animat.UI.Project
         /// Gets paths to resource files used in the project.
         /// </summary>
         [DataMember(Name = "resources")]
-        public String[] Resources { get; set; }
+        public List<String> Resources { get; set; }
 
         // Frames
         /// <summary>
         /// Gets the list of frame definition files.
         /// </summary>
         [DataMember(Name = "frames")]
-        public String[] FrameFiles { get; set; }
+        public List<String> FrameFiles { get; set; }
 
         // Sequences
         /// <summary>
         /// Gets the list of sequence definition files.
         /// </summary>
         [DataMember(Name = "sequences")]
-        public String[] SequenceFiles { get; set; }
+        public List<String> SequenceFiles { get; set; }
 
         // Events
         /// <summary>
         /// Gets the list of event definition files.
         /// </summary>
         [DataMember(Name = "events")]
-        public String[] EventFiles { get; set; }
+        public List<String> EventFiles { get; set; }
 
 
         #region Save/Load Methods

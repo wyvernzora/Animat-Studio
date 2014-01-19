@@ -15,6 +15,36 @@ namespace Animat.UI.Project
     /// </summary>
     public class YuaiProject
     {
+        #region Nested Types
+
+        /// <summary>
+        /// Indicates the scope of requested update.
+        /// </summary>
+        [Flags]
+        public enum UpdateScope
+        {
+            None = 0,
+            Resources = 1,
+            Frames = 2,
+            Sequences = 4,
+            Events = 8,
+            All = 0x7FFFFFFF
+        }
+
+        /// <summary>
+        /// OnRequestUpdate event argument object.
+        /// </summary>
+        public sealed class UpdatedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Gets or sets the scope of the requested update.
+            /// </summary>
+            public UpdateScope Scope { get; set; }
+        }
+
+
+        #endregion
+
         #region Constants
 
         private const String PROJECT_FILE = "project.bxproj";
@@ -76,12 +106,70 @@ namespace Animat.UI.Project
         /// Gets the serializable project model.
         /// </summary>
         public ProjectModel Model { get; protected set; }
-
+ 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Saves the project and writes all changes to files.
+        /// </summary>
+        public void Save()
+        {
+            // Save project descriptor file
+            ProjectModel.Serialize(Path.Combine(ProjectDirectory, PROJECT_FILE), Model);
 
+            // TODO Save Everything Else
+        }
+
+        /// <summary>
+        /// Imports the resource and adds the file to the resource list.
+        /// </summary>
+        /// <param name="path"></param>
+        public void ImportResource(String path)
+        {
+            // Get the filename
+            var filename = Path.GetFileName(path);
+            if (filename == null)
+                throw new Exception(String.Format("YuaiProject.ImportResource(string): Null Filename; Path = {0}", path));
+            
+            // Copy the resource to the resource directory
+            File.Copy(path, Path.Combine(ProjectDirectory, RESOURCE_DIR, filename));
+
+            // Add the resource to the project descriptor
+            var relPath = Path.Combine(RESOURCE_DIR, filename);
+            Model.Resources.Add(relPath);
+
+            // Save Stuff
+            Save();
+
+            // Request Update
+            RequestUiUpdate(UpdateScope.Resources);
+        }
+
+        #endregion
+
+        #region Events
+
+        // Static event handler for 
+        private static EventHandler<UpdatedEventArgs> requestUiUpdate;
+
+        /// <summary>
+        /// Raised when YuaiProject changes and needs UI to be updated.
+        /// </summary>
+        public static event EventHandler<UpdatedEventArgs> OnRequestUiUpdate
+        {
+            add { requestUiUpdate += value; }
+            remove { requestUiUpdate -= value; }
+        }
+        /// <summary>
+        /// Request UI to be updated.
+        /// </summary>
+        public static void RequestUiUpdate(UpdateScope scope)
+        {
+            if (requestUiUpdate != null)
+                requestUiUpdate(instance, new UpdatedEventArgs { Scope = scope });
+        }
 
         #endregion
 
@@ -127,10 +215,10 @@ namespace Animat.UI.Project
                 {
                     FPS = 10,
                     Name = name,
-                    Resources = new string[] { },
-                    FrameFiles = new[] {"\\frames\\default.bxframe"},
-                    SequenceFiles = new[] {"\\sequences\\default.bxseq"},
-                    EventFiles = new[] {"\\events\\default.bxevent"}
+                    Resources = { },
+                    FrameFiles = {"\\frames\\default.bxframe"},
+                    SequenceFiles = {"\\sequences\\default.bxseq"},
+                    EventFiles = {"\\events\\default.bxevent"}
                 };
             ProjectModel.Serialize(Path.Combine(dir, PROJECT_FILE), model);
 

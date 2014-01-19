@@ -15,7 +15,7 @@ namespace Animat.UI.ToolWindows
     /// Start Page tool window.
     /// Displays an embedded HTML page with options on how to start using the YUAI.
     /// </summary>
-    public partial class StartPage : DockableForm
+    public partial class StartPage : DockableForm, IUpdateState
     {
         #region Singleton
 
@@ -47,6 +47,11 @@ namespace Animat.UI.ToolWindows
 
                     e.Cancel = true;
                 };
+        }
+
+        public void UpdateState()
+        {
+            
         }
     }
 }

@@ -27,17 +27,18 @@ namespace Animat.UI
         #endregion
 
         // List of UI elements that need updating with state changes
-        List<IUpdateState> updateable = new List<IUpdateState>(); 
+        readonly List<IUpdateState> updateable = new List<IUpdateState>(); 
 
 
         public MainForm()
         {
+            // Detect multiple instances
+            if (Instance != null)
+                throw new Exception("Attempt to create a second instance of a singleton.");
             Instance = this;
 
-            Application.ThreadException += (@s, e) =>
-                {
-                    (new ErrorWindow(e.Exception)).ShowDialog(this);
-                };
+            // Default exception handling
+            Application.ThreadException += (@s, e) => (new ErrorWindow(e.Exception)).ShowDialog(this);
 
             InitializeComponent();
 
@@ -45,9 +46,10 @@ namespace Animat.UI
             InitializeLayout();
 
             // Attach Event Handlers
-            AttachMenuStripEventHandlers();
+            AttachGraphicsEvents();
+            AttachEventHandlers();
         }
-
+        
         #region Dock and Layout Management
 
         public void InitializeLayout()
@@ -65,25 +67,8 @@ namespace Animat.UI
 
             // Hook up Update Logic
             updateable.Add(ResourceExplorer.Instance);
-
-        }
-
-        #endregion
-
-        #region Tool Strip/Menu Strip eventr handlers
-
-        private void AttachMenuStripEventHandlers()
-        {
-            // File
-            tsmNewProject.Click += (@s, e) => NewProject();
-            tsmOpenProject.Click += (@s, e) => LoadProject();
-
-            // Edit
-
-
-            // View
-            tsmShowStartPage.Click += (@s, e) => StartPage.Instance.Show(dockPanel);
-            tsmShowProjectExplorer.Click += (@s, e) => ResourceExplorer.Instance.Show(dockPanel);
+            updateable.Add(StartPage.Instance);
+            updateable.Add(PreviewWindow.Instance);
 
         }
 
@@ -159,23 +144,5 @@ namespace Animat.UI
         }
 
         #endregion
-
-        private void addDockableFormToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var window = new ResourceExplorer();
-
-
-            if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
-            {
-                window.MdiParent = this;
-                window.Show();
-            }
-            else
-            {
-                window.Show(dockPanel);
-                window.DockState = DockState.DockLeft;
-                window.DockAreas = ~(DockAreas.Document | DockAreas.Top | DockAreas.Bottom);
-            }
-        }
     }
 }

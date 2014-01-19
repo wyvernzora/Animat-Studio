@@ -78,12 +78,12 @@ namespace Animat.UI
 
                     // Move to the next state
                     stateManager.SetCurrentState(projectDetailsState.Name);
+                    txtProjectName.Focus();
 
                 };
 
             // Project Name
-            btnProjNameBack.Click += (@s, e) => stateManager.SetCurrentState(projectFolderState.Name);
-            btnProjNameNext.Click += (@s, e) =>
+            Action completeWizard = () =>
                 {
                     // Clear the errors
                     errorProvider.Clear();
@@ -98,6 +98,13 @@ namespace Animat.UI
                     DialogResult = DialogResult.OK;
                 };
 
+            btnProjNameBack.Click += (@s, e) => stateManager.SetCurrentState(projectFolderState.Name);
+            btnProjNameNext.Click += (@s, e) => completeWizard();
+            txtProjectName.KeyDown += (@s, e) =>
+                {
+                    if (e.KeyCode == Keys.Enter)
+                        completeWizard();
+                };
         }
 
 

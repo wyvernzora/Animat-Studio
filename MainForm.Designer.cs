@@ -1,4 +1,6 @@
-﻿namespace Animat.UI
+﻿using DigitalRune.Windows.Docking;
+
+namespace Animat.UI
 {
     partial class MainForm
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenuSrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNewProject = new System.Windows.Forms.ToolStripMenuItem();
@@ -35,13 +38,14 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmShowStartPage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmShowProjectExplorer = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmImportResource = new System.Windows.Forms.ToolStripMenuItem();
+            this.tOOLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel = new DigitalRune.Windows.Docking.DockPanel();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmShowProjectExplorer = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.importResourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuSrip.SuspendLayout();
             this.mainToolStripContainer.ContentPanel.SuspendLayout();
             this.mainToolStripContainer.SuspendLayout();
@@ -53,6 +57,8 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
+            this.projectToolStripMenuItem,
+            this.tOOLSToolStripMenuItem,
             this.dEBUGToolStripMenuItem});
             this.mainMenuSrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuSrip.Name = "mainMenuSrip";
@@ -65,30 +71,28 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmNewProject,
-            this.tsmOpenProject,
-            this.toolStripMenuItem2,
-            this.importResourceToolStripMenuItem});
+            this.tsmOpenProject});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.fileToolStripMenuItem.Text = "FILE";
             // 
             // tsmNewProject
             // 
             this.tsmNewProject.Name = "tsmNewProject";
-            this.tsmNewProject.Size = new System.Drawing.Size(161, 22);
+            this.tsmNewProject.Size = new System.Drawing.Size(152, 22);
             this.tsmNewProject.Text = "New Project...";
             // 
             // tsmOpenProject
             // 
             this.tsmOpenProject.Name = "tsmOpenProject";
-            this.tsmOpenProject.Size = new System.Drawing.Size(161, 22);
+            this.tsmOpenProject.Size = new System.Drawing.Size(152, 22);
             this.tsmOpenProject.Text = "Open Project...";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.editToolStripMenuItem.Text = "EDIT";
             // 
             // viewToolStripMenuItem
             // 
@@ -97,14 +101,45 @@
             this.toolStripMenuItem1,
             this.tsmShowProjectExplorer});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.viewToolStripMenuItem.Text = "VIEW";
             // 
             // tsmShowStartPage
             // 
             this.tsmShowStartPage.Name = "tsmShowStartPage";
             this.tsmShowStartPage.Size = new System.Drawing.Size(188, 22);
             this.tsmShowStartPage.Text = "Show Start Page";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(185, 6);
+            // 
+            // tsmShowProjectExplorer
+            // 
+            this.tsmShowProjectExplorer.Name = "tsmShowProjectExplorer";
+            this.tsmShowProjectExplorer.Size = new System.Drawing.Size(188, 22);
+            this.tsmShowProjectExplorer.Text = "Show Project Explorer";
+            // 
+            // projectToolStripMenuItem
+            // 
+            this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmImportResource});
+            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.projectToolStripMenuItem.Text = "PROJECT";
+            // 
+            // tsmImportResource
+            // 
+            this.tsmImportResource.Name = "tsmImportResource";
+            this.tsmImportResource.Size = new System.Drawing.Size(161, 22);
+            this.tsmImportResource.Text = "Import Resource";
+            // 
+            // tOOLSToolStripMenuItem
+            // 
+            this.tOOLSToolStripMenuItem.Name = "tOOLSToolStripMenuItem";
+            this.tOOLSToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.tOOLSToolStripMenuItem.Text = "TOOLS";
             // 
             // dEBUGToolStripMenuItem
             // 
@@ -119,7 +154,7 @@
             // mainToolStripContainer.ContentPanel
             // 
             this.mainToolStripContainer.ContentPanel.Controls.Add(this.dockPanel);
-            this.mainToolStripContainer.ContentPanel.Size = new System.Drawing.Size(1264, 657);
+            this.mainToolStripContainer.ContentPanel.Size = new System.Drawing.Size(1264, 632);
             this.mainToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainToolStripContainer.LeftToolStripPanelVisible = false;
             this.mainToolStripContainer.Location = new System.Drawing.Point(0, 24);
@@ -132,35 +167,14 @@
             // dockPanel
             // 
             this.dockPanel.ActiveAutoHideContent = null;
+            this.dockPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.dockPanel.DefaultFloatingWindowSize = new System.Drawing.Size(300, 300);
             this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockPanel.DockLeftPortion = 0.2D;
+            this.dockPanel.DockLeftPortion = 280D;
             this.dockPanel.Location = new System.Drawing.Point(0, 0);
             this.dockPanel.Name = "dockPanel";
-            this.dockPanel.Size = new System.Drawing.Size(1264, 657);
+            this.dockPanel.Size = new System.Drawing.Size(1264, 632);
             this.dockPanel.TabIndex = 0;
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(185, 6);
-            // 
-            // tsmShowProjectExplorer
-            // 
-            this.tsmShowProjectExplorer.Name = "tsmShowProjectExplorer";
-            this.tsmShowProjectExplorer.Size = new System.Drawing.Size(188, 22);
-            this.tsmShowProjectExplorer.Text = "Show Project Explorer";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 6);
-            // 
-            // importResourceToolStripMenuItem
-            // 
-            this.importResourceToolStripMenuItem.Name = "importResourceToolStripMenuItem";
-            this.importResourceToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.importResourceToolStripMenuItem.Text = "Import Resource";
             // 
             // MainForm
             // 
@@ -170,6 +184,7 @@
             this.Controls.Add(this.mainToolStripContainer);
             this.Controls.Add(this.mainMenuSrip);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenuSrip;
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "MainForm";
@@ -199,8 +214,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmOpenProject;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tsmShowProjectExplorer;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem importResourceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tOOLSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmImportResource;
     }
 }
 

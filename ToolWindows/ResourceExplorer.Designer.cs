@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResourceExplorer));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Resources");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Resources ");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("default");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Frames", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Frames ", new System.Windows.Forms.TreeNode[] {
             treeNode2});
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("default");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Sequences", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Sequences ", new System.Windows.Forms.TreeNode[] {
             treeNode4});
             System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("default");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Events", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Events ", new System.Windows.Forms.TreeNode[] {
             treeNode6});
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.browseState = new libWyvernzora.Nightingale.WizardState();
@@ -57,6 +57,7 @@
             this.iconList.Images.SetKeyName(1, "resources");
             this.iconList.Images.SetKeyName(2, "sequences");
             this.iconList.Images.SetKeyName(3, "events");
+            this.iconList.Images.SetKeyName(4, "file");
             // 
             // browseState
             // 
@@ -73,43 +74,51 @@
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.FullRowSelect = true;
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.iconList;
+            this.treeView1.Indent = 20;
+            this.treeView1.ItemHeight = 20;
+            this.treeView1.LabelEdit = true;
+            this.treeView1.LineColor = System.Drawing.Color.DimGray;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
             treeNode1.ImageKey = "resources";
             treeNode1.Name = "Resources";
-            treeNode1.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode1.SelectedImageKey = "resources";
-            treeNode1.Text = "Resources";
+            treeNode1.Text = "Resources ";
             treeNode1.ToolTipText = "Resources used by the project.";
+            treeNode2.ImageKey = "file";
             treeNode2.Name = "default";
+            treeNode2.SelectedImageKey = "file";
             treeNode2.Text = "default";
             treeNode3.Name = "Frames";
-            treeNode3.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Frames";
+            treeNode3.Text = "Frames ";
             treeNode3.ToolTipText = "Animation Frame definitions.";
+            treeNode4.ImageKey = "file";
             treeNode4.Name = "default";
+            treeNode4.SelectedImageKey = "file";
             treeNode4.Text = "default";
             treeNode5.ImageKey = "sequences";
             treeNode5.Name = "Sequences";
-            treeNode5.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode5.SelectedImageKey = "sequences";
-            treeNode5.Text = "Sequences";
+            treeNode5.Text = "Sequences ";
             treeNode5.ToolTipText = "Frame Sequences and Transitions.";
+            treeNode6.ImageKey = "file";
             treeNode6.Name = "default";
+            treeNode6.SelectedImageKey = "file";
             treeNode6.Text = "default";
             treeNode7.ImageKey = "events";
             treeNode7.Name = "Events";
-            treeNode7.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode7.SelectedImageKey = "events";
-            treeNode7.Text = "Events";
+            treeNode7.Text = "Events ";
             treeNode7.ToolTipText = "Events that the animation may respond to.";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode3,
             treeNode5,
             treeNode7});
+            this.treeView1.PathSeparator = "/";
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.Size = new System.Drawing.Size(229, 646);
             this.treeView1.TabIndex = 0;
@@ -150,6 +159,7 @@
             | DigitalRune.Windows.Docking.DockAreas.Bottom) 
             | DigitalRune.Windows.Docking.DockAreas.Document)));
             this.HideOnClose = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ResourceExplorer";
             this.ShowHint = DigitalRune.Windows.Docking.DockState.DockLeft;
             this.TabText = "Project Explorer";
