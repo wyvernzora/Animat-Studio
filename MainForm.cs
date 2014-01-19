@@ -144,5 +144,10 @@ namespace Animat.UI
         }
 
         #endregion
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }
