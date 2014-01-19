@@ -40,7 +40,11 @@ namespace Animat.UI
             // Default exception handling
             Application.ThreadException += (@s, e) => (new ErrorWindow(e.Exception)).ShowDialog(this);
 
+            // Initialize Components
             InitializeComponent();
+
+            // Change Docking Renderer
+            DockPanelManager.RenderMode = DockPanelRenderMode.Office2007Silver;
 
             // Initialize Layout
             InitializeLayout();
@@ -145,9 +149,5 @@ namespace Animat.UI
 
         #endregion
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
     }
 }

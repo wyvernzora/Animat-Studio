@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartPage));
             this.startPageBrowser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
@@ -58,6 +59,7 @@
             | DigitalRune.Windows.Docking.DockAreas.Bottom) 
             | DigitalRune.Windows.Docking.DockAreas.Document)));
             this.HideOnClose = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StartPage";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
