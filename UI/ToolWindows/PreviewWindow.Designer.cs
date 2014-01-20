@@ -40,6 +40,7 @@
             | DigitalRune.Windows.Docking.DockAreas.Top) 
             | DigitalRune.Windows.Docking.DockAreas.Bottom) 
             | DigitalRune.Windows.Docking.DockAreas.Document)));
+            this.HideOnClose = true;
             this.Name = "PreviewWindow";
             this.TabText = "PreviewWindow";
             this.Text = "PreviewWindow";
