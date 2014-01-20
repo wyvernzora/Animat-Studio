@@ -43,10 +43,10 @@ namespace Animat.UI
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmImportResource = new System.Windows.Forms.ToolStripMenuItem();
             this.tOOLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hELPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel = new DigitalRune.Windows.Docking.DockPanel();
-            this.hELPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +58,7 @@ namespace Animat.UI
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tsmAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuSrip.SuspendLayout();
             this.mainToolStripContainer.ContentPanel.SuspendLayout();
             this.mainToolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -156,6 +157,14 @@ namespace Animat.UI
             this.tOOLSToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.tOOLSToolStripMenuItem.Text = "TOOLS";
             // 
+            // hELPToolStripMenuItem
+            // 
+            this.hELPToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmAbout});
+            this.hELPToolStripMenuItem.Name = "hELPToolStripMenuItem";
+            this.hELPToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.hELPToolStripMenuItem.Text = "HELP";
+            // 
             // dEBUGToolStripMenuItem
             // 
             this.dEBUGToolStripMenuItem.Name = "dEBUGToolStripMenuItem";
@@ -193,12 +202,6 @@ namespace Animat.UI
             this.dockPanel.Name = "dockPanel";
             this.dockPanel.Size = new System.Drawing.Size(1264, 632);
             this.dockPanel.TabIndex = 0;
-            // 
-            // hELPToolStripMenuItem
-            // 
-            this.hELPToolStripMenuItem.Name = "hELPToolStripMenuItem";
-            this.hELPToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.hELPToolStripMenuItem.Text = "HELP";
             // 
             // toolStrip1
             // 
@@ -301,6 +304,12 @@ namespace Animat.UI
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.helpToolStripButton.Text = "He&lp";
             // 
+            // tsmAbout
+            // 
+            this.tsmAbout.Name = "tsmAbout";
+            this.tsmAbout.Size = new System.Drawing.Size(195, 22);
+            this.tsmAbout.Text = "About Animat Studio...";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -358,6 +367,7 @@ namespace Animat.UI
         private System.Windows.Forms.ToolStripButton pasteToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem tsmAbout;
     }
 }
 

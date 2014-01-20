@@ -63,8 +63,8 @@
             this.Name = "StartPage";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.TabText = "StartPage";
-            this.Text = "StartPage";
+            this.TabText = "Start Page";
+            this.Text = "Start Page";
             this.ResumeLayout(false);
 
         }

@@ -92,6 +92,16 @@ namespace Animat.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logo_banner_dark {
+            get {
+                object obj = ResourceManager.GetObject("logo-banner-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap watermark {
             get {
                 object obj = ResourceManager.GetObject("watermark", resourceCulture);

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResourceExplorer));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Resources ");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Assets ");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("default");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Frames ", new System.Windows.Forms.TreeNode[] {
             treeNode2});
@@ -84,9 +84,9 @@
             this.treeView.Location = new System.Drawing.Point(0, 0);
             this.treeView.Name = "treeView";
             treeNode1.ImageKey = "resources";
-            treeNode1.Name = "Resources";
+            treeNode1.Name = "Assets";
             treeNode1.SelectedImageKey = "resources";
-            treeNode1.Text = "Resources ";
+            treeNode1.Text = "Assets ";
             treeNode1.ToolTipText = "Resources used by the project.";
             treeNode2.ImageKey = "file";
             treeNode2.Name = "default";

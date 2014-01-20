@@ -72,7 +72,7 @@ namespace Animat.UI.ToolWindows
             using (new ActionLock(treeView.BeginUpdate, treeView.EndUpdate))
             {
                 // Get root nodes
-                var resNode = treeView.Nodes["Resources"];
+                var resNode = treeView.Nodes["Assets"];
                 var frameNode = treeView.Nodes["Frames"];
                 var seqNode = treeView.Nodes["Sequences"];
                 var evNode = treeView.Nodes["Events"];

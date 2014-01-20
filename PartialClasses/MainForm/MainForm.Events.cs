@@ -59,6 +59,10 @@ namespace Animat.UI
                     }
                 };
 
+            // Help
+            tsmAbout.Click += (@s, e) =>
+                    AboutWindow.Instance.Show(dockPanel, DockState.Document);
+
         }
     }
 }
