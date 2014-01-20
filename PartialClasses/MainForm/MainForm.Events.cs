@@ -50,9 +50,14 @@ namespace Animat.UI
 
             // Project
             tsmImportResource.Click += (@s, e) =>
-            {
-
-            };
+                {
+                    var dialog = new OpenFileDialog();
+                    dialog.Filter = "Image File (*.jpg;*.png)|*.jpg;*.png|Animated Image File (*.gif)|*.gif|Animat Resource (*.amt)|*.amt|BarloX Animation (*.bxa;*.ibxa)|*.bxa;*.ibxa";
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        AnimatProject.Instance.ImportResource(dialog.FileName);
+                    }
+                };
 
         }
     }

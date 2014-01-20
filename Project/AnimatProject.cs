@@ -13,7 +13,7 @@ namespace Animat.UI.Project
     /// Singleton Project Class.
     /// Holds references to all data used within the project.
     /// </summary>
-    public class YuaiProject
+    public class AnimatProject
     {
         #region Nested Types
 
@@ -59,9 +59,9 @@ namespace Animat.UI.Project
 
         #region Singleton
 
-        private static YuaiProject instance = null;
+        private static AnimatProject instance = null;
 
-        public static YuaiProject Instance
+        public static AnimatProject Instance
         {
             get { return instance; }
         }
@@ -72,10 +72,10 @@ namespace Animat.UI.Project
         /// Constructor.
         /// Prevents creation of the class instances from outside the class.
         /// </summary>
-        protected YuaiProject(String path)
+        protected AnimatProject(String path)
         {
             // Set up variables
-            ProjectDirectory = path;
+            ProjectDirectory = Path.GetDirectoryName(path);
 
             // Load project descriptor file
             if (!File.Exists(path))
@@ -106,7 +106,9 @@ namespace Animat.UI.Project
         /// Gets the serializable project model.
         /// </summary>
         public ProjectModel Model { get; protected set; }
- 
+    
+
+
         #endregion
 
         #region Methods
@@ -228,7 +230,7 @@ namespace Animat.UI.Project
             File.WriteAllText(Path.Combine(dir, EVENTS_DIR, "default.bxevent"), "{ }");
 
             // Load Default Project
-            instance = new YuaiProject(Path.Combine(dir, PROJECT_FILE));
+            instance = new AnimatProject(Path.Combine(dir, PROJECT_FILE));
         }
 
         /// <summary>
@@ -237,7 +239,7 @@ namespace Animat.UI.Project
         /// <param name="path"></param>
         public static void Load(String path)
         {
-            instance = new YuaiProject(path);
+            instance = new AnimatProject(path);
         }
 
         #endregion

@@ -95,7 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Project\DataModels.cs" />
-    <Compile Include="Project\YuaiProject.cs" />
+    <Compile Include="Project\AnimatProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolWindows\IUpdateState.cs" />
     <Compile Include="ToolWindows\PreviewWindow.cs">

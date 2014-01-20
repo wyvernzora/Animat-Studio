@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
 using Animat.UI.Project;
+using libWyvernzora.Utilities;
 
 namespace Animat.UI.ToolWindows
 {
@@ -48,17 +50,63 @@ namespace Animat.UI.ToolWindows
             DockAreas = ~(DockAreas.Document | DockAreas.Top);
 
             // Events
+            AttachTreeViewEventHandlers();
             Shown += (@s, e) => UpdateState();
-            YuaiProject.OnRequestUiUpdate += (@s, e) =>
+            AnimatProject.OnRequestUiUpdate += (@s, e) =>
                 {
-
+                    if (e.Scope.HasFlag(AnimatProject.UpdateScope.Resources))
+                        UpdateUi();
                 };
         }
 
+        #region Updating
+
         public void UpdateState()
         {
-            stateManager.SetCurrentState(YuaiProject.Instance == null ?
+            stateManager.SetCurrentState(AnimatProject.Instance == null ?
                                                                     noProjectState.Name : browseState.Name);
         }
+
+        private void UpdateUi()
+        {
+            using (new ActionLock(treeView.BeginUpdate, treeView.EndUpdate))
+            {
+                // Get root nodes
+                var resNode = treeView.Nodes["Resources"];
+                var frameNode = treeView.Nodes["Frames"];
+                var seqNode = treeView.Nodes["Sequences"];
+                var evNode = treeView.Nodes["Events"];
+
+                // Delete all stuff
+                foreach (TreeNode n in treeView.Nodes)
+                    n.Nodes.Clear();
+
+                // Fill up resources
+                foreach (var node in AnimatProject.Instance.Model.Resources
+                                                  .Select(Path.GetFileName)
+                                                  .Select(
+                                                      name =>
+                                                      new TreeNode(name) {ImageKey = "file", SelectedImageKey = "file"})
+                    )
+                    resNode.Nodes.Add(node);
+            }
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private void AttachTreeViewEventHandlers()
+        {
+            treeView.BeforeLabelEdit += (@s, e) =>
+                {
+                    if (e.Node.Parent == null)
+                        e.CancelEdit = true;
+                };
+        }
+
+        #endregion
+
     }
 }
+

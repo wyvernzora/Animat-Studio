@@ -42,7 +42,7 @@
             treeNode6});
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.browseState = new libWyvernzora.Nightingale.WizardState();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeView = new System.Windows.Forms.TreeView();
             this.noProjectState = new libWyvernzora.Nightingale.WizardState();
             this.noProjectLabel = new System.Windows.Forms.Label();
             this.browseState.SuspendLayout();
@@ -61,7 +61,7 @@
             // 
             // browseState
             // 
-            this.browseState.Controls.Add(this.treeView1);
+            this.browseState.Controls.Add(this.treeView);
             this.browseState.Dock = System.Windows.Forms.DockStyle.Fill;
             this.browseState.Location = new System.Drawing.Point(0, 0);
             this.browseState.Name = "browseState";
@@ -69,20 +69,20 @@
             this.browseState.StateManager = null;
             this.browseState.TabIndex = 1;
             // 
-            // treeView1
+            // treeView
             // 
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.ImageIndex = 0;
-            this.treeView1.ImageList = this.iconList;
-            this.treeView1.Indent = 20;
-            this.treeView1.ItemHeight = 20;
-            this.treeView1.LabelEdit = true;
-            this.treeView1.LineColor = System.Drawing.Color.DimGray;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
+            this.treeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView.FullRowSelect = true;
+            this.treeView.ImageIndex = 0;
+            this.treeView.ImageList = this.iconList;
+            this.treeView.Indent = 20;
+            this.treeView.ItemHeight = 20;
+            this.treeView.LabelEdit = true;
+            this.treeView.LineColor = System.Drawing.Color.DimGray;
+            this.treeView.Location = new System.Drawing.Point(0, 0);
+            this.treeView.Name = "treeView";
             treeNode1.ImageKey = "resources";
             treeNode1.Name = "Resources";
             treeNode1.SelectedImageKey = "resources";
@@ -113,15 +113,15 @@
             treeNode7.SelectedImageKey = "events";
             treeNode7.Text = "Events ";
             treeNode7.ToolTipText = "Events that the animation may respond to.";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode3,
             treeNode5,
             treeNode7});
-            this.treeView1.PathSeparator = "/";
-            this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(229, 646);
-            this.treeView1.TabIndex = 0;
+            this.treeView.PathSeparator = "/";
+            this.treeView.SelectedImageIndex = 0;
+            this.treeView.Size = new System.Drawing.Size(229, 646);
+            this.treeView.TabIndex = 0;
             // 
             // noProjectState
             // 
@@ -173,7 +173,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeView;
         private System.Windows.Forms.ImageList iconList;
         private libWyvernzora.Nightingale.WizardState browseState;
         private libWyvernzora.Nightingale.WizardState noProjectState;

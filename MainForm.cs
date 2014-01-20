@@ -93,7 +93,7 @@ namespace Animat.UI
             {
                 try
                 {
-                    YuaiProject.Create(YuaiProject.ProjectFolder, dialog.ProjectName);
+                    AnimatProject.Create(AnimatProject.ProjectFolder, dialog.ProjectName);
                     UpdateUiState();
                     StartPage.Instance.Hide();
                 }
@@ -118,8 +118,9 @@ namespace Animat.UI
             {
                 try
                 {
-                    YuaiProject.Load(dialog.FileName);
+                    AnimatProject.Load(dialog.FileName);
                     UpdateUiState();
+                    AnimatProject.RequestUiUpdate(AnimatProject.UpdateScope.All);
                 }
                 catch (Exception x)
                 {

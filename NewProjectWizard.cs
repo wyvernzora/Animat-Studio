@@ -32,7 +32,7 @@ namespace Animat.UI
                 {
 
                     // Initialize Project Folder
-                    txtProjFolderPath.Text = YuaiProject.ProjectFolder;
+                    txtProjFolderPath.Text = AnimatProject.ProjectFolder;
 
                 };
 
@@ -46,8 +46,8 @@ namespace Animat.UI
             btnProjFolderCancel.Click += (@s, e) => Close();
             btnProjFolderReset.Click += (@s, e) =>
                 {
-                    YuaiProject.ProjectFolder = YuaiProject.DefaultProjectFolder;
-                    txtProjFolderPath.Text = YuaiProject.ProjectFolder;
+                    AnimatProject.ProjectFolder = AnimatProject.DefaultProjectFolder;
+                    txtProjFolderPath.Text = AnimatProject.ProjectFolder;
                 };
             btnProjFolderBrowse.Click += (@s, e) =>
                 {
@@ -56,7 +56,7 @@ namespace Animat.UI
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         txtProjFolderPath.Text = dialog.SelectedPath;
-                        YuaiProject.ProjectFolder = dialog.SelectedPath;
+                        AnimatProject.ProjectFolder = dialog.SelectedPath;
                     }
                 };
             btnProjFolderNext.Click += (@s, e) =>
