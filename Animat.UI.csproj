@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StudioExceptions.cs" />
+    <Compile Include="StudioCore.cs" />
     <Compile Include="UI\ErrorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,7 +105,6 @@
     <Compile Include="UI\ToolWindows\AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ToolWindows\IUpdateState.cs" />
     <Compile Include="UI\ToolWindows\PreviewWindow.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -14,7 +14,7 @@ using libWyvernzora.Utilities;
 
 namespace Animat.UI.ToolWindows
 {
-    public partial class ResourceExplorer : DockableForm, IUpdateState
+    public partial class ResourceExplorer : DockableForm
     {
         // Window State Manager
         readonly WizardStateManager stateManager
@@ -51,24 +51,22 @@ namespace Animat.UI.ToolWindows
 
             // Events
             AttachTreeViewEventHandlers();
-            Shown += (@s, e) => UpdateState();
-            AnimatProject.OnRequestUiUpdate += (@s, e) =>
-                {
-                    if (e.Scope.HasFlag(AnimatProject.UpdateScope.Resources))
-                        UpdateUi();
-                };
+            Shown += (@s, e) => UpdateUi();
+            StudioCore.Instance.OnUpdateRequest += (@s, e) =>
+                { if (e.Scope.HasFlag(UpdateScope.Explorer)) UpdateUi(); };
         }
 
         #region Updating
 
-        public void UpdateState()
-        {
-            stateManager.SetCurrentState(AnimatProject.Instance == null ?
-                                                                    noProjectState.Name : browseState.Name);
-        }
-
         private void UpdateUi()
         {
+            // Update UI state of the window
+            stateManager.SetCurrentState(AnimatProject.Instance == null ?
+                                                                    noProjectState.Name : browseState.Name);
+
+            // Stop further loading if there is no project loaded
+            if (AnimatProject.Instance == null) return;
+
             using (new ActionLock(treeView.BeginUpdate, treeView.EndUpdate))
             {
                 // Get root nodes
@@ -106,7 +104,6 @@ namespace Animat.UI.ToolWindows
         }
 
         #endregion
-
     }
 }
 

@@ -15,36 +15,6 @@ namespace Animat.UI.Project
     /// </summary>
     public class AnimatProject
     {
-        #region Nested Types
-
-        /// <summary>
-        /// Indicates the scope of requested update.
-        /// </summary>
-        [Flags]
-        public enum UpdateScope
-        {
-            None = 0,
-            Resources = 1,
-            Frames = 2,
-            Sequences = 4,
-            Events = 8,
-            All = 0x7FFFFFFF
-        }
-
-        /// <summary>
-        /// OnRequestUpdate event argument object.
-        /// </summary>
-        public sealed class UpdatedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// Gets or sets the scope of the requested update.
-            /// </summary>
-            public UpdateScope Scope { get; set; }
-        }
-
-
-        #endregion
-
         #region Constants
 
         private const String PROJECT_FILE = "project.bxproj";
@@ -146,31 +116,7 @@ namespace Animat.UI.Project
             Save();
 
             // Request Update
-            RequestUiUpdate(UpdateScope.Resources);
-        }
-
-        #endregion
-
-        #region Events
-
-        // Static event handler for 
-        private static EventHandler<UpdatedEventArgs> requestUiUpdate;
-
-        /// <summary>
-        /// Raised when YuaiProject changes and needs UI to be updated.
-        /// </summary>
-        public static event EventHandler<UpdatedEventArgs> OnRequestUiUpdate
-        {
-            add { requestUiUpdate += value; }
-            remove { requestUiUpdate -= value; }
-        }
-        /// <summary>
-        /// Request UI to be updated.
-        /// </summary>
-        public static void RequestUiUpdate(UpdateScope scope)
-        {
-            if (requestUiUpdate != null)
-                requestUiUpdate(instance, new UpdatedEventArgs { Scope = scope });
+            StudioCore.Instance.RequestUpdate(UpdateScope.Explorer);
         }
 
         #endregion

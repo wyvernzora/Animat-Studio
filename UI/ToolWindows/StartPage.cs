@@ -15,7 +15,7 @@ namespace Animat.UI.ToolWindows
     /// Start Page tool window.
     /// Displays an embedded HTML page with options on how to start using the YUAI.
     /// </summary>
-    public partial class StartPage : DockableForm, IUpdateState
+    public partial class StartPage : DockableForm
     {
         #region Singleton
 
@@ -31,6 +31,10 @@ namespace Animat.UI.ToolWindows
 
         public StartPage()
         {
+            // Prevent duplicate instances
+            if (instance != null)
+                throw new DuplicateInstanceException(typeof(StartPage));
+
             InitializeComponent();
 
             // Set StartPage only dockable to document area
@@ -47,9 +51,13 @@ namespace Animat.UI.ToolWindows
 
                     e.Cancel = true;
                 };
+
+            // Attach update request events
+            StudioCore.Instance.OnUpdateRequest += (@s, e) =>
+                { if (e.Scope.HasFlag(UpdateScope.StartPage)) UpdateUi(); };
         }
 
-        public void UpdateState()
+        public void UpdateUi()
         {
             
         }

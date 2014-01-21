@@ -10,7 +10,7 @@ using DigitalRune.Windows.Docking;
 
 namespace Animat.UI.ToolWindows
 {
-    public partial class PreviewWindow : DockableForm, IUpdateState
+    public partial class PreviewWindow : DockableForm
     {
         #region Singleton Window
 
@@ -28,6 +28,9 @@ namespace Animat.UI.ToolWindows
 
         public PreviewWindow()
         {
+            // Prevent creation of redundant instances
+
+
             InitializeComponent();
         }
 

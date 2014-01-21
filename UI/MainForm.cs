@@ -25,17 +25,19 @@ namespace Animat.UI
         public static MainForm Instance { get; private set; }
 
         #endregion
-
-        // List of UI elements that need updating with state changes
-        readonly List<IUpdateState> updateable = new List<IUpdateState>(); 
-
-
+        
         public MainForm()
         {
             // Detect multiple instances
             if (Instance != null)
-                throw new Exception("Attempt to create a second instance of a singleton.");
+                throw new DuplicateInstanceException(typeof(MainForm));
             Instance = this;
+
+            // Attach update handler
+            StudioCore.Instance.OnUpdateRequest += (@s, e) =>
+                {
+
+                };
 
             // Default exception handling
             Application.ThreadException += (@s, e) => (new ErrorWindow(e.Exception)).ShowDialog(this);
@@ -68,24 +70,12 @@ namespace Animat.UI
                 StartPage.Instance.Show(dockPanel, DockState.Document);
 
             }
-
-            // Hook up Update Logic
-            updateable.Add(ResourceExplorer.Instance);
-            updateable.Add(StartPage.Instance);
-            updateable.Add(PreviewWindow.Instance);
-
         }
 
         #endregion
 
         #region UI Utilities
-
-        void UpdateUiState()
-        {
-            foreach (var i in updateable)
-                i.UpdateState();
-        }
-
+        
         void NewProject()
         {
             var dialog = new NewProjectWizard();
@@ -94,7 +84,7 @@ namespace Animat.UI
                 try
                 {
                     AnimatProject.Create(AnimatProject.ProjectFolder, dialog.ProjectName);
-                    UpdateUiState();
+                    StudioCore.Instance.RequestUpdate();
                     StartPage.Instance.Hide();
                 }
                 catch (Exception x)
@@ -119,8 +109,7 @@ namespace Animat.UI
                 try
                 {
                     AnimatProject.Load(dialog.FileName);
-                    UpdateUiState();
-                    AnimatProject.RequestUiUpdate(AnimatProject.UpdateScope.All);
+                    StudioCore.Instance.RequestUpdate();
                 }
                 catch (Exception x)
                 {
