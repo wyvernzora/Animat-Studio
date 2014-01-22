@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Animat.UI.Project;
 using Animat.UI.Properties;
 using Animat.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
@@ -75,47 +74,8 @@ namespace Animat.UI
         #endregion
 
         #region UI Utilities
-        
-        void NewProject()
-        {
-            var dialog = new NewProjectWizard();
-            if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-                try
-                {
-                    AnimatProject.Create(AnimatProject.ProjectFolder, dialog.ProjectName);
-                    StudioCore.Instance.RequestUpdate();
-                    StartPage.Instance.Hide();
-                }
-                catch (Exception x)
-                {
-                    (new ErrorWindow(x)).ShowDialog(this);
-                }
-            }
-        }
+ 
 
-        void CloseProject()
-        {
-            
-        }
-
-        void LoadProject()
-        {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = "BarloX Project File (*.bxproj)|*.bxproj";
-            dialog.InitialDirectory = Settings.Default.ProjectFolder;
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    AnimatProject.Load(dialog.FileName);
-                    StudioCore.Instance.RequestUpdate();
-                }
-                catch (Exception x)
-                {
-                    (new ErrorWindow(x)).ShowDialog(this);
-                }}
-            }
 
         #endregion
 
@@ -126,10 +86,10 @@ namespace Animat.UI
             switch (projectId)
             {
                 case "new":
-                    NewProject();
+                    //NewProject();
                     break;
                 case "open":
-                    LoadProject();
+                    //LoadProject();
                     break;
                 default:
                     MessageBox.Show(String.Format("Project navigation not implemented yet. ID: {0}", projectId));

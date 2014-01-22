@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Animat.UI.Project;
 using libWyvernzora.Nightingale;
 
 namespace Animat.UI
@@ -32,7 +31,7 @@ namespace Animat.UI
                 {
 
                     // Initialize Project Folder
-                    txtProjFolderPath.Text = AnimatProject.ProjectFolder;
+                    //txtProjFolderPath.Text = AnimatProject.ProjectFolder;
 
                 };
 
@@ -46,8 +45,8 @@ namespace Animat.UI
             btnProjFolderCancel.Click += (@s, e) => Close();
             btnProjFolderReset.Click += (@s, e) =>
                 {
-                    AnimatProject.ProjectFolder = AnimatProject.DefaultProjectFolder;
-                    txtProjFolderPath.Text = AnimatProject.ProjectFolder;
+                    //AnimatProject.ProjectFolder = AnimatProject.DefaultProjectFolder;
+                    //txtProjFolderPath.Text = AnimatProject.ProjectFolder;
                 };
             btnProjFolderBrowse.Click += (@s, e) =>
                 {
@@ -56,7 +55,7 @@ namespace Animat.UI
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         txtProjFolderPath.Text = dialog.SelectedPath;
-                        AnimatProject.ProjectFolder = dialog.SelectedPath;
+                        //AnimatProject.ProjectFolder = dialog.SelectedPath;
                     }
                 };
             btnProjFolderNext.Click += (@s, e) =>

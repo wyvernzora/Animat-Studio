@@ -29,8 +29,13 @@ namespace Animat.UI.ToolWindows
         public PreviewWindow()
         {
             // Prevent creation of redundant instances
+            if (instance != null)
+                throw new DuplicateInstanceException(typeof(PreviewWindow));
 
+            // Restrict Docking
+            DockAreas = ~(DockAreas.Document | DockAreas.Top | DockAreas.Bottom);
 
+            // Initialize and such
             InitializeComponent();
         }
 

@@ -9,7 +9,6 @@ using System.Text;
 using System.Windows.Forms;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
-using Animat.UI.Project;
 using libWyvernzora.Utilities;
 
 namespace Animat.UI.ToolWindows
@@ -61,11 +60,10 @@ namespace Animat.UI.ToolWindows
         private void UpdateUi()
         {
             // Update UI state of the window
-            stateManager.SetCurrentState(AnimatProject.Instance == null ?
-                                                                    noProjectState.Name : browseState.Name);
+            stateManager.SetCurrentState(StudioCore.Instance.HasProject ? browseState.Name : noProjectState.Name);
 
             // Stop further loading if there is no project loaded
-            if (AnimatProject.Instance == null) return;
+            if (!StudioCore.Instance.HasProject) return;
 
             using (new ActionLock(treeView.BeginUpdate, treeView.EndUpdate))
             {
@@ -80,13 +78,8 @@ namespace Animat.UI.ToolWindows
                     n.Nodes.Clear();
 
                 // Fill up resources
-                foreach (var node in AnimatProject.Instance.Model.Resources
-                                                  .Select(Path.GetFileName)
-                                                  .Select(
-                                                      name =>
-                                                      new TreeNode(name) {ImageKey = "file", SelectedImageKey = "file"})
-                    )
-                    resNode.Nodes.Add(node);
+                foreach (var node in StudioCore.Instance.Project.Assets)
+                    resNode.Nodes.Add(new TreeNode(node.Filename) {ImageKey = "file", SelectedImageKey = "file"});
             }
         }
 

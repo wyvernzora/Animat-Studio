@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Animat.UI.Project;
 using Animat.UI.Properties;
 using Animat.UI.ToolWindows;
 using DigitalRune.Windows.Docking;

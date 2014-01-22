@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Animat.UI.Project;
 using Animat.UI.Properties;
 using Animat.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
@@ -38,8 +37,8 @@ namespace Animat.UI
         private void AttachMenuStripEventHandlers()
         {
             // File
-            tsmNewProject.Click += (@s, e) => NewProject();
-            tsmOpenProject.Click += (@s, e) => LoadProject();
+            //tsmNewProject.Click += (@s, e) => NewProject();
+            //tsmOpenProject.Click += (@s, e) => LoadProject();
 
             // Edit
 
@@ -55,7 +54,7 @@ namespace Animat.UI
                     dialog.Filter = "Image File (*.jpg;*.png)|*.jpg;*.png|Animated Image File (*.gif)|*.gif|Animat Resource (*.amt)|*.amt|BarloX Animation (*.bxa;*.ibxa)|*.bxa;*.ibxa";
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        AnimatProject.Instance.ImportResource(dialog.FileName);
+                        //AnimatProject.Instance.ImportResource(dialog.FileName);
                     }
                 };
 

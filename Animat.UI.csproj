@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>sakura blossom-swirl-small.ico</ApplicationIcon>
+    <ApplicationIcon>sakura.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DigitalRune.Windows.Docking, Version=1.3.5.0, Culture=neutral, PublicKeyToken=83b2c390cd515404, processorArchitecture=MSIL">
@@ -74,6 +74,8 @@
   <ItemGroup>
     <Compile Include="StudioExceptions.cs" />
     <Compile Include="StudioCore.cs" />
+    <Compile Include="StudioProject.cs" />
+    <Compile Include="StudioThumbnailStore.cs" />
     <Compile Include="UI\ErrorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,8 +98,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Project\DataModels.cs" />
-    <Compile Include="Project\AnimatProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\ToolWindows\AboutWindow.cs">
       <SubType>Form</SubType>
@@ -127,6 +127,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\WizardStates\WizardStateManager.cs" />
+    <Compile Include="Utilities\ImageUtilities.cs" />
+    <Compile Include="Utilities\JsonUtils.cs" />
+    <Compile Include="Utilities\OwlMarkup.cs" />
     <EmbeddedResource Include="UI\ErrorWindow.resx">
       <DependentUpon>ErrorWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,7 +184,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Libraries\DigitalRune.Windows.Docking.dll" />
-    <Content Include="sakura blossom-swirl-small.ico" />
+    <Content Include="sakura.ico" />
     <None Include="Resources\chibi-e.png" />
     <None Include="Resources\chibi-f.png" />
   </ItemGroup>
