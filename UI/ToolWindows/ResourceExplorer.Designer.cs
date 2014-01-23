@@ -58,6 +58,7 @@
             this.iconList.Images.SetKeyName(2, "sequences");
             this.iconList.Images.SetKeyName(3, "events");
             this.iconList.Images.SetKeyName(4, "file");
+            this.iconList.Images.SetKeyName(5, "error");
             // 
             // browseState
             // 

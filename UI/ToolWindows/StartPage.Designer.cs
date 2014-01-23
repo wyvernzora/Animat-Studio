@@ -41,7 +41,6 @@
             this.startPageBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.startPageBrowser.Name = "startPageBrowser";
             this.startPageBrowser.ScriptErrorsSuppressed = true;
-            this.startPageBrowser.ScrollBarsEnabled = false;
             this.startPageBrowser.Size = new System.Drawing.Size(975, 641);
             this.startPageBrowser.TabIndex = 0;
             this.startPageBrowser.TabStop = false;

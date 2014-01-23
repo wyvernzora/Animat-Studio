@@ -44,6 +44,7 @@ namespace Animat.UI
             this.tsmImportResource = new System.Windows.Forms.ToolStripMenuItem();
             this.tOOLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hELPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.dEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel = new DigitalRune.Windows.Docking.DockPanel();
@@ -58,7 +59,7 @@ namespace Animat.UI
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.tsmAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmShowPreview = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuSrip.SuspendLayout();
             this.mainToolStripContainer.ContentPanel.SuspendLayout();
             this.mainToolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -115,26 +116,29 @@ namespace Animat.UI
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmShowStartPage,
             this.toolStripMenuItem1,
-            this.tsmShowProjectExplorer});
+            this.tsmShowProjectExplorer,
+            this.tsmShowPreview});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.viewToolStripMenuItem.Text = "VIEW";
             // 
             // tsmShowStartPage
             // 
+            this.tsmShowStartPage.Image = global::Animat.UI.Properties.Resources.StartPage;
             this.tsmShowStartPage.Name = "tsmShowStartPage";
-            this.tsmShowStartPage.Size = new System.Drawing.Size(188, 22);
+            this.tsmShowStartPage.Size = new System.Drawing.Size(194, 22);
             this.tsmShowStartPage.Text = "Show Start Page";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(185, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(191, 6);
             // 
             // tsmShowProjectExplorer
             // 
+            this.tsmShowProjectExplorer.Image = global::Animat.UI.Properties.Resources.ProjectExplorer;
             this.tsmShowProjectExplorer.Name = "tsmShowProjectExplorer";
-            this.tsmShowProjectExplorer.Size = new System.Drawing.Size(188, 22);
+            this.tsmShowProjectExplorer.Size = new System.Drawing.Size(194, 22);
             this.tsmShowProjectExplorer.Text = "Show Project Explorer";
             // 
             // projectToolStripMenuItem
@@ -164,6 +168,12 @@ namespace Animat.UI
             this.hELPToolStripMenuItem.Name = "hELPToolStripMenuItem";
             this.hELPToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.hELPToolStripMenuItem.Text = "HELP";
+            // 
+            // tsmAbout
+            // 
+            this.tsmAbout.Name = "tsmAbout";
+            this.tsmAbout.Size = new System.Drawing.Size(195, 22);
+            this.tsmAbout.Text = "About Animat Studio...";
             // 
             // dEBUGToolStripMenuItem
             // 
@@ -200,6 +210,7 @@ namespace Animat.UI
             this.dockPanel.DockLeftPortion = 280D;
             this.dockPanel.Location = new System.Drawing.Point(0, 0);
             this.dockPanel.Name = "dockPanel";
+            this.dockPanel.ShowDocumentIcon = true;
             this.dockPanel.Size = new System.Drawing.Size(1264, 632);
             this.dockPanel.TabIndex = 0;
             // 
@@ -304,11 +315,12 @@ namespace Animat.UI
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.helpToolStripButton.Text = "He&lp";
             // 
-            // tsmAbout
+            // tsmShowPreview
             // 
-            this.tsmAbout.Name = "tsmAbout";
-            this.tsmAbout.Size = new System.Drawing.Size(195, 22);
-            this.tsmAbout.Text = "About Animat Studio...";
+            this.tsmShowPreview.Image = global::Animat.UI.Properties.Resources.Preview;
+            this.tsmShowPreview.Name = "tsmShowPreview";
+            this.tsmShowPreview.Size = new System.Drawing.Size(194, 22);
+            this.tsmShowPreview.Text = "Show Preview Window";
             // 
             // MainForm
             // 
@@ -368,6 +380,7 @@ namespace Animat.UI
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem tsmAbout;
+        private System.Windows.Forms.ToolStripMenuItem tsmShowPreview;
     }
 }
 

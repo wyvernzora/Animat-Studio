@@ -46,6 +46,7 @@ namespace Animat.UI
             // View
             tsmShowStartPage.Click += (@s, e) => StartPage.Instance.Show(dockPanel);
             tsmShowProjectExplorer.Click += (@s, e) => ResourceExplorer.Instance.Show(dockPanel);
+            tsmShowPreview.Click += (@s, e) => PreviewWindow.Instance.Show(dockPanel);
 
             // Project
             tsmImportResource.Click += (@s, e) =>

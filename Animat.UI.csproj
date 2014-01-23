@@ -179,6 +179,10 @@
   <ItemGroup>
     <None Include="Assets\Icons\sakura blossom-swirl-small.png" />
     <None Include="Assets\Icons\logo-banner-dark.png" />
+    <None Include="Assets\Icons\StartPage.png" />
+    <None Include="Assets\Icons\ProjectExplorer.png" />
+    <None Include="Assets\Icons\Preview.png" />
+    <None Include="Assets\Icons\splash.png" />
     <Content Include="Assets\StartPage\bgtexture.jpg" />
     <Content Include="Assets\StartPage\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

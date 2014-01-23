@@ -78,8 +78,16 @@ namespace Animat.UI.ToolWindows
                     n.Nodes.Clear();
 
                 // Fill up resources
-                foreach (var node in StudioCore.Instance.Project.Assets)
-                    resNode.Nodes.Add(new TreeNode(node.Filename) {ImageKey = "file", SelectedImageKey = "file", Tag = node});
+                foreach (var node in StudioCore.Instance.Project.Assets.OrderBy((a) => { return a.Filename; }))
+                {
+                    var imgKey = node.Error ? "error" : "file";
+                    resNode.Nodes.Add(new TreeNode(node.Name)
+                    {
+                        ImageKey = imgKey,
+                        SelectedImageKey = imgKey,
+                        Tag = node
+                    });
+                }
             }
         }
 
@@ -94,6 +102,18 @@ namespace Animat.UI.ToolWindows
                     if (e.Node.Parent == null)
                         e.CancelEdit = true;
                 };
+            treeView.AfterLabelEdit += (@s, e) =>
+            {
+                if (e.Node.Tag is StudioAsset)
+                {
+                    if (e.Label == null) return;
+                    if (String.IsNullOrWhiteSpace(e.Label))
+                        e.Node.EndEdit(false);
+                     
+                    StudioCore.Instance.Project.RenameAsset(e.Node.Text, e.Label);
+                }
+            };
+            
             treeView.AfterSelect += (@s, e) =>
             {
                 if (e.Node.Tag is StudioAsset)
@@ -102,6 +122,7 @@ namespace Animat.UI.ToolWindows
                     StudioCore.Instance.RequestUpdate(UpdateScope.Preview);
                 }
             };
+
         }
 
         #endregion

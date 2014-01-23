@@ -37,6 +37,7 @@ namespace Animat.UI.ToolWindows
 
             // Initialize and such
             InitializeComponent();
+            AttachEventHandlers();
 
             // Hook up update logic
             StudioCore.Instance.OnUpdateRequest += (@s, e) =>
@@ -46,9 +47,25 @@ namespace Animat.UI.ToolWindows
             };
         }
 
+        private void AttachEventHandlers()
+        {
+            pictureBox1.Resize += (@s, e) => UpdateSizeMode();
+        }
+
         public void UpdateState()
         {
             pictureBox1.Image = StudioCore.Instance.PreviewAsset;
+            UpdateSizeMode();
+        }
+
+        private void UpdateSizeMode()
+        {
+            if (pictureBox1.Image == null) return;
+
+            if (pictureBox1.Width > pictureBox1.Image.Width && pictureBox1.Height > pictureBox1.Image.Height)
+                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            else
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
     }
 }

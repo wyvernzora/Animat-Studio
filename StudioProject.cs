@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Runtime.Serialization;
 using System.IO;
 using Animat.UI.Utilities;
+using libWyvernzora.Core;
 using libWyvernzora.IO;
+using libWyvernzora.Utilities;
 
 namespace Animat.UI
 {
@@ -22,7 +25,7 @@ namespace Animat.UI
 
         private StudioProject()
         {
-            RawAssets = new List<string>();
+            RawAssets = new List<StudioAsset>();
         }
 
         public static StudioProject CreateProject(String path, String name)
@@ -66,7 +69,10 @@ namespace Animat.UI
             // Sync raw lists to models
             project.assets = new Dictionary<string, StudioAsset>();
             foreach (var p in project.RawAssets)
-                project.assets.Add(p, new StudioAsset(project, p));
+            {
+                p.Initialize(project);
+                project.assets.Add(p.Name, p);
+            }
 
             // TODO Load up other stuff
 
@@ -78,7 +84,7 @@ namespace Animat.UI
         {
             // Sync models to raw lists
             RawAssets.Clear();
-            RawAssets.AddRange(from a in assets select a.Value.Filename);
+            RawAssets.AddRange(assets.Values);
 
             // Serialize projec to project file
             using (var stream = new StreamEx(GetProjectFile(), FileMode.Create))
@@ -191,7 +197,7 @@ namespace Animat.UI
         /// In order to retrieve assets, please use Assets property.
         /// </summary>
         [DataMember(Name = "assets")]
-        internal List<String> RawAssets { get; set; }
+        internal List<StudioAsset> RawAssets { get; set; }
 
         /// <summary>
         /// Gets the enumerable collection of assets associated with this project.
@@ -220,14 +226,27 @@ namespace Animat.UI
             if (filepath == null) throw new ArgumentNullException("filepath");
             if (!File.Exists(filepath)) throw new FileNotFoundException("Cannot find the asset file to add.");
 
+            // Generate a unique filename
+            var filename = DirectIntConv.ToHexString(RandomEx.Instance.NextUInt32(), 8) + Path.GetExtension(filepath);
+            while (File.Exists(Path.Combine(GetAssetDirectory(), filename)))
+                filename = DirectIntConv.ToHexString(RandomEx.Instance.NextUInt32(), 8) + Path.GetExtension(filepath);
+
             // Copy the file to the asset folder
-            var filename = Path.GetFileName(filepath);
             var newPath = Path.Combine(GetAssetDirectory(), filename);
             File.Copy(filepath, newPath);
 
+            // Figure out the best name
+            var name = Path.GetFileNameWithoutExtension(filepath);
+            if (assets.ContainsKey(name))
+            {
+                int i = 1;
+                while (!assets.ContainsKey(String.Format("{0}({1})", name, i))) i++;
+                name = String.Format("{0}({1})", name, i);
+            }
+
             // Create the asset 
-            var asset = new StudioAsset(this, filename);
-            assets.Add(asset.Filename, asset);
+            var asset = new StudioAsset(this, filename, name);
+            assets.Add(asset.Name, asset);
             
 
             // Request Update
@@ -249,9 +268,35 @@ namespace Animat.UI
             assets.Remove(name);
 
             // Delete the asset file
-            File.Delete(asset.FullPath);
+            if (File.Exists(asset.FullPath))
+                File.Delete(asset.FullPath);
         }
-        
+
+        /// <summary>
+        /// Renames an asset and moves associated files.
+        /// </summary>
+        /// <param name="name">Name of the asset to rename.</param>
+        /// <param name="newName">New name for the asset.</param>
+        public void RenameAsset(String name, String newName)
+        {
+            var asset = GetAsset(name);
+            if (asset == null) return;
+
+            // Figure out the best name (in case of duplicates)
+            if (assets.ContainsKey(newName))
+            {
+                int i = 1;
+                while (!assets.ContainsKey(String.Format("{0}({1})", newName, i))) i++;
+                newName = String.Format("{0}({1})", newName, i);
+            }
+
+            asset.Name = newName;
+            assets.Remove(name);
+            assets.Add(newName, asset);
+
+            SaveProject();
+        }
+    
         #endregion
     }
 
@@ -262,10 +307,11 @@ namespace Animat.UI
     /// Not Serializable.
     /// Contains basic information about an asset file.
     /// </summary>
+    [DataContract(Name = "asset")]
     public sealed class StudioAsset
     {
         private const String THUMB_DIR = "thumb-store";
-
+        [IgnoreDataMember]
         private Image thumbnail;
 
 
@@ -274,35 +320,66 @@ namespace Animat.UI
         /// </summary>
         /// <param name="project"></param>
         /// <param name="filename"></param>
-        public StudioAsset(StudioProject project, String filename)
+        public StudioAsset(StudioProject project, String filename, String name)
         {
             // Check for nulls
-            if (project == null) throw new ArgumentNullException("project");
             if (filename == null) throw new ArgumentNullException("filename");
             
             // Set up properties
-            Project = project;
+            Name = name;
             Filename = filename;
 
-            // Add to thumbnail store
-            
+            Initialize(project);
         }
+
+        /// <summary>
+        /// Initializes the StudioAsset object.
+        /// Use for initializing deserialized stuff.
+        /// </summary>
+        public void Initialize(StudioProject project)
+        {
+            if (project == null) throw new ArgumentNullException("project");
+            Project = project;
+
+            // Check for errors
+            if (!File.Exists(FullPath))
+                Error = true;
+        }
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the name of the asset.
+        /// </summary>
+        [DataMember(Name = "name")]
+        public String Name
+        { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether there has been an error.
+        /// </summary>
+        [IgnoreDataMember]
+        public Boolean Error
+        { get; private set; }
 
         /// <summary>
         /// Gets the project that this asset is associated with.
         /// </summary>
+        [IgnoreDataMember]
         public StudioProject Project
-        { get; private set; }
+        { get; set; }
 
         /// <summary>
         /// Name of the file, including the extension.
         /// </summary>
+        [DataMember(Name = "filename")]
         public String Filename
         { get; private set; }
 
         /// <summary>
         /// Gets the full path of the asset file.
         /// </summary>
+        [IgnoreDataMember]
         public String FullPath
         {
             get
@@ -312,24 +389,35 @@ namespace Animat.UI
         }
 
         /// <summary>
+        /// Gets the path of the thumbnail.
+        /// </summary>
+        [IgnoreDataMember]
+        public String ThumbnailPath
+        {
+            get { return Path.Combine(Project.GetAssetDirectory(), THUMB_DIR, Filename); }
+        }
+
+        /// <summary>
         /// Thumbnail of the asset file.
         /// </summary>
+        [IgnoreDataMember]
         public Image Thumbnail
         {
             get
             {
+                if (Error) return null;
+
                 if (thumbnail == null)
                 {
-                    var cachePath = Path.Combine(Project.GetAssetDirectory(), THUMB_DIR, Filename);
                     // try load cached image
-                    if (File.Exists(cachePath))
-                        thumbnail = Image.FromFile(cachePath);
+                    if (File.Exists(ThumbnailPath))
+                        thumbnail = Image.FromFile(ThumbnailPath);
                     else
                     {
                         var original = Image.FromFile(FullPath);
                         thumbnail = original.GetThumbnailEx(Properties.Settings.Default.ThumbnailSize);
-                        IOUtilities.EnsureDirectoryExists(Path.GetDirectoryName(cachePath));
-                        thumbnail.Save(cachePath, ImageFormat.Png);
+                        IOUtilities.EnsureDirectoryExists(Path.GetDirectoryName(ThumbnailPath));
+                        thumbnail.Save(ThumbnailPath, ImageFormat.Png);
                         original.Dispose();
                     }
                 }
@@ -337,8 +425,9 @@ namespace Animat.UI
                 return thumbnail;
             }
         }
-    }
 
+        #endregion
+    }
 
 
     #endregion

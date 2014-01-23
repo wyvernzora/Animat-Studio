@@ -37,7 +37,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.Image = global::Animat.UI.Properties.Resources.logo_banner_dark;
+            this.pictureBox1.Image = global::Animat.UI.Properties.Resources.logo_banner;
             this.pictureBox1.Location = new System.Drawing.Point(204, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(400, 128);
