@@ -25,8 +25,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using Animat.UI.Properties;
 using libWyvernzora.IO;
@@ -119,13 +121,7 @@ namespace Animat.UI
         /// </summary>
         public Boolean HasProject
         { get { return Project != null; } }
-
-
-        public void CreateProject(String name)
-        {
-            
-        }
-
+        
         #endregion
 
         #region Directory Structure Management
@@ -229,6 +225,14 @@ namespace Animat.UI
 
         #endregion
 
+        #region Selection and Current State
 
+        /// <summary>
+        /// Gets or sets the asset to preview.
+        /// </summary>
+        public Image PreviewAsset
+        { get; set; }
+
+        #endregion
     }
 }

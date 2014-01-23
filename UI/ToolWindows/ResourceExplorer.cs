@@ -79,7 +79,7 @@ namespace Animat.UI.ToolWindows
 
                 // Fill up resources
                 foreach (var node in StudioCore.Instance.Project.Assets)
-                    resNode.Nodes.Add(new TreeNode(node.Filename) {ImageKey = "file", SelectedImageKey = "file"});
+                    resNode.Nodes.Add(new TreeNode(node.Filename) {ImageKey = "file", SelectedImageKey = "file", Tag = node});
             }
         }
 
@@ -94,6 +94,14 @@ namespace Animat.UI.ToolWindows
                     if (e.Node.Parent == null)
                         e.CancelEdit = true;
                 };
+            treeView.AfterSelect += (@s, e) =>
+            {
+                if (e.Node.Tag is StudioAsset)
+                {
+                    StudioCore.Instance.PreviewAsset = ((StudioAsset) e.Node.Tag).Thumbnail;
+                    StudioCore.Instance.RequestUpdate(UpdateScope.Preview);
+                }
+            };
         }
 
         #endregion

@@ -75,7 +75,6 @@
     <Compile Include="StudioExceptions.cs" />
     <Compile Include="StudioCore.cs" />
     <Compile Include="StudioProject.cs" />
-    <Compile Include="StudioThumbnailStore.cs" />
     <Compile Include="UI\ErrorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +127,7 @@
     </Compile>
     <Compile Include="UI\WizardStates\WizardStateManager.cs" />
     <Compile Include="Utilities\ImageUtilities.cs" />
+    <Compile Include="Utilities\IOUtilities.cs" />
     <Compile Include="Utilities\JsonUtils.cs" />
     <Compile Include="Utilities\OwlMarkup.cs" />
     <EmbeddedResource Include="UI\ErrorWindow.resx">

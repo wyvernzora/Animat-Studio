@@ -74,8 +74,28 @@ namespace Animat.UI
         #endregion
 
         #region UI Utilities
- 
 
+        private void CreateProject()
+        {
+            var newProjDialog = new NewProjectWizard();
+            if (newProjDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                StudioCore.Instance.Project = 
+                    StudioProject.CreateProject(newProjDialog.ProjectPath, newProjDialog.ProjectName);
+            }
+        }
+
+        private void LoadProject()
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = "Animat Studio Project (*.bxp)|*.bxp";
+            dialog.Multiselect = false;
+            dialog.InitialDirectory = StudioCore.Instance.ProjectStore;
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                StudioCore.Instance.Project = StudioProject.OpenProject(dialog.FileName);
+            }
+        }
 
         #endregion
 
@@ -86,10 +106,10 @@ namespace Animat.UI
             switch (projectId)
             {
                 case "new":
-                    //NewProject();
+                    CreateProject();
                     break;
                 case "open":
-                    //LoadProject();
+                    LoadProject();
                     break;
                 default:
                     MessageBox.Show(String.Format("Project navigation not implemented yet. ID: {0}", projectId));

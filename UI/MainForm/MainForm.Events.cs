@@ -37,8 +37,8 @@ namespace Animat.UI
         private void AttachMenuStripEventHandlers()
         {
             // File
-            //tsmNewProject.Click += (@s, e) => NewProject();
-            //tsmOpenProject.Click += (@s, e) => LoadProject();
+            tsmNewProject.Click += (@s, e) => CreateProject();
+            tsmOpenProject.Click += (@s, e) => LoadProject();
 
             // Edit
 
@@ -54,7 +54,8 @@ namespace Animat.UI
                     dialog.Filter = "Image File (*.jpg;*.png)|*.jpg;*.png|Animated Image File (*.gif)|*.gif|Animat Resource (*.amt)|*.amt|BarloX Animation (*.bxa;*.ibxa)|*.bxa;*.ibxa";
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        //AnimatProject.Instance.ImportResource(dialog.FileName);
+                        StudioCore.Instance.Project.AddAsset(dialog.FileName);
+                        StudioCore.Instance.Project.SaveProject();
                     }
                 };
 

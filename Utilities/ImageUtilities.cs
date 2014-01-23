@@ -35,9 +35,9 @@ namespace Animat.UI.Utilities
         {
             double scale = 1.0;
             if (img.Width > img.Height)
-                scale = img.Width / (double) boxSize;
+                scale = boxSize / (double) img.Width;
             else
-                scale = img.Height / (double) boxSize;
+                scale = boxSize / (double) img.Height;
             if (scale > 1) scale = 1.0;
 
             int nWidth = (int) (img.Width * scale);

@@ -37,11 +37,18 @@ namespace Animat.UI.ToolWindows
 
             // Initialize and such
             InitializeComponent();
+
+            // Hook up update logic
+            StudioCore.Instance.OnUpdateRequest += (@s, e) =>
+            {
+                if (e.Scope.HasFlag(UpdateScope.Preview))
+                    UpdateState();
+            };
         }
 
         public void UpdateState()
         {
-
+            pictureBox1.Image = StudioCore.Instance.PreviewAsset;
         }
     }
 }

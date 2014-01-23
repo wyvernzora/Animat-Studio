@@ -165,6 +165,7 @@ namespace libWyvernzora.Owl.Markup
                 child.WriteToStream(stream);
 
             // Write Data
+            data.Position = 0;
             if (data != null)
                 data.CopyTo(stream);
         }
