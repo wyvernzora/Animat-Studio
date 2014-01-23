@@ -52,6 +52,9 @@
     <ApplicationIcon>sakura.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cyotek.Windows.Forms.ImageBox">
+      <HintPath>..\packages\CyotekImageBox.1.1.4.1\lib\net35-Client\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
+    </Reference>
     <Reference Include="DigitalRune.Windows.Docking, Version=1.3.5.0, Culture=neutral, PublicKeyToken=83b2c390cd515404, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DigitalRune.Windows.Docking.dll</HintPath>
@@ -72,6 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="StudioExceptions.cs" />
     <Compile Include="StudioCore.cs" />
     <Compile Include="StudioProject.cs" />
@@ -103,6 +111,12 @@
     </Compile>
     <Compile Include="UI\ToolWindows\AboutWindow.Designer.cs">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ToolWindows\AssetViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ToolWindows\AssetViewer.Designer.cs">
+      <DependentUpon>AssetViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ToolWindows\PreviewWindow.cs">
       <SubType>Form</SubType>
@@ -141,16 +155,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UI\ToolWindows\AboutWindow.resx">
       <DependentUpon>AboutWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ToolWindows\AssetViewer.resx">
+      <DependentUpon>AssetViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ToolWindows\PreviewWindow.resx">
       <DependentUpon>PreviewWindow.cs</DependentUpon>
@@ -183,6 +195,9 @@
     <None Include="Assets\Icons\ProjectExplorer.png" />
     <None Include="Assets\Icons\Preview.png" />
     <None Include="Assets\Icons\splash.png" />
+    <None Include="Assets\Icons\appbar.magnify.add.png" />
+    <None Include="Assets\Icons\Zoom in.ico" />
+    <None Include="Assets\Icons\zoom-in.png" />
     <Content Include="Assets\StartPage\bgtexture.jpg" />
     <Content Include="Assets\StartPage\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

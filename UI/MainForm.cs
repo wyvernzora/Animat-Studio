@@ -55,6 +55,8 @@ namespace Animat.UI
             AttachEventHandlers();
         }
         
+
+
         #region Dock and Layout Management
 
         public void InitializeLayout()
@@ -115,6 +117,11 @@ namespace Animat.UI
                     MessageBox.Show(String.Format("Project navigation not implemented yet. ID: {0}", projectId));
                     break;
             }
+        }
+
+        public void PushDockableWindow(DockableForm form, DockState state)
+        {
+            form.Show(dockPanel, state);
         }
 
         #endregion

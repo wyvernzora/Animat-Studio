@@ -31,6 +31,8 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using Animat.UI.Properties;
+using Animat.UI.UI.ToolWindows;
+using DigitalRune.Windows.Docking;
 using libWyvernzora.IO;
 
 namespace Animat.UI
@@ -232,6 +234,20 @@ namespace Animat.UI
         /// </summary>
         public Image PreviewAsset
         { get; set; }
+
+        #endregion
+
+        #region Cross-Component Actions
+
+        /// <summary>
+        /// Opens the specified asset in the asset viewer.
+        /// </summary>
+        /// <param name="asset"></param>
+        public void ViewAsset(StudioAsset asset)
+        {
+            var viewer = AssetViewer.GetInstance(asset);
+            MainForm.Instance.PushDockableWindow(viewer, DockState.Document);
+        }
 
         #endregion
     }

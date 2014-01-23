@@ -123,6 +123,15 @@ namespace Animat.UI.ToolWindows
                 }
             };
 
+            treeView.DoubleClick += (@s, e) =>
+            {
+                if (treeView.SelectedNode == null)
+                    return;
+
+                var asset = treeView.SelectedNode.Tag as StudioAsset;
+                if (asset != null && !asset.Error) StudioCore.Instance.ViewAsset(asset);
+            };
+
         }
 
         #endregion
