@@ -141,7 +141,7 @@ namespace Animat.UI
             get
             {
                 AssetType t;
-                if (!AssetType.TryParse(Path.GetExtension(Filename).TrimStart('.'), out t))
+                if (!AssetType.TryParse(Path.GetExtension(Filename).TrimStart('.').ToUpper(), out t))
                     throw new InvalidDataException(String.Format("Unknown Asset Type: Name = {0}", Filename));
                 return t;
             }
@@ -207,7 +207,6 @@ namespace Animat.UI
             // Get path components
             var cacheDir = Project.GetCacheDirectory();
             var fname = Path.GetFileNameWithoutExtension(Filename);
-            var fext = Path.GetExtension(Filename);
 
             // Remove all existing cache
             for (int i = 0; i < FrameCount; i++)
@@ -226,7 +225,8 @@ namespace Animat.UI
                 if (File.Exists(cpath)) File.Delete(cpath);
 
                 // Rebuild Cache
-                original.Save(fpath, ImageFormat.Png);
+                if (Type == AssetType.ARES || Type == AssetType.BXA || Type == AssetType.IBXA || Type == AssetType.GIF)
+                    original.Save(fpath, ImageFormat.Png);
                 var thumb = original.GetThumbnailEx(Properties.Settings.Default.ThumbnailSize);
                 thumb.Save(cpath, ImageFormat.Png);
                 if (allowMemCache)
@@ -250,6 +250,10 @@ namespace Animat.UI
             // Check param
             if (frameIndex < 0 || frameIndex >= FrameCount)
                 throw new ArgumentOutOfRangeException("frameIndex");
+
+            // If this is not a packaged asset, the asset itself is the cache
+            if (Type == AssetType.BMP || Type == AssetType.JPG || Type == AssetType.PNG)
+                return Image.FromFile(FullPath);
 
             // Construct frame cache path
             var path = Path.Combine(

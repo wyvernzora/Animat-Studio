@@ -144,7 +144,7 @@ namespace Animat.UI.ToolWindows
 
                     if (AssetViewer.GetInstance(asset) != null)
                     {
-                        //StudioCore.Instance.RequestUpdate(UpdateScope.AssetViewer, asset.Name, -1);
+                        StudioCore.Instance.RequestUpdate(UpdateScope.AssetViewer, asset.Name, -1);
                     }
                 }
                 if (e.Node.Tag is int && e.Node.Parent.Tag is StudioAsset)
@@ -156,7 +156,7 @@ namespace Animat.UI.ToolWindows
 
                     if (AssetViewer.GetInstance(asset) != null)
                     {
-                        //StudioCore.Instance.RequestUpdate(UpdateScope.AssetViewer, asset.Name, index);
+                        StudioCore.Instance.RequestUpdate(UpdateScope.AssetViewer, asset.Name, index);
                     }
                 }
             };

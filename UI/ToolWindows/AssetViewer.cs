@@ -80,13 +80,16 @@ namespace Animat.UI.UI.ToolWindows
             // Dispose assets once closing
             Closing += (@e, s) =>
             {
-                instances.Remove(Asset.Name);
                 imageBox.Image.Dispose();
                 imageBox.Image = null;
             };
 
             // Remove the instance once it's closed
-            Closed += (@s, e) => instances.Remove(Asset.Name);
+            Closed += (@s, e) =>
+            {
+                instances.Remove(Asset.Name);
+                StudioCore.Instance.OnUpdateRequest -= UpdateState;
+            };
             
             // Zooming
             imageBox.ZoomChanged += (@s, e) => { tslZoomFactor.Text = String.Format("{0}%", imageBox.Zoom); };
