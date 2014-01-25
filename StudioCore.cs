@@ -48,6 +48,7 @@ namespace Animat.UI
         Explorer = 2,
         Preview = 4,
         StartPage = 8,
+        AssetViewer = 16,
         All = -1
     }
 
@@ -69,6 +70,18 @@ namespace Animat.UI
         ///     Gets the scope of the update.
         /// </summary>
         public UpdateScope Scope { get; set; }
+
+        /// <summary>
+        /// String specifying the target of the update request,
+        /// null if there is no specific target.
+        /// </summary>
+        public String Target { get; set; }
+
+        /// <summary>
+        /// Specific message attached to the update request.
+        /// Null if there is no message.
+        /// </summary>
+        public Object UpdateMessage { get; set; }
     }
 
     /// <summary>
@@ -225,16 +238,24 @@ namespace Animat.UI
                 onUpdateRequest(this, new UpdateEventArgs(scope));
         }
 
+        /// <summary>
+        /// Resuest update of a specifiv UI component with a message
+        /// containing informationg about updating.
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <param name="target"></param>
+        /// <param name="message"></param>
+        public void RequestUpdate(UpdateScope scope, String target, Object message)
+        {
+            if (onUpdateRequest != null)
+                onUpdateRequest(this, new UpdateEventArgs(scope) { Target = target, UpdateMessage = message });
+            
+        }
+
         #endregion
 
         #region Selection and Current State
-
-        /// <summary>
-        /// Gets or sets the asset to preview.
-        /// </summary>
-        public Image PreviewAsset
-        { get; set; }
-
+        
         #endregion
 
         #region Cross-Component Actions

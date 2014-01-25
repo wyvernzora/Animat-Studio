@@ -62,6 +62,9 @@
     <Reference Include="libWyvernzora">
       <HintPath>..\packages\libWyvernzora.0.5.6\lib\libWyvernzora.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -75,11 +78,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackgrounWorkDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackgrounWorkDialog.Designer.cs">
+      <DependentUpon>BackgrounWorkDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StudioAsset.cs" />
     <Compile Include="StudioExceptions.cs" />
     <Compile Include="StudioCore.cs" />
     <Compile Include="StudioProject.cs" />
@@ -144,6 +154,9 @@
     <Compile Include="Utilities\IOUtilities.cs" />
     <Compile Include="Utilities\JsonUtils.cs" />
     <Compile Include="Utilities\OwlMarkup.cs" />
+    <EmbeddedResource Include="BackgrounWorkDialog.resx">
+      <DependentUpon>BackgrounWorkDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ErrorWindow.resx">
       <DependentUpon>ErrorWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,10 +211,9 @@
     <None Include="Assets\Icons\appbar.magnify.add.png" />
     <None Include="Assets\Icons\Zoom in.ico" />
     <None Include="Assets\Icons\zoom-in.png" />
-    <Content Include="Assets\StartPage\bgtexture.jpg" />
-    <Content Include="Assets\StartPage\index.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Include="Assets\Icons\NewIcons\WindowIcons\window.start.ico" />
+    <None Include="Assets\Icons\NewIcons\WindowIcons\window.explorer.ico" />
+    <None Include="Assets\Icons\NewIcons\WindowIcons\window.preview.ico" />
     <Content Include="Libraries\DigitalRune.Windows.Docking.dll" />
     <Content Include="sakura.ico" />
     <None Include="Resources\chibi-e.png" />
@@ -228,6 +240,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\StartPage\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

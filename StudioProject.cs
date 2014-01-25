@@ -123,6 +123,7 @@ namespace Animat.UI
         [IgnoreDataMember] private const String FRAME_DIR = "frames";
         [IgnoreDataMember] private const String SEQ_DIR = "sequences";
         [IgnoreDataMember] private const String EVENT_DIR = "events";
+        [IgnoreDataMember] private const String CACHE_DIR = "cache";
         // ReSharper restore InconsistentNaming
 
         /* Disable Serialization */
@@ -134,9 +135,8 @@ namespace Animat.UI
         { get; set; }
 
         /// <summary>
-        ///     Gets the project file by name.
+        ///     Gets the project file path.
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
         public String GetProjectFile()
         {
@@ -144,9 +144,8 @@ namespace Animat.UI
         }
 
         /// <summary>
-        ///     Gets the asset directory of a project by name.
+        ///     Gets the asset directory of the project.
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
         public String GetAssetDirectory()
         {
@@ -154,9 +153,8 @@ namespace Animat.UI
         }
 
         /// <summary>
-        ///     Gets the frame directory of a project by name.
+        ///     Gets the frame directory of the project.
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
         public String GetFrameDirectory()
         {
@@ -164,9 +162,8 @@ namespace Animat.UI
         }
 
         /// <summary>
-        ///     Gets the sequence directory of a project by name.
+        ///     Gets the sequence directory of the project.
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
         public String GetSequenceDirectory()
         {
@@ -174,13 +171,24 @@ namespace Animat.UI
         }
 
         /// <summary>
-        ///     Gets the event directory of a project by name.
+        ///     Gets the event directory of the project.
         /// </summary>
-        /// <param name="name"></param>
         /// <returns></returns>
         public String GetEventDirectory()
         {
             return Path.Combine(ProjectDirectory, EVENT_DIR);
+        }
+
+        /// <summary>
+        /// Gets the cache directory of the project.
+        /// </summary>
+        /// <returns></returns>
+        public String GetCacheDirectory()
+        {
+            // Get the path
+            var path = Path.Combine(ProjectDirectory, CACHE_DIR);
+            IOUtilities.EnsureDirectoryExists(path);    // Make sure that there is such a directory.
+            return path;
         }
 
         #endregion
@@ -220,7 +228,7 @@ namespace Animat.UI
         /// Adds an image to the asset store.
         /// </summary>
         /// <param name="filepath"></param>
-        public void AddAsset(String filepath)
+        public StudioAsset AddAsset(String filepath)
         {
             // Check arguments
             if (filepath == null) throw new ArgumentNullException("filepath");
@@ -251,6 +259,8 @@ namespace Animat.UI
 
             // Request Update
             StudioCore.Instance.RequestUpdate(UpdateScope.Explorer);
+
+            return asset;
         }
 
         /// <summary>
@@ -299,138 +309,5 @@ namespace Animat.UI
     
         #endregion
     }
-
-
-    #region Assets
-    
-    /// <summary>
-    /// Not Serializable.
-    /// Contains basic information about an asset file.
-    /// </summary>
-    [DataContract(Name = "asset")]
-    public sealed class StudioAsset
-    {
-        private const String THUMB_DIR = "thumb-store";
-        [IgnoreDataMember]
-        private Image thumbnail;
-
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="project"></param>
-        /// <param name="filename"></param>
-        public StudioAsset(StudioProject project, String filename, String name)
-        {
-            // Check for nulls
-            if (filename == null) throw new ArgumentNullException("filename");
-            
-            // Set up properties
-            Name = name;
-            Filename = filename;
-
-            Initialize(project);
-        }
-
-        /// <summary>
-        /// Initializes the StudioAsset object.
-        /// Use for initializing deserialized stuff.
-        /// </summary>
-        public void Initialize(StudioProject project)
-        {
-            if (project == null) throw new ArgumentNullException("project");
-            Project = project;
-
-            // Check for errors
-            if (!File.Exists(FullPath))
-                Error = true;
-        }
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets the name of the asset.
-        /// </summary>
-        [DataMember(Name = "name")]
-        public String Name
-        { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether there has been an error.
-        /// </summary>
-        [IgnoreDataMember]
-        public Boolean Error
-        { get; private set; }
-
-        /// <summary>
-        /// Gets the project that this asset is associated with.
-        /// </summary>
-        [IgnoreDataMember]
-        public StudioProject Project
-        { get; set; }
-
-        /// <summary>
-        /// Name of the file, including the extension.
-        /// </summary>
-        [DataMember(Name = "filename")]
-        public String Filename
-        { get; private set; }
-
-        /// <summary>
-        /// Gets the full path of the asset file.
-        /// </summary>
-        [IgnoreDataMember]
-        public String FullPath
-        {
-            get
-            {
-                return Path.Combine(Project.GetAssetDirectory(), Filename);
-            } 
-        }
-
-        /// <summary>
-        /// Gets the path of the thumbnail.
-        /// </summary>
-        [IgnoreDataMember]
-        public String ThumbnailPath
-        {
-            get { return Path.Combine(Project.GetAssetDirectory(), THUMB_DIR, Filename); }
-        }
-
-        /// <summary>
-        /// Thumbnail of the asset file.
-        /// </summary>
-        [IgnoreDataMember]
-        public Image Thumbnail
-        {
-            get
-            {
-                if (Error) return null;
-
-                if (thumbnail == null)
-                {
-                    // try load cached image
-                    if (File.Exists(ThumbnailPath))
-                        thumbnail = Image.FromFile(ThumbnailPath);
-                    else
-                    {
-                        var original = Image.FromFile(FullPath);
-                        thumbnail = original.GetThumbnailEx(Properties.Settings.Default.ThumbnailSize);
-                        IOUtilities.EnsureDirectoryExists(Path.GetDirectoryName(ThumbnailPath));
-                        thumbnail.Save(ThumbnailPath, ImageFormat.Png);
-                        original.Dispose();
-                    }
-                }
-
-                return thumbnail;
-            }
-        }
-
-        #endregion
-    }
-
-
-    #endregion
-
 
 }

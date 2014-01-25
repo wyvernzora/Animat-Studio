@@ -12,6 +12,8 @@ namespace Animat.UI.ToolWindows
 {
     public partial class PreviewWindow : DockableForm
     {
+        public const String UPDATE_TARGET = "PREVIEW";
+
         #region Singleton Window
 
         private static PreviewWindow instance = null;
@@ -43,17 +45,28 @@ namespace Animat.UI.ToolWindows
             StudioCore.Instance.OnUpdateRequest += (@s, e) =>
             {
                 if (e.Scope.HasFlag(UpdateScope.Preview))
-                    UpdateState();
+                {
+                    if (e.UpdateMessage is Object[])
+                    {
+                        var asset = ((Object[]) e.UpdateMessage)[0] as StudioAsset;
+                        var index = (Int32) ((Object[])e.UpdateMessage)[1];
+
+                        if (asset == null || index < 0 || index >= asset.FrameCount)
+                            imageBox.Image = null;
+                        else
+                            imageBox.Image = asset.GetFrameThumbnail(index);
+                    }
+                    else
+                    {
+                        imageBox.Image = null;
+                    }
+                    
+                }
             };
         }
 
         private void AttachEventHandlers()
         {
-        }
-
-        public void UpdateState()
-        {
-            imageBox.Image = StudioCore.Instance.PreviewAsset;
         }
 
     }

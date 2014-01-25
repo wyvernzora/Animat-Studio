@@ -41,8 +41,9 @@ namespace Animat.UI.ToolWindows
             DockAreas = DockAreas.Document;
 
             // Load Start Page
-            String html = File.ReadAllText("Assets\\StartPage\\index.html");
-            startPageBrowser.DocumentText = html;
+            //String html = File.ReadAllText("Assets\\StartPage\\HTML\\index1.html");
+            //startPageBrowser.DocumentText = html;
+            startPageBrowser.Navigate(new Uri(String.Format("file://{0}/Assets/StartPage/index.html", Application.StartupPath.Replace('\\', '/')), UriKind.Absolute));
 
             startPageBrowser.Navigating += (@s, e) =>
                 {

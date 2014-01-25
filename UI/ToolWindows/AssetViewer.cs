@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Animat.UI.Utilities;
 using Cyotek.Windows.Forms;
 using DigitalRune.Windows.Docking;
+using libWyvernzora.Nightingale;
+using libWyvernzora.Utilities;
 
 namespace Animat.UI.UI.ToolWindows
 {
@@ -36,8 +41,7 @@ namespace Animat.UI.UI.ToolWindows
         }
 
         #endregion
-
-
+        
         protected AssetViewer(StudioAsset asset)
         {
             // Initialize Components
@@ -51,10 +55,12 @@ namespace Animat.UI.UI.ToolWindows
             Asset = asset;
             var assetImage = Image.FromFile(asset.FullPath);
             imageBox.Image = assetImage;
-            imageBox.ZoomToFit();
 
             Text = asset.Name;
             TabText = asset.Name;
+
+            // Hook up update logic
+            StudioCore.Instance.OnUpdateRequest += UpdateState;
         }
 
         #region Properties
@@ -74,17 +80,69 @@ namespace Animat.UI.UI.ToolWindows
             // Dispose assets once closing
             Closing += (@e, s) =>
             {
+                instances.Remove(Asset.Name);
                 imageBox.Image.Dispose();
                 imageBox.Image = null;
             };
 
             // Remove the instance once it's closed
             Closed += (@s, e) => instances.Remove(Asset.Name);
-
+            
             // Zooming
             imageBox.ZoomChanged += (@s, e) => { tslZoomFactor.Text = String.Format("{0}%", imageBox.Zoom); };
+            tsbZoomIn.Click += (@s, e) => imageBox.ZoomIn();
+            tsbZoomOut.Click += (@s, e) => imageBox.ZoomOut();
+            tsbActualSize.Click += (@s, e) => { imageBox.Zoom = 100; };
+            tsbZoomFit.Click += (@s, e) => imageBox.ZoomToFit();
+
+            // Selection
+            tsbDeselect.Click += (@s, e) => imageBox.SelectNone();
+            tsbSelectAll.Click += (@s, e) => imageBox.SelectAll();
+
+            // Tool
+            tsbPan.Click += (@s, e) =>
+            {
+                tsbPan.Checked = true;
+                tsbSelection.Checked = false;
+                imageBox.SelectionMode = ImageBoxSelectionMode.None;
+            };
+            tsbSelection.Click += (@s, e) =>
+            {
+                tsbSelection.Checked = true;
+                tsbPan.Checked = false;
+                imageBox.SelectionMode = ImageBoxSelectionMode.Rectangle;
+            };
+
+        }
+
+        /// <summary>
+        /// Handles update requests from StudioCore.
+        /// </summary>
+        /// <param name="project"></param>
+        /// <param name="args"></param>
+        private void UpdateState(Object project, UpdateEventArgs args)
+        {
+            if (!args.Scope.HasFlag(UpdateScope.AssetViewer)) return;
+
+            if (Asset.Name.Equals(args.Target))
+            {
+                var index = (int) args.UpdateMessage;
+                if (index >= 0 && index < Asset.FrameCount)
+                {
+                    var oldImg = imageBox.Image;
+                    imageBox.Image = Asset.GetFrame(index);
+                    oldImg.Dispose();
+                }
+                else
+                {
+                    var oldImg = imageBox.Image;
+                    imageBox.Image = Image.FromFile(Asset.FullPath);
+                    oldImg.Dispose();
+                }
+            }
         }
 
         #endregion
+        
     }
 }

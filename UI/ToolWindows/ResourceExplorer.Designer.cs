@@ -53,12 +53,12 @@
             // 
             this.iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iconList.ImageStream")));
             this.iconList.TransparentColor = System.Drawing.Color.Transparent;
-            this.iconList.Images.SetKeyName(0, "frames");
-            this.iconList.Images.SetKeyName(1, "resources");
-            this.iconList.Images.SetKeyName(2, "sequences");
-            this.iconList.Images.SetKeyName(3, "events");
-            this.iconList.Images.SetKeyName(4, "file");
-            this.iconList.Images.SetKeyName(5, "error");
+            this.iconList.Images.SetKeyName(0, "asset");
+            this.iconList.Images.SetKeyName(1, "error");
+            this.iconList.Images.SetKeyName(2, "event");
+            this.iconList.Images.SetKeyName(3, "file");
+            this.iconList.Images.SetKeyName(4, "frame");
+            this.iconList.Images.SetKeyName(5, "sequence");
             // 
             // browseState
             // 
@@ -93,25 +93,27 @@
             treeNode2.Name = "default";
             treeNode2.SelectedImageKey = "file";
             treeNode2.Text = "default";
+            treeNode3.ImageKey = "frame";
             treeNode3.Name = "Frames";
+            treeNode3.SelectedImageKey = "frame";
             treeNode3.Text = "Frames ";
             treeNode3.ToolTipText = "Animation Frame definitions.";
             treeNode4.ImageKey = "file";
             treeNode4.Name = "default";
             treeNode4.SelectedImageKey = "file";
             treeNode4.Text = "default";
-            treeNode5.ImageKey = "sequences";
+            treeNode5.ImageKey = "sequence";
             treeNode5.Name = "Sequences";
-            treeNode5.SelectedImageKey = "sequences";
+            treeNode5.SelectedImageKey = "sequence";
             treeNode5.Text = "Sequences ";
             treeNode5.ToolTipText = "Frame Sequences and Transitions.";
             treeNode6.ImageKey = "file";
             treeNode6.Name = "default";
             treeNode6.SelectedImageKey = "file";
             treeNode6.Text = "default";
-            treeNode7.ImageKey = "events";
+            treeNode7.ImageKey = "event";
             treeNode7.Name = "Events";
-            treeNode7.SelectedImageKey = "events";
+            treeNode7.SelectedImageKey = "event";
             treeNode7.Text = "Events ";
             treeNode7.ToolTipText = "Events that the animation may respond to.";
             this.treeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {

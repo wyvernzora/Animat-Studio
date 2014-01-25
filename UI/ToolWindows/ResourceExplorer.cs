@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Animat.UI.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
 using libWyvernzora.Utilities;
@@ -80,13 +81,28 @@ namespace Animat.UI.ToolWindows
                 // Fill up resources
                 foreach (var node in StudioCore.Instance.Project.Assets.OrderBy((a) => { return a.Filename; }))
                 {
-                    var imgKey = node.Error ? "error" : "file";
-                    resNode.Nodes.Add(new TreeNode(node.Name)
+                    var imgKey = node.Error != null ? "error" : "file";
+                    var treeNode = new TreeNode(node.Name)
                     {
                         ImageKey = imgKey,
                         SelectedImageKey = imgKey,
                         Tag = node
-                    });
+                    };
+
+                    if (node.FrameCount > 1)
+                    {
+                        for (int i = 0; i < node.FrameCount; i++)
+                        {
+                            treeNode.Nodes.Add(new TreeNode(String.Format("Frame#{0}", i.ToString().PadLeft(5, '0')))
+                            {
+                                ImageKey = imgKey,
+                                SelectedImageKey = imgKey,
+                                Tag = i
+                            });
+                        }
+                    }
+
+                    resNode.Nodes.Add(treeNode);
                 }
             }
         }
@@ -101,6 +117,9 @@ namespace Animat.UI.ToolWindows
                 {
                     if (e.Node.Parent == null)
                         e.CancelEdit = true;
+                    if (e.Node.Tag is int)
+                        e.CancelEdit = true;
+
                 };
             treeView.AfterLabelEdit += (@s, e) =>
             {
@@ -118,8 +137,27 @@ namespace Animat.UI.ToolWindows
             {
                 if (e.Node.Tag is StudioAsset)
                 {
-                    StudioCore.Instance.PreviewAsset = ((StudioAsset) e.Node.Tag).Thumbnail;
-                    StudioCore.Instance.RequestUpdate(UpdateScope.Preview);
+                    var asset = e.Node.Tag as StudioAsset;
+
+                    StudioCore.Instance.RequestUpdate(UpdateScope.Preview, PreviewWindow.UPDATE_TARGET, 
+                        new [] { e.Node.Tag, 0 });
+
+                    if (AssetViewer.GetInstance(asset) != null)
+                    {
+                        //StudioCore.Instance.RequestUpdate(UpdateScope.AssetViewer, asset.Name, -1);
+                    }
+                }
+                if (e.Node.Tag is int && e.Node.Parent.Tag is StudioAsset)
+                {
+                    var asset = e.Node.Parent.Tag as StudioAsset;
+                    var index = (Int32) e.Node.Tag;
+                    
+                    StudioCore.Instance.RequestUpdate(UpdateScope.Preview, PreviewWindow.UPDATE_TARGET, new[] { e.Node.Parent.Tag, index });
+
+                    if (AssetViewer.GetInstance(asset) != null)
+                    {
+                        //StudioCore.Instance.RequestUpdate(UpdateScope.AssetViewer, asset.Name, index);
+                    }
                 }
             };
 
@@ -129,7 +167,7 @@ namespace Animat.UI.ToolWindows
                     return;
 
                 var asset = treeView.SelectedNode.Tag as StudioAsset;
-                if (asset != null && !asset.Error) StudioCore.Instance.ViewAsset(asset);
+                if (asset != null && asset.Error == null) StudioCore.Instance.ViewAsset(asset);
             };
 
         }

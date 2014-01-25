@@ -22,7 +22,15 @@ namespace Animat.UI.Utilities
         /// <returns></returns>
         public static Image GetThumbnailEx(this Image img, int width, int height)
         {
-            return img.GetThumbnailImage(width, height, () => { return false; }, IntPtr.Zero);
+            var thumb = new Bitmap(width, height);
+            using (var gfx = Graphics.FromImage(thumb))
+            {
+                gfx.DrawImage(img, new Rectangle(0, 0, width, height));
+            }
+
+            return thumb;
+
+            //return img.GetThumbnailImage(width, height, () => { return false; }, IntPtr.Zero);
         }
 
         /// <summary>

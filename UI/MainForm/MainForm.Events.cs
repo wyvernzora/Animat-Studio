@@ -55,8 +55,21 @@ namespace Animat.UI
                     dialog.Filter = "Image File (*.jpg;*.png)|*.jpg;*.png|Animated Image File (*.gif)|*.gif|Animat Resource (*.amt)|*.amt|BarloX Animation (*.bxa;*.ibxa)|*.bxa;*.ibxa";
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
-                        StudioCore.Instance.Project.AddAsset(dialog.FileName);
+                        var asset = StudioCore.Instance.Project.AddAsset(dialog.FileName);
                         StudioCore.Instance.Project.SaveProject();
+
+                        // Rebuild Cache
+                        var dlg = new BackgrounWorkDialog();
+                        dlg.Show(this);
+                        Enabled = false;
+                        asset.RebuildCacheAsync(
+                            () =>
+                            {
+                                dlg.Close();
+                                Enabled = true;
+                                Show();
+                            }
+                            );
                     }
                 };
 
