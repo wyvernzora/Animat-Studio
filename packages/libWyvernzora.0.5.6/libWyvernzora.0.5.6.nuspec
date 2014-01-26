@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>libWyvernzora</id>
+    <version>0.5.6</version>
+    <title>libWyvernzora</title>
+    <authors>Jieni Luchijinzhou</authors>
+    <owners>Jieni Luchijinzhou</owners>
+    <projectUrl>http://github.com/jluchiji/libWyvernzora</projectUrl>
+    <iconUrl>https://nugetgallery.blob.core.windows.net/icons/libWyvernzora.0.5.6.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Core components of the Aragorn Wyvernzora's personal library.</description>
+    <summary>Core components of the Aragorn Wyvernzora's personal library.</summary>
+    <copyright>2010-2013 (C) Jieni Luchijinzhou a.k.a Aragorn Wyvernzora</copyright>
+    <references>
+      <reference file="libWyvernzora.dll" />
+    </references>
+  </metadata>
+</package>
