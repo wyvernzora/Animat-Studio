@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Animat.UI.Utilities;
 using Cyotek.Windows.Forms;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
@@ -26,6 +25,8 @@ namespace Animat.UI.UI.ToolWindows
 
         private static Dictionary<String, AssetViewer> instances
             = new Dictionary<string, AssetViewer>(StringComparer.CurrentCultureIgnoreCase);
+
+        
 
         /// <summary>
         /// Gets or creates an Asset Viewer instance for an asset.

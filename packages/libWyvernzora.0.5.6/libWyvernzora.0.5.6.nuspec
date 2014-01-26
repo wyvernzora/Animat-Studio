@@ -12,8 +12,5 @@
     <description>Core components of the Aragorn Wyvernzora's personal library.</description>
     <summary>Core components of the Aragorn Wyvernzora's personal library.</summary>
     <copyright>2010-2013 (C) Jieni Luchijinzhou a.k.a Aragorn Wyvernzora</copyright>
-    <references>
-      <reference file="libWyvernzora.dll" />
-    </references>
   </metadata>
 </package>

@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Runtime.Serialization;
 using System.IO;
-using Animat.UI.Utilities;
+using Animat.Foundation;
 using libWyvernzora.Core;
 using libWyvernzora.IO;
 using libWyvernzora.Utilities;
@@ -258,7 +258,7 @@ namespace Animat.UI
             
 
             // Request Update
-            StudioCore.Instance.RequestUpdate(UpdateScope.Explorer);
+            //StudioCore.Instance.RequestUpdate(UpdateScope.Explorer);
 
             return asset;
         }

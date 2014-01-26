@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.UI", "Animat.Studio\Animat.UI.csproj", "{3EF335AB-3AB3-4E37-A5B2-55537BC24558}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.Studio", "Animat.Studio\Animat.Studio.csproj", "{3EF335AB-3AB3-4E37-A5B2-55537BC24558}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3B71BC1B-BDE3-4620-A9E7-F9DA617541A6}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{F571D025-3
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.Project", "Animat.Project\Animat.Project.csproj", "{A3A1E616-2719-4DA0-984C-70C7BCA19EC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.Foundation", "Animat.Foundation\Animat.Foundation.csproj", "{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +32,14 @@ Global
 		{3EF335AB-3AB3-4E37-A5B2-55537BC24558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EF335AB-3AB3-4E37-A5B2-55537BC24558}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EF335AB-3AB3-4E37-A5B2-55537BC24558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A1E616-2719-4DA0-984C-70C7BCA19EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A1E616-2719-4DA0-984C-70C7BCA19EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A1E616-2719-4DA0-984C-70C7BCA19EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A1E616-2719-4DA0-984C-70C7BCA19EC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

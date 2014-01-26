@@ -24,14 +24,11 @@
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
 using libWyvernzora.IO;
 
-namespace Animat.UI.Utilities
+namespace Animat.Foundation
 {
     /// <summary>
     ///     A bunch of utilities to (de)serialize stuff.

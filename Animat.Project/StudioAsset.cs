@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using Animat.UI.Utilities;
+using Animat.Foundation;
 using libWyvernzora.Core;
 
 namespace Animat.UI
@@ -227,7 +227,8 @@ namespace Animat.UI
                 // Rebuild Cache
                 if (Type == AssetType.ARES || Type == AssetType.BXA || Type == AssetType.IBXA || Type == AssetType.GIF)
                     original.Save(fpath, ImageFormat.Png);
-                var thumb = original.GetThumbnailEx(Properties.Settings.Default.ThumbnailSize);
+                // TODO Settings
+                var thumb = original.GetThumbnailEx(300);
                 thumb.Save(cpath, ImageFormat.Png);
                 if (allowMemCache)
                 {
@@ -308,8 +309,8 @@ namespace Animat.UI
             // Get the frame and generate the thumbnail
             if (!File.Exists(path))
             {
-                var frame = GetFrame(frameIndex);
-                frame.GetThumbnailEx(Properties.Settings.Default.ThumbnailSize).Save(path);
+                var frame = GetFrame(frameIndex);// TODO Settings
+                frame.GetThumbnailEx(300).Save(path);
                 frame.Dispose();
             }
 

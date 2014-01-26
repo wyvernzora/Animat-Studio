@@ -4,10 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-// Set up log4net
-[assembly: log4net.Config.XmlConfigurator(Watch = true)]
-
-
 namespace Animat.UI
 {
     static class Program
