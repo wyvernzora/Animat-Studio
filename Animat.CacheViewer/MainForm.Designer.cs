@@ -31,10 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmLoad = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageBox1 = new Cyotek.Windows.Forms.ImageBox();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,25 +57,65 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadToolStripMenuItem});
+            this.tsmLoad,
+            this.toolStripMenuItem1,
+            this.tsmAddEntry});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // loadToolStripMenuItem
+            // tsmLoad
             // 
-            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.loadToolStripMenuItem.Text = "Load...";
+            this.tsmLoad.Name = "tsmLoad";
+            this.tsmLoad.Size = new System.Drawing.Size(152, 22);
+            this.tsmLoad.Text = "Load...";
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.imageBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1264, 657);
             this.splitContainer1.SplitterDistance = 326;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(326, 657);
+            this.treeView1.TabIndex = 0;
+            // 
+            // imageBox1
+            // 
+            this.imageBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBox1.GridScale = Cyotek.Windows.Forms.ImageBoxGridScale.Medium;
+            this.imageBox1.Location = new System.Drawing.Point(0, 0);
+            this.imageBox1.Name = "imageBox1";
+            this.imageBox1.SelectionMode = Cyotek.Windows.Forms.ImageBoxSelectionMode.Zoom;
+            this.imageBox1.Size = new System.Drawing.Size(934, 657);
+            this.imageBox1.TabIndex = 0;
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // tsmAddEntry
+            // 
+            this.tsmAddEntry.Name = "tsmAddEntry";
+            this.tsmAddEntry.Size = new System.Drawing.Size(152, 22);
+            this.tsmAddEntry.Text = "Add Entry";
             // 
             // MainForm
             // 
@@ -85,6 +131,8 @@
             this.Text = "Animat Studio Cache Viewer";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -96,8 +144,12 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmLoad;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TreeView treeView1;
+        private Cyotek.Windows.Forms.ImageBox imageBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmAddEntry;
     }
 }
 

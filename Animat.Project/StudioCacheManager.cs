@@ -130,7 +130,7 @@ namespace Animat.Project
         ///     Creates a cache manager for the specified StudioProject.
         /// </summary>
         /// <param name="project"></param>
-        public StudioCacheManager(StudioProject project)
+        public StudioCacheManager(StudioProject project) : this()
         {
             logger.Info("Creating new StudioCacheManager instance...");
 
@@ -139,19 +139,30 @@ namespace Animat.Project
             // Construct paths
             string indexPath = Path.Combine(project.ProjectDirectory, IndexFile);
             string dataPath = Path.Combine(project.ProjectDirectory, DataFile);
-            logger.Trace("Cache index file: {0}", indexPath);
-            logger.Trace("Cache data file: {0}", dataPath);
+            
+            Initialize(indexPath, dataPath);
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="indexFile"></param>
+        /// <param name="dataFile"></param>
+        protected void Initialize(String indexFile, String dataFile)
+        {
+            logger.Trace("Cache index file: {0}", indexFile);
+            logger.Trace("Cache data file: {0}", dataFile);
 
             // Open cache files if BOTH index and data files exist
-            if (File.Exists(indexPath) && File.Exists(dataPath))
+            if (File.Exists(indexFile) && File.Exists(dataFile))
             {
                 try
                 {
                     logger.Info("Cache files found, attempting to load.");
 
                     // Open cache files
-                    indexStream = new StreamEx(indexPath);
-                    dataStream = new StreamEx(dataPath);
+                    indexStream = new StreamEx(indexFile);
+                    dataStream = new StreamEx(dataFile);
 
                     // Load index file
                     string magicNumber = new String(Encoding.ASCII.GetChars(indexStream.ReadBytes(0x10)));
@@ -217,8 +228,9 @@ namespace Animat.Project
 
             // Overwrite BOTH index and data files if one of them is missing
             // This is also the fallback route if cache files are corrupted
-            indexStream = new StreamEx(indexPath, FileMode.Create);
-            dataStream = new StreamEx(dataPath, FileMode.Create);
+            indexStream = new StreamEx(indexFile, FileMode.Create);
+            indexStream.WriteBytes(Encoding.ASCII.GetBytes(MagicNumber));
+            dataStream = new StreamEx(dataFile, FileMode.Create);
         }
 
         #endregion

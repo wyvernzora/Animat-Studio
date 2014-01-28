@@ -64,6 +64,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObservableStudioCacheManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="tripplecircles-small.ico" />
@@ -98,6 +99,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Animat.Foundation\Animat.Foundation.csproj">
+      <Project>{d7eae64c-dd23-42db-8fcb-b5b544be6cf5}</Project>
+      <Name>Animat.Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Animat.Project\Animat.Project.csproj">
+      <Project>{a3a1e616-2719-4da0-984c-70c7bca19ec1}</Project>
+      <Name>Animat.Project</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
