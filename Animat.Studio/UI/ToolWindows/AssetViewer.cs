@@ -91,7 +91,10 @@ namespace Animat.UI.UI.ToolWindows
                 instances.Remove(Asset.Name);
                 StudioCore.Instance.OnUpdateRequest -= UpdateState;
             };
-            
+
+            // Adjust zoom level when shown
+            Shown += (@s, e) => imageBox.ZoomToFit();
+        
             // Zooming
             imageBox.ZoomChanged += (@s, e) => { tslZoomFactor.Text = String.Format("{0}%", imageBox.Zoom); };
             tsbZoomIn.Click += (@s, e) => imageBox.ZoomIn();

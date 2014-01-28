@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.Project", "Animat.Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.Foundation", "Animat.Foundation\Animat.Foundation.csproj", "{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animat.CacheViewer", "Animat.CacheViewer\Animat.CacheViewer.csproj", "{93D1DD74-7E2C-4A96-ADDE-3949BDD6DAA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7EAE64C-DD23-42DB-8FCB-B5B544BE6CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93D1DD74-7E2C-4A96-ADDE-3949BDD6DAA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93D1DD74-7E2C-4A96-ADDE-3949BDD6DAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93D1DD74-7E2C-4A96-ADDE-3949BDD6DAA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93D1DD74-7E2C-4A96-ADDE-3949BDD6DAA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

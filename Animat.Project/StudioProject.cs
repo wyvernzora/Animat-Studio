@@ -44,12 +44,6 @@ namespace Animat.UI
             // Set up directories
             if (!Directory.Exists(project.GetAssetDirectory()))
                 Directory.CreateDirectory(project.GetAssetDirectory());
-            if (!Directory.Exists(project.GetFrameDirectory()))
-                Directory.CreateDirectory(project.GetFrameDirectory());
-            if (!Directory.Exists(project.GetSequenceDirectory()))
-                Directory.CreateDirectory(project.GetSequenceDirectory());
-            if (!Directory.Exists(project.GetEventDirectory()))
-                Directory.CreateDirectory(project.GetEventDirectory());
 
             project.SaveProject();
 
@@ -120,9 +114,6 @@ namespace Animat.UI
         // ReSharper disable InconsistentNaming
         [IgnoreDataMember] private const String PROJECT_FILE = "project.bxp";
         [IgnoreDataMember] private const String ASSET_DIR = "assets";
-        [IgnoreDataMember] private const String FRAME_DIR = "frames";
-        [IgnoreDataMember] private const String SEQ_DIR = "sequences";
-        [IgnoreDataMember] private const String EVENT_DIR = "events";
         [IgnoreDataMember] private const String CACHE_DIR = "cache";
         // ReSharper restore InconsistentNaming
 
@@ -150,33 +141,6 @@ namespace Animat.UI
         public String GetAssetDirectory()
         {
             return Path.Combine(ProjectDirectory, ASSET_DIR);
-        }
-
-        /// <summary>
-        ///     Gets the frame directory of the project.
-        /// </summary>
-        /// <returns></returns>
-        public String GetFrameDirectory()
-        {
-            return Path.Combine(ProjectDirectory, FRAME_DIR);
-        }
-
-        /// <summary>
-        ///     Gets the sequence directory of the project.
-        /// </summary>
-        /// <returns></returns>
-        public String GetSequenceDirectory()
-        {
-            return Path.Combine(ProjectDirectory, SEQ_DIR);
-        }
-
-        /// <summary>
-        ///     Gets the event directory of the project.
-        /// </summary>
-        /// <returns></returns>
-        public String GetEventDirectory()
-        {
-            return Path.Combine(ProjectDirectory, EVENT_DIR);
         }
 
         /// <summary>

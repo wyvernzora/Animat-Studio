@@ -65,6 +65,9 @@
     <Reference Include="libWyvernzora">
       <HintPath>..\packages\libWyvernzora.0.5.6\lib\libWyvernzora.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -180,6 +183,12 @@
       <DependentUpon>StartPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <Compile Include="UI\MainForm\MainForm.Events.cs">
       <SubType>Form</SubType>

@@ -68,6 +68,7 @@ namespace Animat.UI
                                 dlg.Close();
                                 Enabled = true;
                                 Show();
+                                StudioCore.Instance.RequestUpdate(UpdateScope.Explorer);
                             }
                             );
                     }
