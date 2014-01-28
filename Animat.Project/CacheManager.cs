@@ -39,7 +39,7 @@ namespace Animat.Project
     /// <summary>
     ///     Animat Studio Cache Manager
     /// </summary>
-    public class StudioCacheManager : IDisposable
+    public class CacheManager : IDisposable
     {
         // NLog Logger
         // ReSharper disable once InconsistentNaming
@@ -116,7 +116,7 @@ namespace Animat.Project
         ///     Constructor.
         ///     Manually assign indexStream and dataStream.
         /// </summary>
-        protected StudioCacheManager()
+        protected CacheManager()
         {
             logger.Trace("Initializing StudioCacheManager data fields.");
 
@@ -130,7 +130,7 @@ namespace Animat.Project
         ///     Creates a cache manager for the specified StudioProject.
         /// </summary>
         /// <param name="project"></param>
-        public StudioCacheManager(StudioProject project) : this()
+        public CacheManager(StudioProject project) : this()
         {
             logger.Info("Creating new StudioCacheManager instance...");
 

@@ -64,7 +64,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObservableStudioCacheManager.cs" />
+    <Compile Include="ObservableCacheManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="tripplecircles-small.ico" />

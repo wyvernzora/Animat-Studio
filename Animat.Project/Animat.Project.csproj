@@ -49,9 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetBase.cs" />
+    <Compile Include="AssetLoaders.cs" />
+    <Compile Include="Attributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudioAsset.cs" />
-    <Compile Include="StudioCacheManager.cs" />
+    <Compile Include="CacheManager.cs" />
     <Compile Include="StudioExceptions.cs" />
     <Compile Include="StudioProject.cs" />
   </ItemGroup>

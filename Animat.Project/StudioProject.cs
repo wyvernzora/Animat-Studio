@@ -8,6 +8,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.IO;
 using Animat.Foundation;
+using Animat.Project;
 using libWyvernzora.Core;
 using libWyvernzora.IO;
 using libWyvernzora.Utilities;
@@ -26,6 +27,7 @@ namespace Animat.UI
         private StudioProject()
         {
             RawAssets = new List<StudioAsset>();
+            ThumbnailSize = 300;
         }
 
         public static StudioProject CreateProject(String path, String name)
@@ -46,6 +48,9 @@ namespace Animat.UI
                 Directory.CreateDirectory(project.GetAssetDirectory());
 
             project.SaveProject();
+            
+            // Create cache
+            project.CacheManager = new CacheManager(project);
 
             return project;
         }
@@ -67,6 +72,9 @@ namespace Animat.UI
                 p.Initialize(project);
                 project.assets.Add(p.Name, p);
             }
+
+            // Set up cache manager
+            project.CacheManager = new CacheManager(project);
 
             // TODO Load up other stuff
 
@@ -271,6 +279,23 @@ namespace Animat.UI
             SaveProject();
         }
     
+        #endregion
+
+        #region Cache Management
+
+        /// <summary>
+        /// Gets the cache manager for the project.
+        /// </summary>
+        [IgnoreDataMember]
+        public CacheManager CacheManager
+        { get; private set; }  // TODO Properly dispose of the cache manager
+
+        /// <summary>
+        /// Gets or sets the thumbnail size.
+        /// </summary>
+        public Int32 ThumbnailSize
+        { get; set; }
+
         #endregion
     }
 

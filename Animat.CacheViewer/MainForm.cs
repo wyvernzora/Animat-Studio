@@ -14,7 +14,7 @@ namespace Animat.CacheViewer
 {
     public partial class MainForm : Form
     {
-        private ObservableStudioCacheManager cacheManager;
+        private ObservableCacheManager cacheManager;
 
         public MainForm()
         {
@@ -30,7 +30,7 @@ namespace Animat.CacheViewer
                 var dialog = new FolderBrowserDialog();
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    cacheManager = new ObservableStudioCacheManager(dialog.SelectedPath);
+                    cacheManager = new ObservableCacheManager(dialog.SelectedPath);
                     UpdateList();
                 }
             };

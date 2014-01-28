@@ -12,7 +12,7 @@ namespace Animat.CacheViewer
     /// <summary>
     /// Extension of StudioCacheManager that enables enumeration.
     /// </summary>
-    class ObservableStudioCacheManager : StudioCacheManager
+    class ObservableCacheManager : CacheManager
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -21,7 +21,7 @@ namespace Animat.CacheViewer
         /// Creates a cache manager in the specified directory.
         /// </summary>
         /// <param name="dir"></param>
-        public ObservableStudioCacheManager(String dir)
+        public ObservableCacheManager(String dir)
         {
             logger.Info("Creating new StudioCacheManager instance...");
 
