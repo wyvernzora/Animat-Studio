@@ -47,8 +47,16 @@ namespace Animat.UI.ToolWindows
 
             startPageBrowser.Navigating += (@s, e) =>
                 {
-                    String projectId = e.Url.LocalPath.Trim('/');
-                    MainForm.Instance.StartPageNavigate(projectId);
+                    if (e.Url.Scheme.ToLower() == "animat")
+                    {
+                        String command = e.Url.Host;
+                        String args = e.Url.LocalPath.Trim('/');
+                        MainForm.Instance.StartPageNavigate(args);
+                    }
+                    else
+                    {
+                        
+                    }
 
                     e.Cancel = true;
                 };
