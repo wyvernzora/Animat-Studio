@@ -51,7 +51,7 @@ namespace Animat.UI.ToolWindows
                     {
                         String command = e.Url.Host;
                         String args = e.Url.LocalPath.Trim('/');
-                        MainForm.Instance.StartPageNavigate(args);
+                        StudioCore.Instance.StartPageCommand(command, args);
                     }
                     else
                     {

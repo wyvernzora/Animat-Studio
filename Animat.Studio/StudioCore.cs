@@ -32,6 +32,7 @@ using System.Net.Mime;
 using System.Reflection;
 using System.Security.Policy;
 using System.Text;
+using System.Windows.Forms;
 using Animat.Project;
 using Animat.Project.Moduality;
 using Animat.UI.Properties;
@@ -263,6 +264,21 @@ namespace Animat.UI
         #endregion
 
         #region Cross-Component Actions
+
+        public void StartPageCommand(String command, String args)
+        {
+            if (command == "project.create")
+                MainForm.Instance.CreateProject();
+            else if (command == "project.open")
+            {
+                if (args.Length == 0)
+                    MainForm.Instance.LoadProject();
+                else
+                {
+                    MessageBox.Show("Project navigation is not implemented yet!");
+                }
+            }
+        }
 
         /// <summary>
         /// Opens the specified asset in the asset viewer.

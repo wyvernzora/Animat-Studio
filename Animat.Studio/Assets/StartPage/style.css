@@ -1,24 +1,29 @@
-body {
-    background: url(bg.png);
-    color: white;
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+	display: block;
 }
+body, html {
+	font: 12px/18px Arial, sans-serif;
+    height: 100%;
+    
+    margin: 0px;
+    padding: 0px;
 
+    background: url(bg.png);
+    overflow-x:hidden;
+}
 .wrapper {
 	width: 100%;
     height: 100%;
 	min-width: 1000px;
 }
 
-/* Header
------------------------------------------------------------------------------*/
-.header {
-	margin-bottom: 20px;
-}
+
 
 /* Middle
 -----------------------------------------------------------------------------*/
 .middle {
 	width: 100%;
+    height: 100%;
 	position: relative;
 }
 .middle:after {
@@ -28,11 +33,12 @@ body {
 }
 .container {
 	width: 100%;
+    height: 100%;
 	float: left;
 	overflow: hidden;
 }
 .content {
-	padding: 0 0 0 320px;
+	padding: 0 0 0 450px;
 }
 
 
@@ -40,14 +46,30 @@ body {
 -----------------------------------------------------------------------------*/
 .left-sidebar {
 	float: left;
-	width: 300px;
+	width: 450px;
+    height: 100%;
 	margin-left: -100%;
 	position: relative;
 }
 
+.left-sidebar .quick-start-bar {
+    height: 100%;
+    width: 340px;
+    
+    margin-left: 20px;
+    background:rgb(37, 43, 54);
+}
 
-/* Footer
------------------------------------------------------------------------------*/
-.footer {
-	height: 10px;
+.left-sidebar .logo-wrapper {
+    padding: 20px 10px 10px 10px;   
+    text-align:center;
+}
+.action-wrapper {
+    margin-left: 30px;
+}
+.action-wrapper a {
+    font-size: 1.0em;
+}
+.action-wrapper div {
+    margin: 3px;   
 }

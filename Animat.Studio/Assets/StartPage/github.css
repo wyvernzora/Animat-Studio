@@ -2,10 +2,8 @@ body {
   font-family: Helvetica, arial, sans-serif;
   font-size: 14px;
   line-height: 1.6;
-  padding-top: 10px;
-  padding-bottom: 10px;
   background-color: white;
-  padding: 30px; }
+}
  
 body > *:first-child {
   margin-top: 0 !important; }
@@ -13,9 +11,11 @@ body > *:last-child {
   margin-bottom: 0 !important; }
  
 a {
-  color: #4183C4; }
+  color: #aad5ff; 
+  text-decoration: none;
+}
 a.absent {
-  color: #cc0000; }
+  color: #aad5ff; }
 a.anchor {
   display: block;
   padding-left: 30px;
@@ -27,12 +27,14 @@ a.anchor {
   bottom: 0; }
  
 h1, h2, h3, h4, h5, h6 {
-  margin: 20px 0 10px;
+  margin: 20px 0 0px;
   padding: 0;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   cursor: text;
-  position: relative; }
+  position: relative;
+  color: white;
+}
  
 h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
   background: url("../../images/modules/styleguide/para.png") no-repeat 10px center;
@@ -42,7 +44,9 @@ h1 tt, h1 code {
   font-size: inherit; }
  
 h2 tt, h2 code {
-  font-size: inherit; }
+  font-size: inherit; 
+  font-variant: small-caps;
+}
  
 h3 tt, h3 code {
   font-size: inherit; }
@@ -62,8 +66,7 @@ h1 {
  
 h2 {
   font-size: 24px;
-  border-bottom: 1px solid #cccccc;
-  color: black; }
+  color: white; }
  
 h3 {
   font-size: 18px; }

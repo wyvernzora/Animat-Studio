@@ -84,7 +84,7 @@ namespace Animat.UI
 
         #region UI Utilities
 
-        private void CreateProject()
+        public void CreateProject()
         {
             var newProjDialog = new NewProjectWizard();
             if (newProjDialog.ShowDialog(this) == DialogResult.OK)
@@ -94,7 +94,7 @@ namespace Animat.UI
             }
         }
 
-        private void LoadProject()
+        public void LoadProject()
         {
             var dialog = new OpenFileDialog();
             dialog.Filter = "Animat Studio Project (*.bxp)|*.bxp";
@@ -132,22 +132,6 @@ namespace Animat.UI
         #endregion
 
         #region Cross-Window Interop
-
-        public void StartPageNavigate(String projectId)
-        {
-            switch (projectId)
-            {
-                case "new":
-                    CreateProject();
-                    break;
-                case "open":
-                    LoadProject();
-                    break;
-                default:
-                    MessageBox.Show(String.Format("Project navigation not implemented yet. ID: {0}", projectId));
-                    break;
-            }
-        }
 
         public void PushDockableWindow(DockableForm form, DockState state)
         {
