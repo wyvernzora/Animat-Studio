@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Animat.UI;
 using libWyvernzora.Core;
+using NLog;
 
 namespace Animat.Project
 {
@@ -18,25 +22,44 @@ namespace Animat.Project
     /// </remarks>
     public abstract class AssetBase
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        protected AssetBase()
+        { }
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="project">The project that this asset is associated with.</param>
         /// <param name="name">Name of the asset.</param>
-        /// <param name="id">Numerical ID of the asset.</param>
-        /// <param name="ext">Extension of the asset (indicative of the filetype).</param>
-        protected AssetBase(StudioProject project, String name, Int32 id, String ext)
+        /// <param name="filename">Name of the asset file in the asset folder.</param>
+        protected AssetBase(StudioProject project, String name, String filename)
         {
-            Project = project;
-            Name = name;
-            ID = id;
-            Filename = DirectIntConv.ToHexString(id, 8) + ext;
+            try
+            {
+                Project = project;
+                Name = name;
+                Filename = filename;
+
+                var strID = Path.GetFileNameWithoutExtension(filename);
+                ID = Convert.ToUInt32(strID, 16);
+
+                if (!File.Exists(Path.Combine(Project.GetAssetDirectory(), Filename)))
+                    throw new FileNotFoundException("Asset file not found!");
+            }
+            catch (Exception x)
+            {
+                Error = x;
+            }
         }
 
         /// <summary>
         /// Gets the ID of the asset.
         /// </summary>
-        public Int32 ID { get; private set; }
+        public UInt32 ID { get; private set; }
 
         /// <summary>
         /// Gets the name of the asset.
@@ -60,11 +83,26 @@ namespace Animat.Project
         public Exception Error { get; protected set; }
 
         /// <summary>
+        /// Ggets the full path to the asset file.
+        /// </summary>
+        public String FullPath
+        {
+            get
+            {
+                return Path.Combine(Project.GetAssetDirectory(), Filename);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the name of the factory that produced the implementation of the AssetBase.
+        /// </summary>
+        public String FactoryName { get; set; }
+
+        /// <summary>
         /// Number of frames contained in this asset.
         /// </summary>
         public abstract Int32 FrameCount { get; }
-
-
+        
 
         /// <summary>
         /// Clears and rebuilds the cache for this asset.
@@ -91,8 +129,7 @@ namespace Animat.Project
         /// <param name="index">Index of the frame to get.</param>
         /// <returns></returns>
         public abstract Image GetFrameThumbnail(Int32 index);
-
-
+        
         #region Static Utilities
 
         /// <summary>

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Animat.Project;
 using Cyotek.Windows.Forms;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
@@ -33,7 +34,7 @@ namespace Animat.UI.UI.ToolWindows
         /// </summary>
         /// <param name="asset"></param>
         /// <returns></returns>
-        public static AssetViewer GetInstance(StudioAsset asset)
+        public static AssetViewer GetInstance(AssetBase asset)
         {
             if (!instances.ContainsKey(asset.Name))
                 instances[asset.Name] = new AssetViewer(asset);
@@ -43,7 +44,7 @@ namespace Animat.UI.UI.ToolWindows
 
         #endregion
         
-        protected AssetViewer(StudioAsset asset)
+        protected AssetViewer(AssetBase asset)
         {
             // Initialize Components
             InitializeComponent();
@@ -69,7 +70,7 @@ namespace Animat.UI.UI.ToolWindows
         /// <summary>
         /// Gets or sets the asset displayed in the viewer.
         /// </summary>
-        public StudioAsset Asset
+        public AssetBase Asset
         { get; private set; }
 
         #endregion
@@ -137,7 +138,7 @@ namespace Animat.UI.UI.ToolWindows
                 if (index >= 0 && index < Asset.FrameCount)
                 {
                     var oldImg = imageBox.Image;
-                    imageBox.Image = Asset.GetFrame(index);
+                    imageBox.Image = Asset.GetFrameImage(index);
                     oldImg.Dispose();
                 }
                 else

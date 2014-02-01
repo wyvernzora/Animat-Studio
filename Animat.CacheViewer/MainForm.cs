@@ -55,7 +55,7 @@ namespace Animat.CacheViewer
 
                 foreach (var id in cacheManager.GetEntryIDs())
                 {
-                    var node = new TreeNode("0x" + DirectIntConv.ToHexString(id, 8));
+                    var node = new TreeNode(id);
 
                     treeView1.Nodes.Add(node);
                 }

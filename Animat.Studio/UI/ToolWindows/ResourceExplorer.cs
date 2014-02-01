@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Animat.Project;
 using Animat.UI.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
@@ -123,7 +124,7 @@ namespace Animat.UI.ToolWindows
                 };
             treeView.AfterLabelEdit += (@s, e) =>
             {
-                if (e.Node.Tag is StudioAsset)
+                if (e.Node.Tag is AssetBase)
                 {
                     if (e.Label == null) return;
                     if (String.IsNullOrWhiteSpace(e.Label))
@@ -135,9 +136,9 @@ namespace Animat.UI.ToolWindows
             
             treeView.AfterSelect += (@s, e) =>
             {
-                if (e.Node.Tag is StudioAsset)
+                if (e.Node.Tag is AssetBase)
                 {
-                    var asset = e.Node.Tag as StudioAsset;
+                    var asset = e.Node.Tag as AssetBase;
 
                     StudioCore.Instance.RequestUpdate(UpdateScope.Preview, PreviewWindow.UPDATE_TARGET, 
                         new [] { e.Node.Tag, 0 });
@@ -147,9 +148,9 @@ namespace Animat.UI.ToolWindows
                         StudioCore.Instance.RequestUpdate(UpdateScope.AssetViewer, asset.Name, -1);
                     }
                 }
-                if (e.Node.Tag is int && e.Node.Parent.Tag is StudioAsset)
+                if (e.Node.Tag is int && e.Node.Parent.Tag is AssetBase)
                 {
-                    var asset = e.Node.Parent.Tag as StudioAsset;
+                    var asset = e.Node.Parent.Tag as AssetBase;
                     var index = (Int32) e.Node.Tag;
                     
                     StudioCore.Instance.RequestUpdate(UpdateScope.Preview, PreviewWindow.UPDATE_TARGET, new[] { e.Node.Parent.Tag, index });
@@ -166,7 +167,7 @@ namespace Animat.UI.ToolWindows
                 if (treeView.SelectedNode == null)
                     return;
 
-                var asset = treeView.SelectedNode.Tag as StudioAsset;
+                var asset = treeView.SelectedNode.Tag as AssetBase;
                 if (asset != null && asset.Error == null) StudioCore.Instance.ViewAsset(asset);
             };
 

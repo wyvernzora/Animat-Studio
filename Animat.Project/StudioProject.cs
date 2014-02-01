@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Runtime.Serialization;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
 using Animat.Foundation;
-using Animat.Project;
+using Animat.Project.Moduality;
+using Animat.UI;
 using libWyvernzora.Core;
 using libWyvernzora.IO;
 using libWyvernzora.Utilities;
 
-namespace Animat.UI
+namespace Animat.Project
 {
 
     /// <summary>
@@ -22,11 +20,33 @@ namespace Animat.UI
     [DataContract(Name = "AnimatProject")]
     public sealed class StudioProject
     {
+        #region Nested Types
+
+        [DataContract]
+        internal class AssetInfo
+        {
+            [DataMember(Name = "name")]
+            public String Name { get; set; }
+
+            [DataMember(Name = "filename")]
+            public String Filename { get; set; }
+
+            [DataMember(Name = "loader")]
+            public String AssetLoader { get; set; }
+        }
+
+        #endregion
+
         #region Life Cycle
+
+        static StudioProject()
+        {
+            AssetLoaders = new ComponentFactoryLoader<AssetBase>();
+        }
 
         private StudioProject()
         {
-            RawAssets = new List<StudioAsset>();
+            RawAssets = new List<AssetInfo>();
             ThumbnailSize = 300;
         }
 
@@ -66,11 +86,11 @@ namespace Animat.UI
             project.ProjectDirectory = Path.GetDirectoryName(path);
 
             // Sync raw lists to models
-            project.assets = new Dictionary<string, StudioAsset>();
+            project.assets = new Dictionary<string, AssetBase>();
             foreach (var p in project.RawAssets)
             {
-                p.Initialize(project);
-                project.assets.Add(p.Name, p);
+                var factory = AssetLoaders[p.AssetLoader];
+                project.assets.Add(p.Name, factory.Create(project, p.Name, p.Filename));
             }
 
             // Set up cache manager
@@ -86,7 +106,15 @@ namespace Animat.UI
         {
             // Sync models to raw lists
             RawAssets.Clear();
-            RawAssets.AddRange(assets.Values);
+            RawAssets.AddRange(
+                from a in Assets select
+                    new AssetInfo
+                    {
+                        AssetLoader = a.FactoryName,
+                        Filename = a.Filename,
+                        Name = a.Name
+                    }
+                );
 
             // Serialize projec to project file
             using (var stream = new StreamEx(GetProjectFile(), FileMode.Create))
@@ -169,21 +197,21 @@ namespace Animat.UI
 
         // Asset store
         [IgnoreDataMember]
-        private Dictionary<String, StudioAsset> assets
-            = new Dictionary<string, StudioAsset>();
+        private Dictionary<String, AssetBase> assets
+            = new Dictionary<string, AssetBase>();
 
         /// <summary>
         /// Raw representation of the asset list.
         /// In order to retrieve assets, please use Assets property.
         /// </summary>
         [DataMember(Name = "assets")]
-        internal List<StudioAsset> RawAssets { get; set; }
+        internal List<AssetInfo> RawAssets { get; set; }
 
         /// <summary>
         /// Gets the enumerable collection of assets associated with this project.
         /// </summary>
         [IgnoreDataMember]
-        public IEnumerable<StudioAsset> Assets
+        public IEnumerable<AssetBase> Assets
         { get { return assets.Values; } }
 
         /// <summary>
@@ -191,7 +219,7 @@ namespace Animat.UI
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public StudioAsset GetAsset(String name)
+        public AssetBase GetAsset(String name)
         {
             return assets.ContainsKey(name) ? assets[name] : null;
         }
@@ -200,7 +228,7 @@ namespace Animat.UI
         /// Adds an image to the asset store.
         /// </summary>
         /// <param name="filepath"></param>
-        public StudioAsset AddAsset(String filepath)
+        public AssetBase AddAsset(String filepath, String loader)
         {
             // Check arguments
             if (filepath == null) throw new ArgumentNullException("filepath");
@@ -225,7 +253,8 @@ namespace Animat.UI
             }
 
             // Create the asset 
-            var asset = new StudioAsset(this, filename, name);
+            var factory = AssetLoaders[loader];
+            var asset = factory.Create(this, name, filename);
             assets.Add(asset.Name, asset);
             
 
@@ -295,6 +324,16 @@ namespace Animat.UI
         /// </summary>
         public Int32 ThumbnailSize
         { get; set; }
+
+        #endregion
+
+        #region  Modular Components
+
+        /// <summary>
+        /// Gets the component loader for the AssetBase factories.
+        /// </summary>
+        public static ComponentFactoryLoader<AssetBase> AssetLoaders
+        { get; private set; }
 
         #endregion
     }

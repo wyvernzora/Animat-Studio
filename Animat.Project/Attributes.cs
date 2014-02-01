@@ -10,7 +10,7 @@ namespace Animat.Project
     /// Attribute that marks custom asset loaders.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class CustomAssetAttribute : Attribute
+    public sealed class AssetLoaderAttribute : Attribute
     {
         public String Name { get; set; }
 

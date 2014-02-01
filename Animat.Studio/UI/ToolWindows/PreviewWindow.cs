@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Animat.Project;
 using DigitalRune.Windows.Docking;
 
 namespace Animat.UI.ToolWindows
@@ -48,7 +49,7 @@ namespace Animat.UI.ToolWindows
                 {
                     if (e.UpdateMessage is Object[])
                     {
-                        var asset = ((Object[]) e.UpdateMessage)[0] as StudioAsset;
+                        var asset = ((Object[]) e.UpdateMessage)[0] as AssetBase;
                         var index = (Int32) ((Object[])e.UpdateMessage)[1];
 
                         if (asset == null || index < 0 || index >= asset.FrameCount)

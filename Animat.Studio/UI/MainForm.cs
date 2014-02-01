@@ -7,15 +7,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Animat.Project;
 using Animat.UI.Properties;
 using Animat.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Utilities;
+using NLog;
 
 namespace Animat.UI
 {
     public partial class MainForm : Form
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         #region Global Access to this class
 
         /// <summary>
@@ -27,16 +31,19 @@ namespace Animat.UI
         
         public MainForm()
         {
+            logger.Info("Starting to initialize the main window.");
+
             // Detect multiple instances
             if (Instance != null)
                 throw new DuplicateInstanceException(typeof(MainForm));
             Instance = this;
 
+
             // Attach update handler
             StudioCore.Instance.OnUpdateRequest += (@s, e) =>
-                {
-
-                };
+            {
+                StudioCore.Instance.Project.ThumbnailSize = Settings.Default.ThumbnailSize;
+            };
 
             // Default exception handling
             Application.ThreadException += (@s, e) => (new ErrorWindow(e.Exception)).ShowDialog(this);
@@ -53,10 +60,10 @@ namespace Animat.UI
             // Attach Event Handlers
             AttachGraphicsEvents();
             AttachEventHandlers();
-        }
+
+            logger.Info("Completed initialization of the main window.");
+        }   
         
-
-
         #region Dock and Layout Management
 
         public void InitializeLayout()
@@ -95,7 +102,30 @@ namespace Animat.UI
             dialog.InitialDirectory = StudioCore.Instance.ProjectStore;
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
+                if (StudioCore.Instance.Project != null)
+                    StudioCore.Instance.Project.CacheManager.Dispose();
                 StudioCore.Instance.Project = StudioProject.OpenProject(dialog.FileName);
+            }
+        }
+
+        private void ImportAsset()
+        {
+            if (StudioCore.Instance.Project == null) return;
+
+            var dialog = new OpenFileDialog();
+            var factories = StudioProject.AssetLoaders.Factories.ToArray();
+            dialog.Filter = String.Join("|", from f in factories select f.Filter);
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var asset = StudioCore.Instance.Project.AddAsset(dialog.FileName, factories[dialog.FilterIndex - 1].Name);
+                StudioCore.Instance.Project.SaveProject();
+
+                // Initialize cache immideately.
+                asset.BuildCache();
+
+                // Send out update request
+                StudioCore.Instance.RequestUpdate(UpdateScope.Explorer);
             }
         }
 

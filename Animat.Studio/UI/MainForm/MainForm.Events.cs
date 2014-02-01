@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Animat.Project;
 using Animat.UI.Properties;
 using Animat.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
@@ -28,6 +29,11 @@ namespace Animat.UI
         /// </remarks>
         private void AttachEventHandlers()
         {
+            Closed += (@s, e) =>
+            {
+                StudioCore.Instance.Project.CacheManager.Dispose();
+            };
+
             AttachMenuStripEventHandlers();
         }
 
@@ -49,34 +55,11 @@ namespace Animat.UI
             tsmShowPreview.Click += (@s, e) => PreviewWindow.Instance.Show(dockPanel);
 
             // Project
-            tsmImportResource.Click += (@s, e) =>
-                {
-                    var dialog = new OpenFileDialog();
-                    dialog.Filter = "Image File (*.jpg;*.png)|*.jpg;*.png|Animated Image File (*.gif)|*.gif|Animat Resource (*.amt)|*.amt|BarloX Animation (*.bxa;*.ibxa)|*.bxa;*.ibxa";
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        var asset = StudioCore.Instance.Project.AddAsset(dialog.FileName);
-                        StudioCore.Instance.Project.SaveProject();
-
-                        // Rebuild Cache
-                        var dlg = new BackgrounWorkDialog();
-                        dlg.Show(this);
-                        Enabled = false;
-                        asset.RebuildCacheAsync(
-                            () =>
-                            {
-                                dlg.Close();
-                                Enabled = true;
-                                Show();
-                                StudioCore.Instance.RequestUpdate(UpdateScope.Explorer);
-                            }
-                            );
-                    }
-                };
+            tsmImportResource.Click += (@s, e) => ImportAsset();
 
             // Help
             tsmAbout.Click += (@s, e) =>
-                    AboutWindow.Instance.Show(dockPanel, DockState.Document);
+                AboutWindow.Instance.Show(dockPanel, DockState.Document);
 
         }
     }

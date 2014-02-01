@@ -28,8 +28,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
+using System.Reflection;
 using System.Security.Policy;
 using System.Text;
+using Animat.Project;
+using Animat.Project.Moduality;
 using Animat.UI.Properties;
 using Animat.UI.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
@@ -264,7 +268,7 @@ namespace Animat.UI
         /// Opens the specified asset in the asset viewer.
         /// </summary>
         /// <param name="asset"></param>
-        public void ViewAsset(StudioAsset asset)
+        public void ViewAsset(AssetBase asset)
         {
             var viewer = AssetViewer.GetInstance(asset);
             MainForm.Instance.PushDockableWindow(viewer, DockState.Document);

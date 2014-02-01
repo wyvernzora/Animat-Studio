@@ -34,9 +34,9 @@ namespace Animat.CacheViewer
         }
 
 
-        public IEnumerable<Int32> GetEntryIDs()
+        public IEnumerable<String> GetEntryIDs()
         {
-            return (from a in entries.Values select (Int32) (a.ID >> 32));
+            return (from a in entries.Values select a.Name);
         }   
     }
 }
