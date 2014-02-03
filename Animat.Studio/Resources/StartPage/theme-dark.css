@@ -21,7 +21,7 @@ a.absent { color: #86c3ff; }
 div, h1, h1 { cursor: default; }
 
 /* Logo */
-.logo-wrapper { background: url(logo-dark.png); }
+.logo-wrapper .logo { background: url(logo-dark.png); }
 
 /* Pin/Unpin Effects */
 .project-wrapper .pinned { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAeElEQVR4Xs2TsQ6AIAxEW8MC38aifqe68G1lrHHxErV0IFEvYeBKLr28wKpKPRqoU+Fq1FrdlWKMjIAH5ZzJUinFq4BH67Id5+q3A1JKTA1hjoCfURCRk8I0j2TMGRUcCp4fTAoIw92vAAqoc/dV9SUKqGPr+9+4AxBhLoKUsKncAAAAAElFTkSuQmCC) no-repeat center; }
