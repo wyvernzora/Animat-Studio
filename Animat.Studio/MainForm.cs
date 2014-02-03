@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Animat.Project;
 using Animat.Studio.Properties;
 using Animat.Studio.ToolWindows;
+using Animat.Studio.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Utilities;
 using NLog;
@@ -37,12 +38,13 @@ namespace Animat.Studio
             if (Instance != null)
                 throw new DuplicateInstanceException(typeof(MainForm));
             Instance = this;
-
+            
+            // Load Settings
+            StudioSettings.InitializeInstance();
 
             // Attach update handler
             StudioCore.Instance.OnUpdateRequest += (@s, e) =>
             {
-                StudioCore.Instance.Project.ThumbnailSize = Settings.Default.ThumbnailSize;
             };
 
             // Default exception handling
@@ -91,6 +93,7 @@ namespace Animat.Studio
             {
                 StudioCore.Instance.Project = 
                     StudioProject.CreateProject(newProjDialog.ProjectPath, newProjDialog.ProjectName);
+                StudioSettings.Instance.PushRecentProject(StudioCore.Instance.Project);
             }
         }
 
@@ -99,13 +102,36 @@ namespace Animat.Studio
             var dialog = new OpenFileDialog();
             dialog.Filter = "Animat Studio Project (*.bxp)|*.bxp";
             dialog.Multiselect = false;
-            dialog.InitialDirectory = StudioCore.Instance.ProjectStore;
+            dialog.InitialDirectory = StudioSettings.Instance.ProjectStore;
             if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-                if (StudioCore.Instance.Project != null)
-                    StudioCore.Instance.Project.CacheManager.Dispose();
-                StudioCore.Instance.Project = StudioProject.OpenProject(dialog.FileName);
+                LoadProject(dialog.FileName);
+        }
+
+        public void LoadProject(String path)
+        {
+            if (StudioCore.Instance.Project != null)
+                StudioCore.Instance.Project.CacheManager.Dispose();
+            StudioCore.Instance.Project = StudioProject.OpenProject(path);
+            StudioCore.Instance.Project.ThumbnailSize = (Int32) StudioSettings.Instance.ThumbnailSize;
+            StudioSettings.Instance.PushRecentProject(StudioCore.Instance.Project);
+            StartPage.Instance.Close();
+        }
+
+        public void CloseProject(Boolean showStartPage = false)
+        {
+            if (StudioCore.Instance.HasProject)
+                StudioCore.Instance.Project.CacheManager.Dispose();
+            
+            // Close all windows
+            foreach (var a in StudioCore.Instance.Project.Assets) {
+                var viewer = AssetViewer.GetInstance(a);
+                if (viewer != null) viewer.Close();
             }
+            
+            StudioCore.Instance.Project = null;
+
+            if (showStartPage) StartPage.Instance.Show(dockPanel);
+
         }
 
         private void ImportAsset()

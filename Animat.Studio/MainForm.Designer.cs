@@ -47,6 +47,7 @@ namespace Animat.Studio
             this.hELPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.dEBUGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReloadStartPage = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStripContainer = new System.Windows.Forms.ToolStripContainer();
             this.dockPanel = new DigitalRune.Windows.Docking.DockPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -54,6 +55,9 @@ namespace Animat.Studio
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuSrip.SuspendLayout();
             this.mainToolStripContainer.ContentPanel.SuspendLayout();
             this.mainToolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -82,7 +86,10 @@ namespace Animat.Studio
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmNewProject,
-            this.tsmOpenProject});
+            this.tsmOpenProject,
+            this.toolStripMenuItem2,
+            this.tsmClose,
+            this.tsmCloseProject});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.fileToolStripMenuItem.Text = "FILE";
@@ -180,9 +187,17 @@ namespace Animat.Studio
             // 
             // dEBUGToolStripMenuItem
             // 
+            this.dEBUGToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmReloadStartPage});
             this.dEBUGToolStripMenuItem.Name = "dEBUGToolStripMenuItem";
             this.dEBUGToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.dEBUGToolStripMenuItem.Text = "DEBUG";
+            // 
+            // tsmReloadStartPage
+            // 
+            this.tsmReloadStartPage.Name = "tsmReloadStartPage";
+            this.tsmReloadStartPage.Size = new System.Drawing.Size(166, 22);
+            this.tsmReloadStartPage.Text = "Reload Start Page";
             // 
             // mainToolStripContainer
             // 
@@ -262,6 +277,23 @@ namespace Animat.Studio
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // tsmClose
+            // 
+            this.tsmClose.Name = "tsmClose";
+            this.tsmClose.Size = new System.Drawing.Size(152, 22);
+            this.tsmClose.Text = "Close";
+            // 
+            // tsmCloseProject
+            // 
+            this.tsmCloseProject.Name = "tsmCloseProject";
+            this.tsmCloseProject.Size = new System.Drawing.Size(152, 22);
+            this.tsmCloseProject.Text = "Close Project";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -315,6 +347,10 @@ namespace Animat.Studio
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem tsmAbout;
         private System.Windows.Forms.ToolStripMenuItem tsmShowPreview;
+        private System.Windows.Forms.ToolStripMenuItem tsmReloadStartPage;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem tsmClose;
+        private System.Windows.Forms.ToolStripMenuItem tsmCloseProject;
     }
 }
 

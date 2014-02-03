@@ -20,7 +20,7 @@ namespace Animat.Studio
             InitializeComponent();
             AttachEventHandlers();
 
-            txtProjPath.Text = StudioCore.Instance.GetProjectDirectory(String.Empty);
+            txtProjPath.Text = StudioSettings.Instance.GetProjectDirectory(String.Empty);
         }
 
         void AttachEventHandlers()
@@ -29,7 +29,7 @@ namespace Animat.Studio
             {
                 if (!manualProjectPath)
                 {
-                    ProjectPath = StudioCore.Instance.GetProjectDirectory(txtProjName.Text);
+                    ProjectPath = StudioSettings.Instance.GetProjectDirectory(txtProjName.Text);
                     txtProjPath.Text = ProjectPath;
                 }
 
@@ -54,7 +54,7 @@ namespace Animat.Studio
             lnkChangeDir.Click += (@s, e) =>
             {
                 var dialog = new FolderBrowserDialog();
-                dialog.SelectedPath = StudioCore.Instance.DefaultProjectStore;
+                dialog.SelectedPath = StudioSettings.DefaultProjectDirectory;
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     manualProjectPath = true;

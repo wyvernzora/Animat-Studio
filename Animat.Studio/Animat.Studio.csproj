@@ -113,6 +113,7 @@
     <Compile Include="NewProjectWizard.Designer.cs">
       <DependentUpon>NewProjectWizard.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudioSettings.cs" />
     <Compile Include="UI\MainForm\MainForm.Graphics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +211,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\StartPage\index.mustache">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\DigitalRune.Windows.Docking.dll" />
@@ -220,9 +224,9 @@
     <Content Include="Resources\StartPage\github.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\StartPage\index.css">
+    <Resource Include="Resources\StartPage\index.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Content Include="Resources\StartPage\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -234,12 +238,12 @@
     </Content>
     <Content Include="Resources\StartPage\pin-horizontal.png" />
     <Content Include="Resources\StartPage\pin-vertical.png" />
-    <Content Include="Resources\StartPage\theme-dark.css">
+    <Resource Include="Resources\StartPage\theme-dark.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\StartPage\theme-light.css">
+    </Resource>
+    <Resource Include="Resources\StartPage\theme-light.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
     <Content Include="Resources\WindowIcons\action.deselect.png" />
     <Content Include="Resources\WindowIcons\action.document.add.png" />
     <Content Include="Resources\WindowIcons\action.document.open.png" />

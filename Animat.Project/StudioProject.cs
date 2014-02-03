@@ -46,6 +46,7 @@ namespace Animat.Project
 
         private StudioProject()
         {
+            this.Guid = Guid.NewGuid();
             RawAssets = new List<AssetInfo>();
             ThumbnailSize = 300;
         }
@@ -129,6 +130,10 @@ namespace Animat.Project
 
         #region Basic Properties
 
+        [DataMember(Name = "guid")]
+        public Guid Guid
+        { get; set; }
+
         /// <summary>
         /// Gets or sets the name of the project.
         /// </summary>
@@ -148,9 +153,9 @@ namespace Animat.Project
         #region Directory Management
 
         // ReSharper disable InconsistentNaming
-        [IgnoreDataMember] private const String PROJECT_FILE = "project.bxp";
-        [IgnoreDataMember] private const String ASSET_DIR = "assets";
-        [IgnoreDataMember] private const String CACHE_DIR = "cache";
+        [IgnoreDataMember] public const String PROJECT_FILE = "project.bxp";
+        [IgnoreDataMember] public const String ASSET_DIR = "assets";
+        [IgnoreDataMember] public const String CACHE_DIR = "cache";
         // ReSharper restore InconsistentNaming
 
         /* Disable Serialization */

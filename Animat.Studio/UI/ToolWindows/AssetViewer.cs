@@ -24,8 +24,8 @@ namespace Animat.Studio.UI.ToolWindows
     {
         #region Multiton
 
-        private static Dictionary<String, AssetViewer> instances
-            = new Dictionary<string, AssetViewer>(StringComparer.CurrentCultureIgnoreCase);
+        private static Dictionary<UInt32, AssetViewer> instances
+            = new Dictionary<UInt32, AssetViewer>();
 
         
 
@@ -36,10 +36,10 @@ namespace Animat.Studio.UI.ToolWindows
         /// <returns></returns>
         public static AssetViewer GetInstance(AssetBase asset)
         {
-            if (!instances.ContainsKey(asset.Name))
-                instances[asset.Name] = new AssetViewer(asset);
+            if (!instances.ContainsKey(asset.ID))
+                instances[asset.ID] = new AssetViewer(asset);
                 
-            return instances[asset.Name];
+            return instances[asset.ID];
         }
 
         #endregion
@@ -89,7 +89,7 @@ namespace Animat.Studio.UI.ToolWindows
             // Remove the instance once it's closed
             Closed += (@s, e) =>
             {
-                instances.Remove(Asset.Name);
+                instances.Remove(Asset.ID);
                 StudioCore.Instance.OnUpdateRequest -= UpdateState;
             };
 

@@ -46,6 +46,8 @@ namespace Animat.Studio
             // File
             tsmNewProject.Click += (@s, e) => CreateProject();
             tsmOpenProject.Click += (@s, e) => LoadProject();
+            tsmClose.Click += (@s, e) => { };
+            tsmCloseProject.Click += (@s, e) => CloseProject(true);
 
             // Edit
 
@@ -61,6 +63,12 @@ namespace Animat.Studio
             // Help
             tsmAbout.Click += (@s, e) =>
                 AboutWindow.Instance.Show(dockPanel, DockState.Document);
+
+            // Debug
+            tsmReloadStartPage.Click += (@s, e) =>
+            {
+                StartPage.Instance.LoadPage();
+            };
 
         }
     }

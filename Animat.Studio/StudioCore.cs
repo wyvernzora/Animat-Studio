@@ -25,6 +25,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -39,6 +40,8 @@ using Animat.Studio.Properties;
 using Animat.Studio.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.IO;
+using Mustache;
+using NLog;
 
 namespace Animat.Studio
 {
@@ -48,6 +51,8 @@ namespace Animat.Studio
     /// </summary>
     public sealed class StudioCore
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         #region Singleton
 
         private static StudioCore instance;
@@ -98,88 +103,6 @@ namespace Animat.Studio
         
         #endregion
 
-        #region
-
-
-
-        #endregion
-
-        #region Directory Structure Management
-
-        /* This part is strictly for getting directory names
-         * and nothing more. No file IO here! 
-         * ONLY FOR PROJECTS IN CURRENT STORE
-         */
-
-        // Constants
-// ReSharper disable InconsistentNaming
-        private const String DEF_PROJ_DIR = "Animat Studio Projects";
-        // ReSharper restore InconsistentNaming
-
-        /// <summary>
-        ///     Gets the default project directory.
-        /// </summary>
-        public String DefaultProjectStore
-        {
-            get
-            {
-                return Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    DEF_PROJ_DIR);
-            }
-        }
-
-        /// <summary>
-        ///     Gets or sets the current project directory.
-        /// </summary>
-        public String ProjectStore
-        {
-            get
-            {
-                if (String.IsNullOrWhiteSpace(Settings.Default.ProjectFolder))
-                {
-                    Settings.Default.ProjectFolder = DefaultProjectStore;
-                    Settings.Default.Save();
-                }
-
-                return Settings.Default.ProjectFolder;
-            }
-            set
-            {
-                Settings.Default.ProjectFolder = value;
-                Settings.Default.Save();
-            }
-        }
-
-        /// <summary>
-        ///     Processes the project name to comply with filename requirements.
-        /// </summary>
-        /// <param name="projectName">Raw project name.</param>
-        /// <returns></returns>
-        public String ProcessProjectName(String projectName)
-        {
-            foreach (char c in Path.GetInvalidFileNameChars())
-                projectName = projectName.Replace(c, '_');
-            foreach (char c in Path.GetInvalidPathChars())
-                projectName = projectName.Replace(c, '_');
-            projectName = projectName.Replace(' ', '-');
-
-            return projectName;
-        }
-
-        /// <summary>
-        ///     Gets the path to a project by name.
-        /// </summary>
-        /// <param name="name">Unprocessed project name.</param>
-        /// <returns></returns>
-        public String GetProjectDirectory(String name)
-        {
-            return Path.Combine(ProjectStore, ProcessProjectName(name));
-        }
-
-
-        #endregion
-
         #region Cross-Component Messaging
 
         #region Update Requests
@@ -221,24 +144,26 @@ namespace Animat.Studio
 
         #endregion
 
-        public void StartPageCommand(String command, String args)
+        public void ProcessProjectScopedCommand(String command, String target)
         {
-            if (command == "project.create")
-                MainForm.Instance.CreateProject();
-            else if (command == "project.open")
+            switch (command)
             {
-                if (args.Length == 0)
-                    MainForm.Instance.LoadProject();
-                else
-                {
-                    MessageBox.Show("Project navigation is not implemented yet!");
-                }
-            } else if (command == "project.pin")
-            {
-                MessageBox.Show(String.Format("PinProject not implemented yet! Project ID is {0}", args));
-            } else if (command == "project.unpin")
-            {
-                MessageBox.Show(String.Format("UnpinProject not implemented yet! Project ID is {0}", args));
+                case "create": MainForm.Instance.CreateProject();
+                    break;
+                case "open":
+                    break;
+                case "pin":
+                    var p0 = StudioSettings.Instance.FindProjectById(target);
+                    p0.IsPinned = true;
+                    RequestUpdate(UpdateScope.StartPage);
+                    StudioSettings.Instance.Save();
+                    break;
+                case "unpin":
+                    var p1 = StudioSettings.Instance.FindProjectById(target);
+                    p1.IsPinned = false;
+                    RequestUpdate(UpdateScope.StartPage);
+                    StudioSettings.Instance.Save();
+                    break;
             }
         }
 

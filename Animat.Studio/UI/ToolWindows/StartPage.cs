@@ -6,9 +6,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using Animat.Studio.Properties;
 using DigitalRune.Windows.Docking;
+using libWyvernzora.Utilities;
 using Mustache;
 
 namespace Animat.Studio.ToolWindows
@@ -30,6 +33,8 @@ namespace Animat.Studio.ToolWindows
         { get { return instance ?? (instance = new StartPage()); } }
 
         #endregion
+        
+        private readonly StartPageInterface startPageInterface = new StartPageInterface();
 
         public StartPage()
         {
@@ -42,36 +47,126 @@ namespace Animat.Studio.ToolWindows
             // Set StartPage only dockable to document area
             DockAreas = DockAreas.Document;
 
+            // Set up browser for interfacing
+            startPageBrowser.ObjectForScripting = startPageInterface;
+
+            // Load Resource Data
+            var compiler = new FormatCompiler();
+            template = compiler.Compile(Resources.StartPageTemplate);
+            LayoutCSS = Resources.StartPageLayout;
+            themeDark = Resources.StartPageDark;
+            themeLight = Resources.StartPageLight;
+
+            ColorThemeCSS = themeDark;
+
+
             // Load Start Page
-            //String html = File.ReadAllText("Assets\\StartPage\\HTML\\index1.html");
-            //startPageBrowser.DocumentText = html;
-            startPageBrowser.Navigate(new Uri(String.Format("file://{0}/Resources/StartPage/index.html", Application.StartupPath.Replace('\\', '/')), UriKind.Absolute));
+            LoadPage();
 
-            startPageBrowser.Navigating += (@s, e) =>
-                {
-                    if (e.Url.Scheme.ToLower() == "animat")
-                    {
-                        String command = e.Url.Host;
-                        String args = e.Url.LocalPath.Trim('/');
-                        StudioCore.Instance.StartPageCommand(command, args);
-                    }
-                    else if (e.Url.Scheme.ToLower() == "http" || e.Url.Scheme.ToLower() == "https")
-                    {
-                        Process.Start(e.Url.ToString());
-                    }
-
-                    e.Cancel = true;
-                };
-            
-
-            // Attach update request events
-            StudioCore.Instance.OnUpdateRequest += (@s, e) =>
-                { if (e.Scope.HasFlag(UpdateScope.StartPage)) UpdateUi(); };
+            AttachEventHandlers(); // This one messes with the browser, so do it last.
         }
 
-        public void UpdateUi()
+        public void LoadPage()
         {
-            
+            var result = template.Render(this);
+
+            File.WriteAllText("start-test.html", result);
+                startPageBrowser.DocumentText = result;
         }
+
+        private void AttachEventHandlers()
+        {
+            Closed += (@s, e) =>
+            {
+                instance = null;
+            };
+
+            startPageBrowser.Navigated += (@s, e) =>
+            {
+                this.TabText = this.Text = e.Url.LocalPath.Trim('/');
+            };
+            startPageBrowser.Navigating += (@s, e) =>
+            {
+                if (e.Url.Scheme.ToLower() == "http" || e.Url.Scheme.ToLower() == "https")
+                    Process.Start(e.Url.ToString());
+                e.Cancel = true;
+            };
+        }
+
+        #region Start Page Data Support
+
+        private Generator template;
+        private String themeLight;
+        private String themeDark;
+
+        public String LayoutCSS
+        { get; private set; }
+        
+        public String ColorThemeCSS
+        { get; private set; }
+        
+        public List<StudioSettings.RecentProjectInfo> RecentProjects
+        { get { return StudioSettings.Instance.RecentProjects; } }
+
+        #endregion
+
+        #region Command Processing
+
+        /// <summary>
+        /// Processes a <c>animat://</c> navigation url as a command.
+        /// </summary>
+        /// <param name="nav"></param>
+        private void ProcessCommand(Uri nav)
+        {
+            var scheme = nav.Scheme.ToLower();
+            if (scheme == "http" || scheme == "https")
+                Process.Start(nav.ToString());  // HTTP navigation is handled by default browser
+            else if (scheme == "animat") {
+                var commandScope = nav.Host.Split('.')[0].ToLower();
+                var command = nav.Host.Split('.')[1].ToLower();
+                var target = nav.LocalPath.Trim('/');
+
+                if (commandScope == "project")
+                    StudioCore.Instance.ProcessProjectScopedCommand(command, target);
+
+            }
+        }
+
+        #endregion
+
+
     }
+
+    #region Script Interfacing
+
+    /// <summary>
+    /// Interface class between studio code and start page HTML.
+    /// </summary>
+    [ComVisible(true)]
+    public class StartPageInterface
+    {
+
+        public void CreateProject()
+        {
+            MainForm.Instance.CreateProject();
+        }
+
+        public void OpenProject(String target)
+        {
+            if (target.Length == 0)
+                MainForm.Instance.LoadProject();
+            else
+                MainForm.Instance.LoadProject(StudioSettings.Instance.FindProjectById(target).Path);
+        }
+        
+        public void TogglePin(String target, Boolean pin)
+        {
+            var p1 = StudioSettings.Instance.FindProjectById(target);
+            p1.IsPinned = pin;
+            StudioSettings.Instance.Save();
+        }
+
+    }
+
+    #endregion
 }

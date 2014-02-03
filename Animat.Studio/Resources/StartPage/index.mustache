@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <title>Animat Studio</title>        
+        <style>
+          {{ColorThemeCSS}}
+          {{#newline}}
+          {{LayoutCSS}}
+        </style>
+        <script type="text/javascript">
+            function togglePin(element) {
+              if ((' ' + element.className + ' ').indexOf(' pinned ') > -1) 
+              { 
+                element.className='project-pin unpinned';
+                element.title = 'Pin this item to the Recent Projects list.';
+              window.external.TogglePin(element.id, false);
+              }
+              else 
+              { 
+                element.className='project-pin pinned'; 
+                element.title = 'Unpin this item from the Recent Projects list.';
+                window.external.TogglePin(element.id, true);
+              }
+            }
+         </script>
+        <!--<link rel="stylesheet" type="text/css" href="theme-dark.css" />
+        <link rel="stylesheet" type="text/css" href="index.css" />-->
+    </head>
+    <body class="background-light global-font text" 
+          onselectstart="return false;" onload="disableSelection(document.body);" ondragstart="return false;">
+        <div class="left-sidebar-background background-dark"></div>
+        <div class="wrapper">   
+            <div class="header">
+                <!-- Studio Logo -->
+                <div class="logo-wrapper">
+                    <div class="logo"></div>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="container">
+                    <!-- CONTENT IS HERE -->
+                    <main class="content">
+                        <div class="section-head">
+                            <h2 class="heading-font">What's New</h2>                        
+                            
+                            <div class="news-item">
+                                <a class="link" href="https://github.com/jluchiji/Animat-Studio">
+                                    <div class="news-wrapper background-ultralight">
+                                        <div class="info text">
+                                            <h3 class="heading-font">Visit our GitHub repository!</h3>
+                                            Click here and you will be there in no time! Animat Studio will even open a browser window for you!
+                                            But seriously, fork our code and make Animat Studio a better program!
+                                        </div>
+                                        <div class="icon" style="background:url(https://raw2.github.com/jluchiji/Animat-Studio/master/Animat.Studio/Resources/StartPage/github.png);"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="news-item">
+                                <a class="link" href="https://github.com/R1cebank">
+                                    <div class="news-wrapper background-ultralight">
+                                        <div class="info text">
+                                            <h3 class="heading-font">R1cebank joined the team!</h3>
+                                            We are glad to announce that the developer behind AmiMat will be joining the development of Animat Studio!
+                                        </div>
+                                        <div class="icon" style="background: url(http://0.gravatar.com/avatar/1a35553f2753858a05c1b11c19dfa05f?s=64)"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            
+                        </div>
+                    </main>
+                </div>
+                <div class="left-sidebar">
+                    <!-- QUICK START BAR IS HERE -->
+                    <div class="quick-start-bar">
+                        <!-- Start -->
+                        <div class="action-wrapper start">
+                            <h2 class="heading-font">Start</h2>
+                            <div class="action-link"><a onclick="window.external.CreateProject()">New Project...</a></div>
+                            <div class="action-link"><a onclick="window.external.OpenProject('')">Open Project...</a></div>
+                        </div>
+                        <!-- Recent Projects -->
+                        <div class="action-wrapper recent-projects">
+                            <h2 class="heading-font">Recent</h2>
+                            
+                            <!-- Project Templates -->
+                            {{#each RecentProjects}}
+                              <div class="project-wrapper action-link">
+                                <div class="project-link">
+                                    <a onclick="window.external.OpenProject('{{ID}}')">{{Name}}</a>
+                                </div>
+                                {{#if IsPinned}}
+                                  <a id="{{ID}}" class="project-pin pinned" title="Unpin this item from the Recent Projects list." onclick="togglePin(this);"></a>
+                                {{#else}}
+                                  <a id="{{ID}}" class="project-pin unpinned" title="Pin this item to the Recent Projects list." onclick="togglePin(this);"></a>
+                                {{/if}}
+                            </div>
+                            {{/each}}                            
+                        </div>
+                    </div>
+                </div><!-- .left-sidebar -->
+            </div><!-- .middle-->
+        </div><!-- .wrapper -->
+    </body>
+</html>
