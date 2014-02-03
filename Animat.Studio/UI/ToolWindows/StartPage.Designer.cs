@@ -1,4 +1,4 @@
-﻿namespace Animat.UI.ToolWindows
+﻿namespace Animat.Studio.ToolWindows
 {
     partial class StartPage
     {
@@ -41,6 +41,7 @@
             this.startPageBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.startPageBrowser.Name = "startPageBrowser";
             this.startPageBrowser.ScriptErrorsSuppressed = true;
+            this.startPageBrowser.ScrollBarsEnabled = false;
             this.startPageBrowser.Size = new System.Drawing.Size(975, 641);
             this.startPageBrowser.TabIndex = 0;
             this.startPageBrowser.TabStop = false;
@@ -59,6 +60,7 @@
             | DigitalRune.Windows.Docking.DockAreas.Document)));
             this.HideOnClose = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "StartPage";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

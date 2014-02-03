@@ -14,7 +14,7 @@ namespace Animat.Project.AssetLoaders
     /// </summary>
     [ComponentFactory(typeof(AssetBase))]
     [ComponentInfo("Aragorn Wyvernzora", "1.0.0.0")]
-    [ComponentFileFilter("Animat Studio Supported Assets (*.jpg; *.png; *.bmp; *.gif)|*.jpg; *.png; *.bmp; *.gif")]
+    [ComponentFileFilter("Default Assets (*.jpg; *.png; *.bmp; *.gif)|*.jpg; *.png; *.bmp; *.gif")]
     public sealed class DefaultAssetLoaderFactory : IComponentFactory<AssetBase>
     {
         /// <summary>
@@ -38,7 +38,7 @@ namespace Animat.Project.AssetLoaders
 
             // Get extension and create loaders
             var extension = Path.GetExtension(fileName).ToLower();
-            if (extension == ".jpg" || extension == ".bmp" || extension == ".png")
+            if (extension == ".jpg" || extension == ".bmp" || extension == ".png" || extension == ".gif")
                 return new SingleFrameImageAsset(project, displayName, fileName) { FactoryName = GetType().FullName };
             else
             {

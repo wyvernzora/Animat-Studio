@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DigitalRune.Windows.Docking;
 
-namespace Animat.UI.ToolWindows
+namespace Animat.Studio.ToolWindows
 {
     public partial class AboutWindow : DockableForm
     {

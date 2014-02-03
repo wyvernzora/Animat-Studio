@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Animat.Project;
-using Animat.UI.Properties;
-using Animat.UI.ToolWindows;
+using Animat.Studio.ToolWindows;
+using Animat.Studio.Properties;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Utilities;
 
-namespace Animat.UI
+namespace Animat.Studio
 {
     // Partial Class for MainForm for the Event Handling code
     public partial class MainForm : Form
@@ -31,7 +31,8 @@ namespace Animat.UI
         {
             Closed += (@s, e) =>
             {
-                StudioCore.Instance.Project.CacheManager.Dispose();
+                if(StudioCore.Instance.HasProject)
+                    StudioCore.Instance.Project.CacheManager.Dispose();
             };
 
             AttachMenuStripEventHandlers();

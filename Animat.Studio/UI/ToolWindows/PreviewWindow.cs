@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Animat.Project;
 using DigitalRune.Windows.Docking;
 
-namespace Animat.UI.ToolWindows
+namespace Animat.Studio.ToolWindows
 {
     public partial class PreviewWindow : DockableForm
     {

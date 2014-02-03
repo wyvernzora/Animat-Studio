@@ -8,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Animat.Project;
-using Animat.UI.UI.ToolWindows;
+using Animat.Studio.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
 using libWyvernzora.Utilities;
 
-namespace Animat.UI.ToolWindows
+namespace Animat.Studio.ToolWindows
 {
     public partial class ResourceExplorer : DockableForm
     {

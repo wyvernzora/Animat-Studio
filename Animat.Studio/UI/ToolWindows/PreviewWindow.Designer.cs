@@ -1,4 +1,4 @@
-﻿namespace Animat.UI.ToolWindows
+﻿namespace Animat.Studio.ToolWindows
 {
     partial class PreviewWindow
     {
@@ -64,9 +64,10 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "PreviewWindow";
             this.ShowInTaskbar = false;
-            this.TabText = "PreviewWindow";
+            this.TabText = "Preview";
             this.Text = "Preview";
             this.ResumeLayout(false);
 

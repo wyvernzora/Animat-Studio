@@ -35,59 +35,13 @@ using System.Text;
 using System.Windows.Forms;
 using Animat.Project;
 using Animat.Project.Moduality;
-using Animat.UI.Properties;
-using Animat.UI.UI.ToolWindows;
+using Animat.Studio.Properties;
+using Animat.Studio.UI.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.IO;
 
-namespace Animat.UI
+namespace Animat.Studio
 {
-    /// <summary>
-    ///     Enum to identify different parts of the
-    /// </summary>
-    [Flags]
-    public enum UpdateScope
-    {
-        None = 0,
-        ParentForm = 1,
-        Explorer = 2,
-        Preview = 4,
-        StartPage = 8,
-        AssetViewer = 16,
-        All = -1
-    }
-
-    /// <summary>
-    ///     Event args for cross-window update.
-    /// </summary>
-    public sealed class UpdateEventArgs : EventArgs
-    {
-        /// <summary>
-        ///     Constructor.
-        /// </summary>
-        /// <param name="scope">Scope of the update.</param>
-        public UpdateEventArgs(UpdateScope scope = UpdateScope.All)
-        {
-            Scope = scope;
-        }
-
-        /// <summary>
-        ///     Gets the scope of the update.
-        /// </summary>
-        public UpdateScope Scope { get; set; }
-
-        /// <summary>
-        /// String specifying the target of the update request,
-        /// null if there is no specific target.
-        /// </summary>
-        public String Target { get; set; }
-
-        /// <summary>
-        /// Specific message attached to the update request.
-        /// Null if there is no message.
-        /// </summary>
-        public Object UpdateMessage { get; set; }
-    }
 
     /// <summary>
     ///     Singleton core class that ties all Animat Studio component together.
@@ -144,6 +98,12 @@ namespace Animat.UI
         
         #endregion
 
+        #region
+
+
+
+        #endregion
+
         #region Directory Structure Management
 
         /* This part is strictly for getting directory names
@@ -154,7 +114,7 @@ namespace Animat.UI
         // Constants
 // ReSharper disable InconsistentNaming
         private const String DEF_PROJ_DIR = "Animat Studio Projects";
-// ReSharper restore InconsistentNaming
+        // ReSharper restore InconsistentNaming
 
         /// <summary>
         ///     Gets the default project directory.
@@ -220,7 +180,9 @@ namespace Animat.UI
 
         #endregion
 
-        #region Component Updating
+        #region Cross-Component Messaging
+
+        #region Update Requests
 
         private EventHandler<UpdateEventArgs> onUpdateRequest;
 
@@ -259,12 +221,6 @@ namespace Animat.UI
 
         #endregion
 
-        #region Selection and Current State
-        
-        #endregion
-
-        #region Cross-Component Actions
-
         public void StartPageCommand(String command, String args)
         {
             if (command == "project.create")
@@ -277,6 +233,12 @@ namespace Animat.UI
                 {
                     MessageBox.Show("Project navigation is not implemented yet!");
                 }
+            } else if (command == "project.pin")
+            {
+                MessageBox.Show(String.Format("PinProject not implemented yet! Project ID is {0}", args));
+            } else if (command == "project.unpin")
+            {
+                MessageBox.Show(String.Format("UnpinProject not implemented yet! Project ID is {0}", args));
             }
         }
 
@@ -290,6 +252,54 @@ namespace Animat.UI
             MainForm.Instance.PushDockableWindow(viewer, DockState.Document);
         }
 
+
         #endregion
+    }
+
+    /// <summary>
+    ///     Enum to identify different parts of the
+    /// </summary>
+    [Flags]
+    public enum UpdateScope
+    {
+        None = 0,
+        ParentForm = 1,
+        Explorer = 2,
+        Preview = 4,
+        StartPage = 8,
+        AssetViewer = 16,
+        All = -1
+    }
+
+    /// <summary>
+    ///     Event args for cross-window update.
+    /// </summary>
+    public sealed class UpdateEventArgs : EventArgs
+    {
+        /// <summary>
+        ///     Constructor.
+        /// </summary>
+        /// <param name="scope">Scope of the update.</param>
+        public UpdateEventArgs(UpdateScope scope = UpdateScope.All)
+        {
+            Scope = scope;
+        }
+
+        /// <summary>
+        ///     Gets the scope of the update.
+        /// </summary>
+        public UpdateScope Scope { get; set; }
+
+        /// <summary>
+        /// String specifying the target of the update request,
+        /// null if there is no specific target.
+        /// </summary>
+        public String Target { get; set; }
+
+        /// <summary>
+        /// Specific message attached to the update request.
+        /// Null if there is no message.
+        /// </summary>
+        public Object UpdateMessage { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Animat.UI
+namespace Animat.Studio
 { 
     /// <summary>
     /// Exception that occurs when creation of a duplicate singleton instance is attempted.

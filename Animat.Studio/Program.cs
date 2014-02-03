@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Animat.UI
+namespace Animat.Studio
 {
     static class Program
     {

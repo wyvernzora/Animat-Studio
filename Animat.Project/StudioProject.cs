@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using Animat.Foundation;
 using Animat.Project.Moduality;
-using Animat.UI;
+using Animat.Studio;
 using libWyvernzora.Core;
 using libWyvernzora.IO;
 using libWyvernzora.Utilities;

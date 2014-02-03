@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cyotek.Windows.Forms.TabList</name>
+    </assembly>
+    <members>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.CanParent(System.Windows.Forms.Control)">
+            <summary>
+            Indicates whether the control managed by the specified designer can be a child of the control managed by this designer.
+            </summary>
+            <param name="control">The control to test.</param>
+            <returns>true if the control managed by the specified designer can be a child of the control managed by this designer; otherwise, false.</returns>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+            Initializes the designer with the specified component.
+            </summary>
+            <param name="component">The <see cref="T:System.ComponentModel.IComponent" /> to associate with the designer.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.InitializeNewComponent(System.Collections.IDictionary)">
+            <summary>
+            Initializes the new component.
+            </summary>
+            <param name="defaultValues">A name/value dictionary of default values to apply to properties. May be null if no default values are specified.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.CreateToolCore(System.Drawing.Design.ToolboxItem,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Provides core functionality for all the <see cref="M:System.Windows.Forms.Design.ParentControlDesigner.CreateTool(System.Drawing.Design.ToolboxItem)"/> methods.
+            </summary>
+            <param name="tool">The <see cref="T:System.Drawing.Design.ToolboxItem"/> to create a component from.</param>
+            <param name="x">The horizontal position, in design-time view coordinates, of the location of the left edge of the tool, if a size is specified; the horizontal position of the center of the tool, if no size is specified.</param>
+            <param name="y">The vertical position, in design-time view coordinates, of the location of the top edge of the tool, if a size is specified; the vertical position of the center of the tool, if no size is specified.</param>
+            <param name="width">The width of the tool. This parameter is ignored if the <paramref name="hasSize"/> parameter is set to false.</param>
+            <param name="height">The height of the tool. This parameter is ignored if the <paramref name="hasSize"/> parameter is set to false.</param>
+            <param name="hasLocation">true if a location for the component is specified; false if the component is to be positioned in the center of the currently selected control.</param>
+            <param name="hasSize">true if a size for the component is specified; false if the default height and width values for the component are to be used.</param>
+            <returns>An array of components created from the tool.</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.Windows.Forms.Design.ParentControlDesigner" />, and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.GetHitTest(System.Drawing.Point)">
+            <summary>
+            Indicates whether a mouse click at the specified point should be handled by the control.
+            </summary>
+            <param name="point">A <see cref="T:System.Drawing.Point" /> indicating the position at which the mouse was clicked, in screen coordinates.</param>
+            <returns>true if a click at the specified point is to be handled by the control; otherwise, false.</returns>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Called when the control that the designer is managing has painted its surface so the designer can paint any additional adornments on top of the control.
+            </summary>
+            <param name="pe">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that provides data for the event.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            Processes Windows messages and optionally routes them to the control.
+            </summary>
+            <param name="m">The <see cref="T:System.Windows.Forms.Message" /> to process.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.AddTabListPage">
+            <summary>
+            Adds a new TabListPage to the control
+            </summary>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.RemoveSelectedTabListPage">
+            <summary>
+            Removes the selected TabListPage from the control
+            </summary>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.AddVerbHandler(System.Object,System.EventArgs)">
+            <summary>
+            Called when the Add TabListPage verb is executed
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.GetComponentOwner(System.Object)">
+            <summary>
+            Gets the TabListPage that contains the specified component
+            </summary>
+            <param name="component">The component.</param>
+            <returns>The TabListPage that hosts the specified component, otherwise null</returns>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.GetSelectedTabListPageDesigner">
+            <summary>
+            Gets the designer for the selected TabListPage
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.RemoveVerbHandler(System.Object,System.EventArgs)">
+            <summary>
+            Called when the Remove TabListPage verb is executed
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.OnComponentChanged(System.Object,System.ComponentModel.Design.ComponentChangedEventArgs)">
+            <summary>
+            Called when the component attached to this designer has changed
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.ComponentModel.Design.ComponentChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.OnSelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the SelectedIndex property of the TabList control being designed has changed
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.Design.TabListDesigner.OnSelectionChanged(System.Object,System.EventArgs)">
+            <summary>
+            Called when the selected components have changed
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Cyotek.Windows.Forms.Design.TabListDesigner.ParticipatesWithSnapLines">
+            <summary>
+            Gets a value indicating whether the <see cref="T:System.Windows.Forms.Design.ControlDesigner" /> will allow snapline alignment during a drag operation.
+            </summary>
+            <value><c>true</c> if the ControlDesigner will allow snapline alignment during a drag operation when the primary drag control is over this designer; otherwise, <c>false</c>.</value>
+            <returns>true if the <see cref="T:System.Windows.Forms.Design.ControlDesigner" /> will allow snapline alignment during a drag operation when the primary drag control is over this designer; otherwise, false.</returns>
+        </member>
+        <member name="P:Cyotek.Windows.Forms.Design.TabListDesigner.Verbs">
+            <summary>
+            Gets the design-time verbs supported by the component that is associated with the designer.
+            </summary>
+            <value>A collection that contains the verbs that are available to the designer.</value>
+            <returns>A <see cref="T:System.ComponentModel.Design.DesignerVerbCollection" /> of <see cref="T:System.ComponentModel.Design.DesignerVerb" /> objects, or null if no designer verbs are available. This default implementation always returns null.</returns>
+        </member>
+        <member name="P:Cyotek.Windows.Forms.Design.TabListDesigner.TabListControl">
+            <summary>
+            Gets the TabList control currently being designed
+            </summary>
+            <value>The TabList control being designed.</value>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.TabList.OnAllowTabSelectionChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Cyotek.Windows.Forms.TabList.AllowTabSelectionChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Cyotek.Windows.Forms.TabList.OnShowTabListChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:Cyotek.Windows.Forms.TabList.ShowTabListChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="E:Cyotek.Windows.Forms.TabList.AllowTabSelectionChanged">
+            <summary>
+            Occurs when the AllowTabSelection property value changes
+            </summary>
+        </member>
+        <member name="E:Cyotek.Windows.Forms.TabList.ShowTabListChanged">
+            <summary>
+            Occurs when the ShowTabList property value changes
+            </summary>
+        </member>
+    </members>
+</doc>

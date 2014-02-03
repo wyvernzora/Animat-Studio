@@ -1,4 +1,4 @@
-﻿namespace Animat.UI.ToolWindows
+﻿namespace Animat.Studio.ToolWindows
 {
     partial class ResourceExplorer
     {

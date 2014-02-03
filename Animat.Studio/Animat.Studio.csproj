@@ -7,8 +7,8 @@
     <ProjectGuid>{3EF335AB-3AB3-4E37-A5B2-55537BC24558}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Animat.UI</RootNamespace>
-    <AssemblyName>Animat.UI</AssemblyName>
+    <RootNamespace>Animat.Studio</RootNamespace>
+    <AssemblyName>Animat.Studio</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
@@ -58,6 +58,9 @@
     <Reference Include="Cyotek.Windows.Forms.ImageBox">
       <HintPath>..\packages\CyotekImageBox.1.1.4.1\lib\net35-Client\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
     </Reference>
+    <Reference Include="Cyotek.Windows.Forms.TabList">
+      <HintPath>..\packages\CyotekTabList.1.0.1.0\lib\net35\Cyotek.Windows.Forms.TabList.dll</HintPath>
+    </Reference>
     <Reference Include="DigitalRune.Windows.Docking, Version=1.3.5.0, Culture=neutral, PublicKeyToken=83b2c390cd515404, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\DigitalRune.Windows.Docking.dll</HintPath>
@@ -65,11 +68,15 @@
     <Reference Include="libWyvernzora">
       <HintPath>..\packages\libWyvernzora.0.5.6\lib\libWyvernzora.dll</HintPath>
     </Reference>
+    <Reference Include="mustache-sharp">
+      <HintPath>..\packages\mustache-sharp.0.2.2.0\lib\net40\mustache-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,34 +88,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgrounWorkDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BackgrounWorkDialog.Designer.cs">
-      <DependentUpon>BackgrounWorkDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="StudioCore.cs" />
-    <Compile Include="UI\ErrorWindow.cs">
+    <Compile Include="ErrorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ErrorWindow.Designer.cs">
+    <Compile Include="ErrorWindow.Designer.cs">
       <DependentUpon>ErrorWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MainForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\MainForm.Designer.cs">
+    <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\NewProjectWizard.cs">
+    <Compile Include="NewProjectWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\NewProjectWizard.Designer.cs">
+    <Compile Include="NewProjectWizard.Designer.cs">
       <DependentUpon>NewProjectWizard.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MainForm\MainForm.Graphics.cs">
@@ -140,6 +142,12 @@
     <Compile Include="UI\ToolWindows\ResourceExplorer.Designer.cs">
       <DependentUpon>ResourceExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ToolWindows\SettingsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ToolWindows\SettingsWindow.Designer.cs">
+      <DependentUpon>SettingsWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ToolWindows\StartPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,16 +158,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\WizardStates\WizardStateManager.cs" />
-    <EmbeddedResource Include="BackgrounWorkDialog.resx">
-      <DependentUpon>BackgrounWorkDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\ErrorWindow.resx">
+    <EmbeddedResource Include="ErrorWindow.resx">
       <DependentUpon>ErrorWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\MainForm.resx">
+    <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\NewProjectWizard.resx">
+    <EmbeddedResource Include="NewProjectWizard.resx">
       <DependentUpon>NewProjectWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -179,25 +184,13 @@
     <EmbeddedResource Include="UI\ToolWindows\ResourceExplorer.resx">
       <DependentUpon>ResourceExplorer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ToolWindows\SettingsWindow.resx">
+      <DependentUpon>SettingsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ToolWindows\StartPage.resx">
       <DependentUpon>StartPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <Content Include="Assets\StartPage\bg.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\StartPage\github.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\StartPage\index.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\StartPage\logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\StartPage\style.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -219,19 +212,53 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Icons\sakura blossom-swirl-small.png" />
-    <None Include="Assets\Icons\logo-banner-dark.png" />
-    <None Include="Assets\Icons\StartPage.png" />
-    <None Include="Assets\Icons\ProjectExplorer.png" />
-    <None Include="Assets\Icons\Preview.png" />
-    <None Include="Assets\Icons\splash.png" />
-    <None Include="Assets\Icons\appbar.magnify.add.png" />
-    <None Include="Assets\Icons\Zoom in.ico" />
-    <None Include="Assets\Icons\zoom-in.png" />
-    <None Include="Assets\Icons\NewIcons\WindowIcons\window.start.ico" />
-    <None Include="Assets\Icons\NewIcons\WindowIcons\window.explorer.ico" />
-    <None Include="Assets\Icons\NewIcons\WindowIcons\window.preview.ico" />
     <Content Include="Libraries\DigitalRune.Windows.Docking.dll" />
+    <Content Include="Resources\logo-banner-dark.png" />
+    <Content Include="Resources\logo-banner-light.png" />
+    <Content Include="Resources\logo.png" />
+    <Content Include="Resources\sakura blossom-swirl-small.png" />
+    <Content Include="Resources\StartPage\github.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StartPage\index.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StartPage\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StartPage\logo-dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StartPage\logo-light.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StartPage\pin-horizontal.png" />
+    <Content Include="Resources\StartPage\pin-vertical.png" />
+    <Content Include="Resources\StartPage\theme-dark.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\StartPage\theme-light.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\WindowIcons\action.deselect.png" />
+    <Content Include="Resources\WindowIcons\action.document.add.png" />
+    <Content Include="Resources\WindowIcons\action.document.open.png" />
+    <Content Include="Resources\WindowIcons\action.document.save.png" />
+    <Content Include="Resources\WindowIcons\action.pan.png" />
+    <Content Include="Resources\WindowIcons\action.select.all.png" />
+    <Content Include="Resources\WindowIcons\action.selection.png" />
+    <Content Include="Resources\WindowIcons\action.zoom.equal.png" />
+    <Content Include="Resources\WindowIcons\action.zoom.fit.png" />
+    <Content Include="Resources\WindowIcons\type.asset.png" />
+    <Content Include="Resources\WindowIcons\type.error.png" />
+    <Content Include="Resources\WindowIcons\type.event.png" />
+    <Content Include="Resources\WindowIcons\type.file.png" />
+    <Content Include="Resources\WindowIcons\type.frame.png" />
+    <Content Include="Resources\WindowIcons\type.sequence.png" />
+    <Content Include="Resources\WindowIcons\window.explorer.ico" />
+    <Content Include="Resources\WindowIcons\window.preview.ico" />
+    <Content Include="Resources\WindowIcons\window.start.ico" />
+    <Content Include="Resources\WindowIcons\window.viewer.ico" />
     <Content Include="sakura.ico" />
     <None Include="Resources\chibi-e.png" />
     <None Include="Resources\chibi-f.png" />

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DigitalRune.Windows.Docking;
+using Mustache;
 
-namespace Animat.UI.ToolWindows
+namespace Animat.Studio.ToolWindows
 {
     /// <summary>
     /// Start Page tool window.
@@ -43,7 +45,7 @@ namespace Animat.UI.ToolWindows
             // Load Start Page
             //String html = File.ReadAllText("Assets\\StartPage\\HTML\\index1.html");
             //startPageBrowser.DocumentText = html;
-            startPageBrowser.Navigate(new Uri(String.Format("file://{0}/Assets/StartPage/index.html", Application.StartupPath.Replace('\\', '/')), UriKind.Absolute));
+            startPageBrowser.Navigate(new Uri(String.Format("file://{0}/Resources/StartPage/index.html", Application.StartupPath.Replace('\\', '/')), UriKind.Absolute));
 
             startPageBrowser.Navigating += (@s, e) =>
                 {
@@ -53,13 +55,14 @@ namespace Animat.UI.ToolWindows
                         String args = e.Url.LocalPath.Trim('/');
                         StudioCore.Instance.StartPageCommand(command, args);
                     }
-                    else
+                    else if (e.Url.Scheme.ToLower() == "http" || e.Url.Scheme.ToLower() == "https")
                     {
-                        
+                        Process.Start(e.Url.ToString());
                     }
 
                     e.Cancel = true;
                 };
+            
 
             // Attach update request events
             StudioCore.Instance.OnUpdateRequest += (@s, e) =>

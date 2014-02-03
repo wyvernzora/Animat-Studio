@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Animat.UI.Properties {
+namespace Animat.Studio.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -44,6 +44,17 @@ namespace Animat.UI.Properties {
             }
             set {
                 this["ThumbnailSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Setting {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
             }
         }
     }

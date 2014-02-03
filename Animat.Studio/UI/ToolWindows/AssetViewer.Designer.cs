@@ -1,4 +1,4 @@
-﻿namespace Animat.UI.UI.ToolWindows
+﻿namespace Animat.Studio.UI.ToolWindows
 {
     partial class AssetViewer
     {

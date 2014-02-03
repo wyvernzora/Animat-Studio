@@ -14,7 +14,7 @@ using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
 using libWyvernzora.Utilities;
 
-namespace Animat.UI.UI.ToolWindows
+namespace Animat.Studio.UI.ToolWindows
 {
     /// <summary>
     /// Multiton.

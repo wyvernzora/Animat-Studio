@@ -7,12 +7,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Animat.UI.Properties;
-using Animat.UI.ToolWindows;
+using Animat.Studio.Properties;
+using Animat.Studio.ToolWindows;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Utilities;
 
-namespace Animat.UI
+namespace Animat.Studio
 {
     // Partial Class for MainForm for everything related to graphics and painting
     public partial class MainForm : Form
