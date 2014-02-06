@@ -80,11 +80,6 @@ namespace Animat.Studio.ToolWindows
             {
                 instance = null;
             };
-
-            startPageBrowser.Navigated += (@s, e) =>
-            {
-                this.TabText = this.Text = e.Url.LocalPath.Trim('/');
-            };
             startPageBrowser.Navigating += (@s, e) =>
             {
                 if (e.Url.Scheme.ToLower() == "http" || e.Url.Scheme.ToLower() == "https")

@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AssetBase.cs" />
     <Compile Include="AssetLoaders\DefaultAssetLoaderFactory.cs" />
+    <Compile Include="AssetLoaders\MultiFrameImageAsset.cs" />
     <Compile Include="AssetLoaders\SingleFrameImageAsset.cs" />
     <Compile Include="Moduality\Attributes.cs" />
     <Compile Include="Moduality\ComponentFactoryLoader.cs" />

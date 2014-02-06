@@ -240,9 +240,8 @@ namespace Animat.Project
             if (!File.Exists(filepath)) throw new FileNotFoundException("Cannot find the asset file to add.");
 
             // Generate a unique filename
-            var filename = DirectIntConv.ToHexString(RandomEx.Instance.NextUInt32(), 8) + Path.GetExtension(filepath);
-            while (File.Exists(Path.Combine(GetAssetDirectory(), filename)))
-                filename = DirectIntConv.ToHexString(RandomEx.Instance.NextUInt32(), 8) + Path.GetExtension(filepath);
+            var assetId = Guid.NewGuid();
+            var filename = assetId + Path.GetExtension(filepath);
 
             // Copy the file to the asset folder
             var newPath = Path.Combine(GetAssetDirectory(), filename);

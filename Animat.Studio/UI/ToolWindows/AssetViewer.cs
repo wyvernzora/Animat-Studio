@@ -13,6 +13,7 @@ using Cyotek.Windows.Forms;
 using DigitalRune.Windows.Docking;
 using libWyvernzora.Nightingale;
 using libWyvernzora.Utilities;
+using NLog;
 
 namespace Animat.Studio.UI.ToolWindows
 {
@@ -22,13 +23,13 @@ namespace Animat.Studio.UI.ToolWindows
     /// </summary>
     public partial class AssetViewer : DockableForm
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         #region Multiton
 
-        private static Dictionary<UInt32, AssetViewer> instances
-            = new Dictionary<UInt32, AssetViewer>();
-
+        private static Dictionary<Guid, AssetViewer> instances
+            = new Dictionary<Guid, AssetViewer>();
         
-
         /// <summary>
         /// Gets or creates an Asset Viewer instance for an asset.
         /// </summary>
@@ -36,9 +37,13 @@ namespace Animat.Studio.UI.ToolWindows
         /// <returns></returns>
         public static AssetViewer GetInstance(AssetBase asset)
         {
-            if (!instances.ContainsKey(asset.ID))
+            logger.Debug("Requesting asset viewer for the asset {{{0}}}", asset.ID);
+
+            if (!instances.ContainsKey(asset.ID)) {
+                logger.Trace("Found an asset viewer instance for the asset {{{0}}}", asset.ID);
                 instances[asset.ID] = new AssetViewer(asset);
-                
+            }
+
             return instances[asset.ID];
         }
 
@@ -46,6 +51,8 @@ namespace Animat.Studio.UI.ToolWindows
         
         protected AssetViewer(AssetBase asset)
         {
+            logger.Trace("Creating an instance of AssetViewer for the asset {{{0}}}", asset.ID);
+
             // Initialize Components
             InitializeComponent();
             AttachEventHandlers();
@@ -82,6 +89,7 @@ namespace Animat.Studio.UI.ToolWindows
             // Dispose assets once closing
             Closing += (@e, s) =>
             {
+                logger.Trace("AssetViewer {{{0}}} is closing, disposing image resources.", Asset.ID);
                 imageBox.Image.Dispose();
                 imageBox.Image = null;
             };
@@ -89,6 +97,7 @@ namespace Animat.Studio.UI.ToolWindows
             // Remove the instance once it's closed
             Closed += (@s, e) =>
             {
+                logger.Trace("AssetViewer {{{0}}} is closed, removing the instance from the multiton.", Asset.ID);
                 instances.Remove(Asset.ID);
                 StudioCore.Instance.OnUpdateRequest -= UpdateState;
             };

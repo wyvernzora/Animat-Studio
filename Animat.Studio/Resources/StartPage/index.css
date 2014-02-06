@@ -145,6 +145,7 @@ h3 { font-size: 16px; }
 }
 .news-item .info {
     margin: 0px 5px;
+    margin-right: 15px;
     padding-top: 5px;
 }
 .news-item h3 {   

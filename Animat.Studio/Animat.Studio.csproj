@@ -211,9 +211,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Resources\StartPage\index.mustache">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Resources\StartPage\index.mustache" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\DigitalRune.Windows.Docking.dll" />
@@ -221,29 +219,13 @@
     <Content Include="Resources\logo-banner-light.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\sakura blossom-swirl-small.png" />
-    <Content Include="Resources\StartPage\github.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Resources\StartPage\index.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Resources\StartPage\index.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\StartPage\logo-dark.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\StartPage\logo-light.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Resources\StartPage\index.css" />
+    <Content Include="Resources\StartPage\logo-dark.png" />
+    <Content Include="Resources\StartPage\logo-light.png" />
     <Content Include="Resources\StartPage\pin-horizontal.png" />
     <Content Include="Resources\StartPage\pin-vertical.png" />
-    <Resource Include="Resources\StartPage\theme-dark.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\StartPage\theme-light.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Resources\StartPage\theme-dark.css" />
+    <Resource Include="Resources\StartPage\theme-light.css" />
     <Content Include="Resources\WindowIcons\action.deselect.png" />
     <Content Include="Resources\WindowIcons\action.document.add.png" />
     <Content Include="Resources\WindowIcons\action.document.open.png" />

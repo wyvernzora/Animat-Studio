@@ -130,7 +130,8 @@ namespace Animat.Studio
             
             StudioCore.Instance.Project = null;
 
-            if (showStartPage) StartPage.Instance.Show(dockPanel);
+            if (showStartPage) 
+                StartPage.Instance.Show(dockPanel);
 
         }
 

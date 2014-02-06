@@ -51,7 +51,7 @@ namespace Animat.Project.AssetLoaders
             var cacheMgr = Project.CacheManager;
 
             // Cache the thumbnail
-            var name = String.Format("{0}/C/0", DirectIntConv.ToHexString(ID, 8));
+            var name = String.Format("{0}/C/0", ID);
 
             // Get the thumbnail
             var original = GetOriginalImage();
@@ -104,7 +104,7 @@ namespace Animat.Project.AssetLoaders
             // Get thumbnail if it is not cached
             if (thumbnail == null)
             {
-                var name = String.Format("{0}/C/0", DirectIntConv.ToHexString(ID, 8));
+                var name = String.Format("{0}/C/0", ID);
 
                 // Rebuild cache if the thumbnail is not cached.
                 if (!Project.CacheManager.ContainsEntry(name)) BuildCache();

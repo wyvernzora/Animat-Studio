@@ -45,7 +45,7 @@ namespace Animat.Project
                 Filename = filename;
 
                 var strID = Path.GetFileNameWithoutExtension(filename);
-                ID = Convert.ToUInt32(strID, 16);
+                ID = Guid.Parse(strID);
 
                 if (!File.Exists(Path.Combine(Project.GetAssetDirectory(), Filename)))
                     throw new FileNotFoundException("Asset file not found!");
@@ -59,7 +59,7 @@ namespace Animat.Project
         /// <summary>
         /// Gets the ID of the asset.
         /// </summary>
-        public UInt32 ID { get; private set; }
+        public Guid ID { get; private set; }
 
         /// <summary>
         /// Gets the name of the asset.
