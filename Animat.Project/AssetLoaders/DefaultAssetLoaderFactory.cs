@@ -51,7 +51,7 @@ namespace Animat.Project.AssetLoaders
         {
             return Create(arguments);
         }
-
+        
         public Exception LoadingError
         { get; set; }
     }

@@ -123,10 +123,7 @@ namespace Animat.Studio
                 StudioCore.Instance.Project.CacheManager.Dispose();
             
             // Close all windows
-            foreach (var a in StudioCore.Instance.Project.Assets) {
-                var viewer = AssetViewer.GetInstance(a);
-                if (viewer != null) viewer.Close();
-            }
+            AssetViewer.Clear();
             
             StudioCore.Instance.Project = null;
 

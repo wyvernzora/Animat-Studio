@@ -47,6 +47,16 @@ namespace Animat.Studio.UI.ToolWindows
             return instances[asset.ID];
         }
 
+        /// <summary>
+        /// Clears all instances stored in the multiton.
+        /// </summary>
+        public static void Clear()
+        {
+            foreach (var instance in instances.Values.ToArray())
+                instance.Close();
+            instances.Clear();
+        }
+
         #endregion
         
         protected AssetViewer(AssetBase asset)
