@@ -55,12 +55,6 @@
     <ApplicationIcon>sakura.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConsoleControl">
-      <HintPath>..\packages\ConsoleControl.1.0.3.1\lib\net40\ConsoleControl.dll</HintPath>
-    </Reference>
-    <Reference Include="ConsoleControlAPI">
-      <HintPath>..\packages\ConsoleControl.1.0.3.1\lib\net40\ConsoleControlAPI.dll</HintPath>
-    </Reference>
     <Reference Include="Cyotek.Windows.Forms.ImageBox">
       <HintPath>..\packages\CyotekImageBox.1.1.4.1\lib\net35-Client\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
     </Reference>
@@ -94,12 +88,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DebugConsole.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DebugConsole.Designer.cs">
-      <DependentUpon>DebugConsole.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,13 +155,16 @@
     <Compile Include="UI\ToolWindows\StartPage.Designer.cs">
       <DependentUpon>StartPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ToolWindows\TimelineWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ToolWindows\TimelineWindow.Designer.cs">
+      <DependentUpon>TimelineWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\WizardStates\WizardState.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\WizardStates\WizardStateManager.cs" />
-    <EmbeddedResource Include="DebugConsole.resx">
-      <DependentUpon>DebugConsole.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ErrorWindow.resx">
       <DependentUpon>ErrorWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +197,9 @@
     <EmbeddedResource Include="UI\ToolWindows\StartPage.resx">
       <DependentUpon>StartPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ToolWindows\TimelineWindow.resx">
+      <DependentUpon>TimelineWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -230,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\DigitalRune.Windows.Docking.dll" />
+    <Content Include="Resources\011.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\logo-banner-dark.png" />
     <Content Include="Resources\logo-banner-light.png" />
     <Content Include="Resources\logo.png" />

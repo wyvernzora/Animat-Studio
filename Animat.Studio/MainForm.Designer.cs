@@ -35,6 +35,9 @@ namespace Animat.Studio
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNewProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOpenProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmShowStartPage = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,9 +58,7 @@ namespace Animat.Studio
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmClose = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCloseProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmUpdateAll = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuSrip.SuspendLayout();
             this.mainToolStripContainer.ContentPanel.SuspendLayout();
             this.mainToolStripContainer.TopToolStripPanel.SuspendLayout();
@@ -107,6 +108,23 @@ namespace Animat.Studio
             this.tsmOpenProject.Name = "tsmOpenProject";
             this.tsmOpenProject.Size = new System.Drawing.Size(152, 22);
             this.tsmOpenProject.Text = "Open Project...";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // tsmClose
+            // 
+            this.tsmClose.Name = "tsmClose";
+            this.tsmClose.Size = new System.Drawing.Size(152, 22);
+            this.tsmClose.Text = "Close";
+            // 
+            // tsmCloseProject
+            // 
+            this.tsmCloseProject.Name = "tsmCloseProject";
+            this.tsmCloseProject.Size = new System.Drawing.Size(152, 22);
+            this.tsmCloseProject.Text = "Close Project";
             // 
             // editToolStripMenuItem
             // 
@@ -188,7 +206,8 @@ namespace Animat.Studio
             // dEBUGToolStripMenuItem
             // 
             this.dEBUGToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmReloadStartPage});
+            this.tsmReloadStartPage,
+            this.tsmUpdateAll});
             this.dEBUGToolStripMenuItem.Name = "dEBUGToolStripMenuItem";
             this.dEBUGToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.dEBUGToolStripMenuItem.Text = "DEBUG";
@@ -277,22 +296,11 @@ namespace Animat.Studio
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripMenuItem2
+            // tsmUpdateAll
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // tsmClose
-            // 
-            this.tsmClose.Name = "tsmClose";
-            this.tsmClose.Size = new System.Drawing.Size(152, 22);
-            this.tsmClose.Text = "Close";
-            // 
-            // tsmCloseProject
-            // 
-            this.tsmCloseProject.Name = "tsmCloseProject";
-            this.tsmCloseProject.Size = new System.Drawing.Size(152, 22);
-            this.tsmCloseProject.Text = "Close Project";
+            this.tsmUpdateAll.Name = "tsmUpdateAll";
+            this.tsmUpdateAll.Size = new System.Drawing.Size(166, 22);
+            this.tsmUpdateAll.Text = "Update All";
             // 
             // MainForm
             // 
@@ -351,6 +359,7 @@ namespace Animat.Studio
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem tsmClose;
         private System.Windows.Forms.ToolStripMenuItem tsmCloseProject;
+        private System.Windows.Forms.ToolStripMenuItem tsmUpdateAll;
     }
 }
 

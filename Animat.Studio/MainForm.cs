@@ -79,6 +79,8 @@ namespace Animat.Studio
                 PreviewWindow.Instance.Show(ResourceExplorer.Instance.Pane, DockPaneAlignment.Bottom, 0.4);
                 StartPage.Instance.Show(dockPanel, DockState.Document);
 
+                (new TimelineWindow()).Show(StartPage.Instance.DockPanel, DockState.DockBottom);
+
             }
         }
 
