@@ -63,6 +63,7 @@
     <Compile Include="StudioExceptions.cs" />
     <Compile Include="StudioFrame.cs" />
     <Compile Include="StudioProject.cs" />
+    <Compile Include="StudioSequence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -71,12 +71,32 @@ namespace Animat.Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] closedhand {
+            get {
+                object obj = ResourceManager.GetObject("closedhand", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap logo_banner {
             get {
                 object obj = ResourceManager.GetObject("logo_banner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] openhand {
+            get {
+                object obj = ResourceManager.GetObject("openhand", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -171,16 +191,16 @@ namespace Animat.Studio.Properties {
         ///    &lt;head&gt;
         ///        &lt;meta charset=&quot;utf-8&quot; /&gt;
         ///        &lt;!--[if lt IE 9]&gt;&lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;&lt;![endif]--&gt;
-        ///        &lt;title&gt;Animat Studio&lt;/title&gt;
-        ///        &lt;base href=&quot;{{BaseUri}}&quot; /&gt;
-        ///        
+        ///        &lt;title&gt;Animat Studio&lt;/title&gt;        
         ///        &lt;style&gt;
-        ///          {{LayoutCSS}}
         ///          {{ColorThemeCSS}}
+        ///          {{#newline}}
+        ///          {{LayoutCSS}}
         ///        &lt;/style&gt;
-        ///        
-        ///        &lt;!--&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;theme-dark.css&quot; /&gt;
-        ///        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;index.css&quot; /&gt;- [rest of string was truncated]&quot;;.
+        ///        &lt;script type=&quot;text/javascript&quot;&gt;
+        ///            function togglePin(element) {
+        ///              if ((&apos; &apos; + element.className + &apos; &apos;).indexOf(&apos; pinned &apos;) &gt; -1) 
+        ///        [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string StartPageTemplate {
             get {

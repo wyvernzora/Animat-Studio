@@ -252,7 +252,7 @@ namespace Animat.Project
             if (assets.ContainsKey(name))
             {
                 int i = 1;
-                while (!assets.ContainsKey(String.Format("{0}({1})", name, i))) i++;
+                while (assets.ContainsKey(String.Format("{0}({1})", name, i))) i++;
                 name = String.Format("{0}({1})", name, i);
             }
 

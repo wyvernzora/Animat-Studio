@@ -46,20 +46,15 @@ namespace Animat.Project
         public Rectangle DestinationRectangle { get; set; }
 
         /// <summary>
-        /// Gets or sets the start time of the frame.
+        /// Gets or sets the start time of the frame (inclusive).
         /// </summary>
         [DataMember(Name = "start-time")]
-        public DateTime StartTime { get; set; }
+        public Int32 StartFrame { get; set; }
 
         /// <summary>
         /// Gets or sets the duration of the frame.
         /// </summary>
         [DataMember(Name = "duration")]
-        public TimeSpan Duration { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Z-Index of the frame in the sequence.
-        /// </summary>
-        public Int32 ZIndex { get; set; }
+        public Int32 Duration { get; set; }
     }
 }

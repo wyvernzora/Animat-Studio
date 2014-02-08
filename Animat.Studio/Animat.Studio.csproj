@@ -114,6 +114,12 @@
       <DependentUpon>NewProjectWizard.cs</DependentUpon>
     </Compile>
     <Compile Include="StudioSettings.cs" />
+    <Compile Include="UI\Controls\TimelineControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\TimelineControl.Designer.cs">
+      <DependentUpon>TimelineControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainForm\MainForm.Graphics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,12 +230,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\DigitalRune.Windows.Docking.dll" />
-    <Content Include="Resources\011.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Resources\closedhand.cur" />
     <Content Include="Resources\logo-banner-dark.png" />
     <Content Include="Resources\logo-banner-light.png" />
     <Content Include="Resources\logo.png" />
+    <Resource Include="Resources\openhand.cur" />
     <Content Include="Resources\sakura blossom-swirl-small.png" />
     <Resource Include="Resources\StartPage\index.css" />
     <Content Include="Resources\StartPage\logo-dark.png" />

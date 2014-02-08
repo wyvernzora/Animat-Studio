@@ -29,20 +29,41 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimelineWindow));
+            this.timelineControl1 = new Animat.Studio.UI.Controls.TimelineControl();
             this.SuspendLayout();
+            // 
+            // timelineControl1
+            // 
+            this.timelineControl1.BackColor = System.Drawing.Color.White;
+            this.timelineControl1.CaretPosition = 0;
+            this.timelineControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timelineControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.timelineControl1.ForeColor = System.Drawing.Color.Black;
+            this.timelineControl1.LayerHeight = 30;
+            this.timelineControl1.Location = new System.Drawing.Point(0, 0);
+            this.timelineControl1.Name = "timelineControl1";
+            this.timelineControl1.ScaleStart = 2;
+            this.timelineControl1.SeparatorLocation = 120;
+            this.timelineControl1.Size = new System.Drawing.Size(1191, 262);
+            this.timelineControl1.TabIndex = 0;
+            this.timelineControl1.Text = "timelineControl1";
+            this.timelineControl1.TickAccentFrequency = 5;
+            this.timelineControl1.TickFrequency = 10;
             // 
             // TimelineWindow
             // 
             this.AutoHidePortion = 220D;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(69)))), ((int)(((byte)(75)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1191, 262);
+            this.Controls.Add(this.timelineControl1);
             this.DockAreas = ((DigitalRune.Windows.Docking.DockAreas)((((((DigitalRune.Windows.Docking.DockAreas.Float | DigitalRune.Windows.Docking.DockAreas.Left) 
             | DigitalRune.Windows.Docking.DockAreas.Right) 
             | DigitalRune.Windows.Docking.DockAreas.Top) 
             | DigitalRune.Windows.Docking.DockAreas.Bottom) 
             | DigitalRune.Windows.Docking.DockAreas.Document)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -55,6 +76,9 @@
         }
 
         #endregion
+
+        private Controls.TimelineControl timelineControl1;
+
 
     }
 }

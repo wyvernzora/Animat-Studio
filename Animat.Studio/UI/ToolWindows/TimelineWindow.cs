@@ -17,15 +17,17 @@ namespace Animat.Studio.UI.ToolWindows
         {
             InitializeComponent();
 
+
             // Restrict docking
             DockAreas = DockAreas.Top | DockAreas.Bottom;
 
-            // Setup the form so that it is custom-painted
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint
-                | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
-
-
         }
+
+        #region Properties
+
+
+
+        #endregion
 
         #region Graphics related stuff
 
@@ -41,13 +43,7 @@ namespace Animat.Studio.UI.ToolWindows
                 return cp;
             }
         }
-
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-        }
-
+        
         #endregion
     }
 }
