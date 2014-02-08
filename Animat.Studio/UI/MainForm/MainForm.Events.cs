@@ -65,10 +65,8 @@ namespace Animat.Studio
                 AboutWindow.Instance.Show(dockPanel, DockState.Document);
 
             // Debug
-            tsmReloadStartPage.Click += (@s, e) =>
-            {
-                StartPage.Instance.LoadPage();
-            };
+            tsmReloadStartPage.Click += (@s, e) => StartPage.Instance.LoadPage();
+            tsmUpdateAll.Click += (@s, e) => StudioCore.Instance.RequestUpdate();
 
         }
     }

@@ -13,7 +13,7 @@ namespace Animat.Studio.ToolWindows
 {
     public partial class PreviewWindow : DockableForm
     {
-        public const String UPDATE_TARGET = "PREVIEW";
+        public static readonly Guid UPDATE_TARGET = Guid.Parse("27f6d397-609a-4df4-b350-609578fbb006");
 
         #region Singleton Window
 

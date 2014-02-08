@@ -135,7 +135,7 @@ namespace Animat.Studio
         /// <param name="scope"></param>
         /// <param name="target"></param>
         /// <param name="message"></param>
-        public void RequestUpdate(UpdateScope scope, String target, Object message)
+        public void RequestUpdate(UpdateScope scope, Guid target, Object message)
         {
             if (onUpdateRequest != null)
                 onUpdateRequest(this, new UpdateEventArgs(scope) { Target = target, UpdateMessage = message });
@@ -176,8 +176,7 @@ namespace Animat.Studio
             var viewer = AssetViewer.GetInstance(asset);
             MainForm.Instance.PushDockableWindow(viewer, DockState.Document);
         }
-
-
+        
         #endregion
     }
 
@@ -193,6 +192,7 @@ namespace Animat.Studio
         Preview = 4,
         StartPage = 8,
         AssetViewer = 16,
+        SequenceEditor = 32,
         All = -1
     }
 
@@ -219,7 +219,7 @@ namespace Animat.Studio
         /// String specifying the target of the update request,
         /// null if there is no specific target.
         /// </summary>
-        public String Target { get; set; }
+        public Guid Target { get; set; }
 
         /// <summary>
         /// Specific message attached to the update request.

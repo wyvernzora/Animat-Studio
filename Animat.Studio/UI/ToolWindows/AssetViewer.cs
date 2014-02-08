@@ -151,7 +151,7 @@ namespace Animat.Studio.UI.ToolWindows
         {
             if (!args.Scope.HasFlag(UpdateScope.AssetViewer)) return;
 
-            if (Asset.Name.Equals(args.Target))
+            if (Asset.ID.Equals(args.Target))
             {
                 var index = (int) args.UpdateMessage;
                 if (index >= 0 && index < Asset.FrameCount)
