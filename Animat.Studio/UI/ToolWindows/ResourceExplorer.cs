@@ -80,7 +80,7 @@ namespace Animat.Studio.ToolWindows
                     n.Nodes.Clear();
 
                 // Fill up resources
-                foreach (var node in StudioCore.Instance.Project.Assets.OrderBy((a) => { return a.Filename; }))
+                foreach (var node in StudioCore.Instance.Project.Assets.OrderBy((a) => a.Name))
                 {
                     var imgKey = node.Error != null ? "error" : "file";
                     var treeNode = new TreeNode(node.Name)

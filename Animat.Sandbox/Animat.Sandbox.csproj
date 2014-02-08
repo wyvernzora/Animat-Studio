@@ -55,10 +55,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Animat.CacheViewer\Animat.CacheViewer.csproj">
-      <Project>{93d1dd74-7e2c-4a96-adde-3949bdd6daa2}</Project>
-      <Name>Animat.CacheViewer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Animat.Foundation\Animat.Foundation.csproj">
       <Project>{d7eae64c-dd23-42db-8fcb-b5b544be6cf5}</Project>
       <Name>Animat.Foundation</Name>
