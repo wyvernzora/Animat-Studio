@@ -35,14 +35,14 @@
             // timelineControl1
             // 
             this.timelineControl1.BackColor = System.Drawing.Color.White;
-            this.timelineControl1.CaretPosition = 0;
+            this.timelineControl1.CaretPosition = 27;
             this.timelineControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.timelineControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.timelineControl1.ForeColor = System.Drawing.Color.Black;
             this.timelineControl1.LayerHeight = 30;
             this.timelineControl1.Location = new System.Drawing.Point(0, 0);
             this.timelineControl1.Name = "timelineControl1";
-            this.timelineControl1.ScaleStart = 2;
+            this.timelineControl1.ScaleStart = 0;
             this.timelineControl1.SeparatorLocation = 120;
             this.timelineControl1.Size = new System.Drawing.Size(1191, 262);
             this.timelineControl1.TabIndex = 0;
